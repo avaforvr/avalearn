@@ -1,0 +1,69 @@
+<h1>CSS3学习笔记 - 字体</h1>
+
+<section>
+    <h2>@font-face 语法</h2>
+    <p>CSS3中新增的 @font-face，能够加载服务器端的字体文件，让客户端显示客户端所没有安装的字体。语法如下：</p>
+    <pre>@font-face {
+    font-family: &lt;YourWebFontName&gt;;
+    src: &lt;source&gt; [&lt;format&gt;][,&lt;source&gt; [&lt;format&gt;]]*;
+    [font-weight: &lt;weight&gt;];
+    [font-style: &lt;style&gt;];
+}</pre>
+    <ol>
+        <li>YousourcerWebFontName：自定义的字体名称，最好是使用你下载的默认字体，用于font-family属性。如font-family:"YourWebFontName";</li>
+        <li>src：字体文件存放的先对或绝对路径；</li>
+        <li>format：字体的格式，主要用来帮助浏览器识别，其值主要有以下几种类型：truetype、 opentype、truetype-aat、embedded-opentype、avg等；</li>
+        <li>font-weight：字体是否为粗体；</li>
+        <li>font-style：字体的样式，可能的值为：normal、italic、oblique。</li>
+    </ol>
+</section>
+
+<section>
+    <h2>format 字体格式</h2>
+    <h4>TureTpe(.ttf)</h4>
+    <p>.ttf字体是Windows和Mac的最常见的字体，是一种RAW格式，因此他不为网站优化,支持这种字体的浏览器有【IE9+,Firefox3.5+,Chrome4+,Safari3+,Opera10+,iOS Mobile Safari4.2+】。</p>
+    <h4>OpenType(.otf)</h4>
+    <p>.otf字体被认为是一种原始的字体格式，其内置在TureType的基础上，所以也提供了更多的功能,支持这种字体的浏览器有【Firefox3.5+,Chrome4.0+,Safari3.1+,Opera10.0+,iOS Mobile Safari4.2+】；</p>
+    <h4>Web Open Font Format(.woff)</h4>
+    <p>.woff字体是Web字体中最佳格式，他是一个开放的TrueType/OpenType的压缩版本，同时也支持元数据包的分离,支持这种字体的浏览器有【IE9+,Firefox3.5+,Chrome6+,Safari3.6+,Opera11.1+】；</p>
+    <h4>Embedded Open Type(.eot)</h4>
+    <p>.eot字体是IE专用字体，可以从TrueType创建此格式字体,支持这种字体的浏览器有【IE4+】；</p>
+    <h4>SVG(.svg)</h4>
+    <p>.svg字体是基于SVG字体渲染的一种格式,支持这种字体的浏览器有【Chrome4+,Safari3.1+,Opera10.0+,iOS Mobile Safari3.2+】。</p>
+</section>
+
+<section>
+    <h2>多浏览器兼容</h2>
+
+    <h4>推荐写法：</h4>
+    <pre>@font-face {
+    font-family: 'YourWebFontName';
+    src: url('../font/YourWebFontName.eot?') format('eot'),
+         url('../font/YourWebFontName.woff') format('woff'),
+         url('../font/YourWebFontName.ttf') format('truetype');
+}</pre>
+    <p>以上写法来自：<a href="http://www.paulirish.com/2009/bulletproof-font-face-implementation-syntax/" target="_blank">Bulletproof @font-face Syntax</a></p>
+
+    <h4>兼容更多浏览器的写法：</h4>
+    <pre>@font-face {
+    font-family: 'YourWebFontName';
+    src: url('../font/YourWebFontName.eot');
+    src: url('../font/YourWebFontName.eot?#iefix') format('embedded-opentype'),
+         url('../font/YourWebFontName.woff') format('woff'),
+         url('../font/YourWebFontName.ttf') format('truetype'),
+         url('../font/YourWebFontName.svg#NeuesBauenDemo') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}</pre>
+</section>
+
+<section>
+    <h2>字体转换</h2>
+    <p><a href="{{WEB_ROOT}}article.php?pid=css_17_1" target="_blank">Font Squirrel</a></p>
+</section>
+
+<section>
+    <h2>矢量图标 Font Awesome</h2>
+    <p>Font Awesome gives you scalable vector icons that can instantly be customized — size, color, drop shadow, and anything that can be done with the power of CSS.</p>
+    <p>官方网站：<a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">Font Awesome</a></p>
+</section>

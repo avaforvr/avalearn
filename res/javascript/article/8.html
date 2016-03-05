@@ -1,0 +1,41 @@
+<h1>jQuery对象与DOM对象的转换</h1>
+<p>两种类型对象写入字符串测试</p>
+<pre>&lt;div id=&quot;testa&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;testb&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;testc&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;testd&quot;&gt;&lt;/div&gt;
+
+&lt;script&gt;
+    var a = document.getElementById(&#39;testa&#39;); //DOM对象
+    a.innerHTML = &#39;aaa&#39;; //成功
+
+    var b = document.getElementById(&#39;testb&#39;); //DOM对象
+    b.html(&#39;bbb&#39;);       //失败，报错：Uncaught TypeError: Object #&lt;HTMLDivElement&gt; has no method &#39;html&#39;
+
+    var $c = $(&#39;#testc&#39;); //jQuery对象
+    $c.innerHTML = &#39;ccc&#39;; //失败，但是无报错
+
+    var $d = $(&#39;#testd&#39;); //jQuery对象
+    $d.html(&#39;ddd&#39;);       //成功
+&lt;/script&gt;</pre>
+
+<h3>DOM 转 jQuery</h3>
+<p>用 <span class="highlight">$()</span> 把DOM对象包装起来，就可以获得一个jQuery对象了</p>
+<pre>var b = document.getElementById(&#39;testb&#39;);  //DOM对象
+b.html(&#39;bbb&#39;);   //失败，报错：Uncaught TypeError: Object #&lt;HTMLDivElement&gt; has no method &#39;html&#39;
+
+var $b2 = $(b);   //DOM 转 jQuery
+$b2.html(&#39;bbb&#39;);  //成功</pre>
+
+<h3>jQuery 转 DOM</h3>
+<p>两种转换方式：<span class="highlight">$obj[index]</span> 和 <span class="highlight">$obj.get(index)</span></p>
+<pre>var $c = $(&#39;#testc&#39;);      //jQuery对象
+$c.innerHTML = &#39;ccc&#39;;  //失败，但是无报错
+
+var c2 = $c[0];             //jQuery 转 DOM
+c2.innerHTML = &#39;ccc&#39;;    //成功</pre>
+<pre>var $c = $(&#39;#testc&#39;);      //jQuery对象
+$c.innerHTML = &#39;ccc&#39;;  //失败，但是无报错
+
+var c2 = $c.get(0);       //jQuery 转 DOM
+c2.innerHTML = &#39;ccc&#39;;    //成功</pre>

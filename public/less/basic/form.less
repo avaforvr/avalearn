@@ -1,0 +1,41 @@
+.btn {
+    display: inline-block;
+    vertical-align: top;
+    padding: 9px 20px;
+    background: #27931b;
+    border: solid 1px #238a18;
+    border-color: #238a18 #1e7f13 #1e7f13 #238a18;
+    color: #fff;
+    font: bold 14px/18px @font-family-verdana;
+    cursor: pointer;
+    .border-radius(3px);
+}
+.btn-white {
+    .btn;
+    background: #fff;
+    border: solid 1px #ccc;
+    color: @gray-dark;
+    font: normal 14px/18px @font-family-verdana;
+
+}
+.input {
+    vertical-align: top;
+    padding: 10px;
+    border: solid 1px #CCC;
+    background: #F7F7F7;
+    border-color: #ddd #aaa #aaa #ddd;
+    line-height: 20px;
+    .border-radius(3px);
+}
+.form-a {
+    input[type="text"], input[type="password"], textarea, select {
+        .input;
+        width: 100%;
+    }
+    textarea {
+        height: 100px;
+    }
+    li {
+        margin-bottom: 15px;
+    }
+}

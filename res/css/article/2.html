@@ -1,0 +1,19 @@
+<h1> 最大最小宽度高度 </h1>
+<h3>div 最小高度</h3>
+<pre>min-height:600px;
+height:auto !important; 
+height:600px;</pre>
+
+<h3>图片最大宽度</h3>
+<pre>max-width:600px;
+width:expression(this.width&gt;600?600:true);</pre>
+
+<h3>图片最大高度</h3>
+<pre>max-height:600px;
+height:expression(this.height&gt;600?600:true);</pre>
+
+<h3>图片根据最大宽度，最大高度按比例缩放</h3>
+<pre>max-width:530px;
+max-height:800px;
+width:expression(this.width &gt; 530 &amp;&amp; this.width / 530 &gt;= this.height / 800 ? 530 : true);
+height:expression(this.height &gt; 800 &amp;&amp; this.width / 530 &lt; this.height / 800 ? 800 : true);</pre>

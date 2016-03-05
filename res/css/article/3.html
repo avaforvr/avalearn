@@ -1,0 +1,73 @@
+<h1>莫名奇妙的bug</h1>
+
+<h3>IE6 绝对定位，right和bottom发生1px偏移</h3>
+<p>HTML代码</p>
+<pre>&lt;div class=&quot;father&quot;&gt;
+    &lt;div class=&quot;son&quot;&gt;子元素&lt;/div&gt;
+&lt;/div&gt;</pre>
+<p>CSS代码</p>
+<pre>.father {
+    position: relative;
+    width: 201px;
+    height: 201px;
+    background: #000;
+}
+.son {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: #0FF;
+}</pre>
+<p>效果对比</p>
+<p>
+    <img src="{{res_path}}images/3_1.gif" alt="测试效果图" /><br />
+    <span class="noteb" style="width:201px;">其它浏览器<strong class="right">&radic;</strong></span><span class="noteb" style="width:201px;">IE6<strong class="wrong">&times;</strong></span>
+</p>
+<p>
+    <strong>学习总结</strong>：此bug与相对定位元素的宽高值的奇偶有关，偶数时正常，奇数时会偏移1px。解决方法有二：<br />
+    1. 将相对定位元素宽和高改为偶数值；<br />
+    2. 给相对定位元素添加padding属性，使宽高与padding的和为偶数。
+</p>
+
+<h3>链接绝对定位，鼠标悬浮时位置变动，火狐和IE8正常，IE6和IE7无效</h3>
+<p>HTML代码</p>
+<pre>&lt;div class=&quwot;navbar&quot;&gt;
+    &lt;a href=&quot;#&quot;&gt;绝对定位链接&lt;/a&gt;
+&lt;/div&gt;</pre>
+<p>CSS代码</p>
+<pre>.navbar {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background: #000;
+}
+.navbar a {
+    position: absolute;
+    top: 50px;
+    left: 25px;
+    display: block;
+    width: 150px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    background: #0FF;
+    color: #000;
+    text-decoration: none;
+}
+.navbar a:hover {
+    top: 40px;
+}</pre>
+<p>效果对比</p>
+<p>
+    <img src="{{res_path}}images/3_2.gif" alt="测试效果图" /><br />
+    <span class="noteb" style="width:200px;">原始状态</span>
+    <span class="noteb" style="width:200px;">IE8，火狐鼠标悬浮状态<strong class="right">&radic;</strong></span>
+    <span class="noteb" style="width:200px;">IE6，IE7鼠标悬浮状态<strong class="wrong">&times;</strong></span>
+</p>
+<p>
+    <strong>学习总结</strong>：在悬浮状态CSS中添加或修改某些属性可以解决该bug。已测试一些属性，结果如下：<br />
+    可以解决：border, cursor, float, line-height, padding, margin, text-indent, clear, display（这些属性某些值不起作用，可尝试其他值）<br />
+    不能解决：background, color, text-decoration
+</p>

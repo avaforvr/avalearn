@@ -1,0 +1,322 @@
+<style>
+    .box {
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        color: #fff;
+        font-size: 32px;
+        text-align: center;
+
+    }
+    @keyframes rotateBox1 {
+        from { transform: rotate(0); }
+        to { transform: rotate(360deg); }
+    }
+    @keyframes rotateBox2 {
+        0%   { transform: rotate(0); }
+        25%  { transform: rotate(90deg); }
+        50%  { transform: rotate(45deg); }
+        75%  { transform: rotate(90deg); background: #468713;}
+        100% { transform: rotate(360deg); }
+    }
+    @keyframes rotateBox3 {
+        from { transform: rotate(0); background: #bf4d4d; }
+        to { transform: rotate(360deg); background: #efb938; }
+    }
+    .box1 {
+        background: #789CB6;
+        animation: rotateBox1 2s infinite;
+    }
+    .box2 {
+        background: #7fbf4d;
+        animation: rotateBox2 2s infinite;
+    }
+    .box3 {
+        background: #789CB6;
+        animation: rotateBox3 2s linear 2s 1;
+    }
+    .box-state {
+        animation-play-state: normal;
+    }
+    .box-state:hover {
+        animation-play-state: paused;
+    }
+
+    .effect-box dt {
+        height: 100px;
+    }
+</style>
+
+<h1>CSS3学习笔记 - 动画</h1>
+
+<nav class="anchor-nav">
+    文章目录：
+    <ul>
+        <li><a href="#keyframes">@keyframes</a></li>
+        <li><a href="#animation">animation</a></li>
+        <li><a href="#animation-name">animation-name</a></li>
+        <li><a href="#animation-duration">animation-duration</a></li>
+        <li><a href="#animation-timing-function">animation-timing-function</a></li>
+        <li><a href="#animation-delay">animation-delay</a></li>
+        <li><a href="#animation-iteration-count">animation-iteration-count</a></li>
+        <li><a href="#animation-direction">animation-direction</a></li>
+        <li><a href="#animation-play-state">animation-play-state</a></li>
+        <li><a href="#animation-fill-mode">animation-fill-mode</a></li>
+    </ul>
+</nav>
+
+<section class="clearfix">
+    <h2>代码范例</h2>
+    <h4>box1，蓝色方块，对应@keyframes rotateBox1</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box1">Ava</div></dt>
+        <dd>
+            <pre>@keyframes rotateBox1 {
+    from { transform: rotate(0); }
+    to { transform: rotate(360deg); }
+}
+.box1 {
+    background: #789CB6;
+    animation: rotateBox1 2s infinite;
+}</pre>
+        </dd>
+    </dl>
+
+    <h4>box2，绿色方块，对应@keyframes rotateBox2</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box2">Ava</div></dt>
+        <dd><pre>@keyframes rotateBox2 {
+    0%   { transform: rotate(0); }
+    25%  { transform: rotate(90deg); }
+    50%  { transform: rotate(45deg); }
+    75%  { transform: rotate(90deg); background: #468713;}
+    100% { transform: rotate(360deg); }
+}
+.box2 {
+    background: #7fbf4d;
+    animation: rotateBox2 2s infinite;
+}</pre></dd>
+    </dl>
+
+    <h4>box2，蓝色方块，对应@keyframes rotateBox3，主要用来测试animation-fill-mode</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box3" style="">Ava</div></dt>
+        <dd>
+            <pre>@keyframes rotateBox3 {
+    from { transform: rotate(0); background: #bf4d4d; }
+    to { transform: rotate(360deg); background: #efb938; }
+}
+.box3 {
+    background: #789CB6;
+    animation: rotateBox3 2s linear 2s 1;
+}</pre>
+        </dd>
+    </dl>
+</section>
+
+<section id="keyframes">
+    <h2>@keyframes 指定动画名称和动画效果</h2>
+    <pre>@keyframes animationname {keyframes-selector {css-styles;}}</pre>
+    <table class="table1" width="100%">
+        <thead>
+            <tr>
+                <td width="30%">值</td>
+                <td>描述</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>animationname</td>
+                <td>必需。定义动画的名称。</td>
+            </tr>
+            <tr>
+                <td>keyframes-selector</td>
+                <td>必需。动画时长的百分比。<br/>
+                    合法的值：<br/>
+                    0-100%<br/>
+                    from（与 0% 相同）<br/>
+                    to（与 100% 相同）</td>
+            </tr>
+            <tr>
+                <td>css-styles</td>
+                <td>必需。一个或多个合法的 CSS 样式属性。</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section id="animation">
+    <h2>animation 所有动画属性的简写属性，除了 animation-play-state 和 animation-fill-mode 属性</h2>
+    <pre>animation: name duration timing-function delay iteration-count direction;</pre>
+</section>
+
+<section id="animation-name">
+    <h2>animation-name @keyframes 中指定的动画的名称</h2>
+    <pre>animation-name: keyframename|none;</pre>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box1" style="animation-name: rotateBox1;">Ava</div></dt>
+        <dd>
+            <pre>animation-name: rotateBox1;</pre>
+            <p>绿色方块box1绑定动画rotateBox1</p>
+        </dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box1" style="animation-name: rotateBox2;">Ava</div></dt>
+        <dd>
+            <pre>animation-name: rotateBox2;</pre>
+            <p>绿色方块box1绑定动画rotateBox2</p>
+        </dd>
+    </dl>
+</section>
+
+<section id="animation-duration">
+    <h2>animation-duration 动画完成一个周期所花费的秒或毫秒。默认是 0</h2>
+    <pre>animation-duration: time;</pre>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box2" style="animation-duration:4s;">Ava</div></dt>
+        <dd>
+            <pre>animation-duration:4s;</pre>
+        </dd>
+    </dl>
+</section>
+
+<section id="animation-timing-function">
+    <h2>animation-timing-function 规定动画的速度曲线。默认是 "ease"</h2>
+    <pre>animation-timing-function: linear|ease|ease-in|ease-out|ease-in-out|cubic-bezier(n,n,n,n);</pre>
+
+    <dl class="effect-box clearfix">
+        <dt><div class="box box1" style="animation-timing-function: linear;">Ava</div></dt>
+        <dd>
+            <pre>animation-timing-function: linear;</pre>
+            <p>以相同速度开始至结束，cubic-bezier(0,0,1,1)</p>
+        </dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box1" style="animation-timing-function: ease;">Ava</div></dt>
+        <dd>
+            <pre>animation-timing-function: ease;</pre>
+            <p>慢速开始，然后变快，然后慢速结束，cubic-bezier(0.25,0.1,0.25,1)</p>
+        </dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box1" style="animation-timing-function: ease-in;">Ava</div></dt>
+        <dd>
+            <pre>animation-timing-function: ease-in;</pre>
+            <p>以慢速开始，cubic-bezier(0.42,0,1,1)</p>
+        </dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box1" style="animation-timing-function: ease-out;">Ava</div></dt>
+        <dd>
+            <pre>animation-timing-function: ease-out;</pre>
+            <p>以慢速结束，cubic-bezier(0,0,0.58,1)</p>
+        </dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box1" style="animation-timing-function: ease-in-out;">Ava</div></dt>
+        <dd>
+            <pre>animation-timing-function: ease-in-out;</pre>
+            <p>ease-in-out：以慢速开始和结束，cubic-bezier(0.42,0,0.58,1)</p>
+        </dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box1" style="animation-timing-function: cubic-bezier(.1,.9,.9,.1);">Ava</div></dt>
+        <dd>
+            <pre>animation-timing-function: cubic-bezier(.1,.9,.9,.1);</pre>
+            <p>贝塞尔曲线，详细解释请参考 <a href="{{WEB_ROOT}}article.php?pid=css_13#cubic-bezier" target="_blank">《CSS3学习笔记 - 过渡》</a></p>
+        </dd>
+    </dl>
+</section>
+
+<section id="animation-delay">
+    <h2>animation-delay 动画何时开始。默认是 0</h2>
+    <pre>animation-delay: time;</pre>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box1" style="animation-delay: 5s;">Ava</div></dt>
+        <dd>
+            <pre>animation-delay: 5s;</pre>
+        </dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box1" style="animation-delay: -1s;">Ava</div></dt>
+        <dd>
+            <pre>animation-delay: -1s;</pre>
+            <p>time为负值，动画跳过 1 秒进入动画周期</p>
+        </dd>
+    </dl>
+</section>
+
+<section id="animation-iteration-count">
+    <h2>animation-iteration-count 动画被播放的次数。默认是 1</h2>
+    <pre>animation-iteration-count: n|infinite;</pre>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box1" style="animation-iteration-count: 2;">Ava</div></dt>
+        <dd>
+            <pre>animation-iteration-count: 2;</pre>
+            <p>指定播放次数</p>
+        </dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box1" style="animation-iteration-count: infinite;">Ava</div></dt>
+        <dd>
+            <pre>animation-iteration-count: infinite;</pre>
+            <p>无限次播放</p>
+        </dd>
+    </dl>
+</section>
+
+<section id="animation-direction">
+    <h2>animation-direction 动画是否在下一周期逆向地播放。默认是 "normal"</h2>
+    <pre>animation-direction: normal|alternate;</pre>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box1" style="animation-direction: normal;">Ava</div></dt>
+        <dd>
+            <pre>animation-direction: normal;</pre>
+        </dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box1" style="animation-direction: alternate;">Ava</div></dt>
+        <dd>
+            <pre>animation-direction: alternate;</pre>
+            <p>奇数次数（1、3、5 等等）正常播放，而在偶数次数（2、4、6 等等）逆向播放</p>
+        </dd>
+    </dl>
+</section>
+
+<section id="animation-play-state">
+    <h2>animation-play-state 动画是否正在运行或暂停。默认是 "running"</h2>
+    <pre>animation-play-state: paused|running;</pre>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box1 box-state">Ava</div></dt>
+        <dd>
+            <pre>.box-state { animation-play-state: normal; }
+.box-state:hover { animation-play-state: paused; }</pre>
+        </dd>
+    </dl>
+</section>
+
+<section id="animation-fill-mode">
+    <h2>animation-fill-mode 对象动画时间之外的状态</h2>
+    <pre>animation-fill-mode : none | forwards | backwards | both;</pre>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box3" style="animation-fill-mode: forwards;">Ava</div></dt>
+        <dd>
+            <pre>animation-fill-mode: forwards;</pre>
+            <p>当动画完成后，保持最后一个属性值（在最后一个关键帧中定义）</p>
+        </dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box3" style="animation-fill-mode: backwards;">Ava</div></dt>
+        <dd>
+            <pre>animation-fill-mode: backwards;</pre>
+            <p>在动画开始播放之前，应用开始属性值（在第一个关键帧中定义）</p>
+        </dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box3" style="animation-fill-mode: both;">Ava</div></dt>
+        <dd>
+            <pre>animation-fill-mode: both;</pre>
+            <p>向前和向后填充模式都被应用</p>
+        </dd>
+    </dl>
+</section>

@@ -1,0 +1,11 @@
+/*滑动块*/
+.slide { background:#397300; padding:7px 33px; float:left; width:736px; position:relative; margin-bottom:10px; }
+.slide .slideWrap { float:left; overflow:hidden; width:736px; height:134px; background:#ccc; }
+.slide .slideIn { float:left; }
+.slide .ulCont { float:left; }
+.slide .ulCopy { float:left; }
+.slide li { float:left; width:178px; height:134px; padding:0 3px; text-align:center; }
+.slide img { width:178px; height:134px; vertical-align:bottom; }
+.slide .btnLeft, .slide .btnRight { display:block; width:16px; height:31px; overflow:hidden; line-height: 200px; background:url("http://loc.avalearn.com/public/images/btn.gif") no-repeat; }
+.slide .btnLeft { background-position:0 0; position:absolute; top:69px; left:7px; }
+.slide .btnRight { background-position:0 -33px; position:absolute; top:69px; right:7px; }

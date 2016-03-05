@@ -1,0 +1,52 @@
+<h1>获取鼠标坐标</h1>
+
+<h3>1. 触发事件</h3>
+<p>正常效果：鼠标移经id为"results"的块时，在该块显示鼠标相对于客户端浏览区域的坐标。</p>
+
+<p>以下代码，IE中运行正常，火狐中提示错误：<span class="highlight">event is not defined</span></p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+    function posxy(){
+        var obj=document.getElementById(&quot;results&quot;);//触发事件的对象，同时用来显示坐标值
+        var posx=event.clientX;
+        var posy=event.clientY;
+        obj.innerHTML=&quot;x: &quot;+posx+&quot; — y: &quot;+posy;
+    }
+&lt;/script&gt;
+&lt;div id=&quot;results&quot; onmousemove=&quot;posxy()&quot;&gt;&lt;/div&gt;</pre>
+
+<p>修改后，火狐与IE运行正常，代码如下</p>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+    function posxy(e){
+        var obj=document.getElementById(&quot;results&quot;);    //触发事件的对象，同时用来显示坐标值
+        var e=(e)?e:window.event;
+        var posx=e.clientX;
+        var posy=e.clientY;
+        obj.innerHTML=&quot;x: &quot;+posx+&quot; — y: &quot;+posy;
+    }
+&lt;/script&gt;
+&lt;div id=&quot;results&quot; onmousemove=&quot;posxy(event)&quot;&gt;&lt;/div&gt;</pre>
+
+<p><strong>学习总结</strong>：event是IE自带的一个对象，FF中不存在该对象，只能通过从页面传递参数的方式来实现。 </p>
+
+<h3>2. 鼠标坐标的获取与计算</h3>
+<p>相对于客户端浏览区域的坐标(不随页面滚动而改变)</p>
+<pre>var posx=e.clientX;//相对于客户端浏览区域的坐标
+var posy=e.clientY;</pre>
+<p>相对页面的坐标(随页面滚动而改变)</p>
+<pre>var posx=0,posy=0;
+if(e.pageX||e.pageY){
+    posx=e.pageX;    //IE不支持pageX和pageY
+    posy=e.pageY;
+}else if(e.clientX||e.clientY){
+    posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+    posy = e.clientY + document.body.scrollTop  + document.documentElement.scrollTop;
+}</pre>
+<p>相对于屏幕的坐标（屏幕坐标） </p>
+<pre>var posx=e.screenX;    //相对于电脑屏幕的坐标
+var posy=e.screenY;</pre>
+<p>相对于触发事件的元素所在的层级关系中最近的具有相对/绝对定位的容器的坐标 </p>
+<pre>var posx=e.x||e.layerX||0;    //火狐不支持e.x，IE不支持e.layerX
+var posy=e.y||e.layerY||0;</pre>
+<p>相对于最鼠标所处位置最高层的容器的坐标</p>
+<pre>var posx=e.offsetX;    //火狐不支持
+var posy=e.offsetY;</pre>

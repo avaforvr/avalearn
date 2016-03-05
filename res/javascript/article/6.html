@@ -1,0 +1,100 @@
+<style>
+    .article h3, .article p {
+        margin-bottom: 10px;
+    }
+    .article pre {
+        margin-bottom: 20px;
+    }
+</style>
+
+<h1>JS字符串的操作</h1>
+    
+<h3>concat</h3>
+<p>将两个或多个字符的文本组合起来，返回一个新的字符串</p>
+<pre>var a = 'abcdefg';
+var b = 'hijklmn';
+var c = a.concat(b);    //c = 'abcdefghijklmn'</pre>
+
+<h3>indexOf</h3>
+<p>返回字符串中一个子串第一处出现的索引（从左到右搜索），如果没有匹配项，返回 -1</p>
+<pre>var a = 'abcdefg';
+var b = a.indexOf('cd');    //b = 2
+var c = a.indexOf('hh');    //c = -1
+var d = a.indexOf('de',1);    //d = 3
+var e = a.indexOf('de',5);    //e = -1</pre>
+
+<h3>lastIndexOf</h3>
+<p>返回字符串中一个子串最后一处出现的索引（从右到左搜索），如果没有匹配项，返回 -1 </p>
+<pre>var a = 'abcdefgabcdefg';
+var b = a.lastIndexOf('cd');    //b = 9
+var c = a.lastIndexOf('hh');    //c = -1
+var d = a.lastIndexOf('cd',10);    //d = 9
+var e = a.lastIndexOf('cd',1);    //e = -1
+var f = a.lastIndexOf('cd',2);    //f = 2</pre>
+
+<h3>charAt</h3>
+<p>返回指定位置的字符</p>
+<pre>var a = 'abcdefg';
+var b = a.charAt(2);    //b = 'c'</pre>
+
+<h3>substring</h3>
+<p>返回字符串的一个子串，传入参数是起始位置和结束位置。</p>
+<pre>var a = 'abcdefgabcdefg';
+var b = a.substring(1);    //b = 'bcdefgabcdefg'
+var c = a.substring(1,4);    //c = 'bcd'</pre>
+
+<h3>substr</h3>
+<p>返回字符串的一个子串，传入参数是起始位置和长度</p>
+<pre>var a = 'abcdefgabcdefg';
+var b = a.substr(1);    //b = 'bcdefgabcdefg'
+var c = a.substr(1,4);    //c = 'bcde'</pre>
+
+<h3>slice</h3>
+<p>提取字符串的一部分，并返回一个新字符串（与 substring 相同）</p>
+<pre>var a = 'abcdefgabcdefg';
+var b = a.slice(1);    //b = 'bcdefgabcdefg'
+var c = a.slice(1,4);    //c = 'bcd'</pre>
+
+<h3>split</h3>
+<p>通过将字符串划分成子串，将一个字符串做成一个字符串数组</p>
+<pre>var a = 'abcdefg';
+var b = a.split("|");    //b = 'bcdefgabcdefg'
+var typeofa = typeof(a);    //typeofa = string
+var typeofb = typeof(b);    //typeofb = object</pre>
+
+<h3>length</h3>
+<p>返回字符串的长度</p>
+<pre>var a = 'abcdefg';
+var b = a.length;    //b = 7
+var typeofa = typeof(a);    //typeofa = string
+var typeofb = typeof(b);    //typeofb = number</pre>
+
+<h3>toLowerCase、toUpperCase</h3>
+<p>字符串大小写转换</p>
+<pre>var a = 'ABCdefg';
+var b = a.toLowerCase();    //b = 'abcdefg' 转为小写
+var c = a.toUpperCase();    //c = 'ABCDEFG' 转为大写</pre>
+
+<h3>match</h3>
+<p>检查一个字符串匹配一个正则表达式内容，如果么有匹配返回 null</p>
+<pre>var a = 'acabbcc';
+var b = 'acadddc';
+var re = new RegExp(/ab+c/);
+var c = a.match(re);    //c = 'abbc'
+var d = b.match(re);    //d = 'null'</pre>
+
+<h3>replace</h3>
+<p>用来查找匹配一个正则表达式的字符串，然后使用新字符串代替匹配的字符串</p>
+<pre>var a = 'acabbcc';
+var b = 'acadddc';
+var re = new RegExp(/ab+c/);
+var c = a.replace(re,'ac');    //c = 'acacc'，将a中的abbc替换成ac，返回新字符串
+var d = b.replace(re,'ac');    //d = 'acadddc'，没有匹配re的字符，返回原字符串</pre>
+
+<h3>search</h3>
+<p>执行一个正则表达式匹配查找。如果查找成功，返回字符串中匹配的索引值。否则返回 -1</p>
+<pre>var a = 'acabbcc';
+var b = 'acadddc';
+var re = new RegExp(/ab+c/);
+var c = a.search(re);    //c = 2
+var d = b.search(re);    //d = -1</pre>

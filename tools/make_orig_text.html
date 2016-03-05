@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="shortcut icon" href="../favicon.ico">
+<title>生成文案</title>
+<style>
+* { margin: 0; padding: 0; border: none; line-height: 20px; font-size:11px; font-family:verdana; }
+ul, li { list-style: none; }
+body { background: #fff; text-shadow: #fff 0 1px 0; padding:50px;}
+.container { background: #f7f7f7; border: solid 1px #ccc; margin-bottom:30px; }
+.tac { text-align:center; }
+textarea { height: 200px; padding: 5px; line-height: 20px; background: #fff; border: solid 1px #ccc; border-color: #ddd #aaa #aaa #ddd; }
+#orig_text {width:90%; margin:30px 0 0;}
+#result {width:99%;}
+.btn { margin:15px 5px; padding: 6px 20px; background: #0055d4; border: solid 1px #ccc; border-color: #004fc4 #0045ab #0045ab #004fc4; color: #fff; font: bold 14px/18px Verdana, Geneva, sans-serif; cursor: pointer; }
+.btn:hover { background: #06f; color: #fff; }
+#options { padding-top:0; }
+#options table { width:100%; border-spacing: 0; }
+#options th, td {padding:10px 20px; border:solid 1px #eee; font-weight:normal; text-align:left; vertical-align:top; line-height:16px;}
+#options td {white-space:nowrap; border-left:none;}
+#options .h2 th {font-weight:bold; font-size:14px;}
+#options .h3 th {font-weight:bold; font-size:12px;}
+#options .error th, #options .error td { border-color:#d00; background:#fdf4f4; }
+label { margin-right:10px; }
+select {border: solid 1px #ccc; background:#fff; padding:5px;}
+</style>
+</head>
+
+<body>
+<div class="container tac" id="orig">
+	<textarea id="orig_text"></textarea>
+	<p><input class="btn" type="submit" value="生成操作列表" onClick="makeOptions()"><input class="btn" type="submit" value="刷新页面" onClick="ReloadPage()"></p>
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#orig_text').focus();
+});
+
+function makeOptions() {
+	
+	var orig_text = $('#orig_text').val();
+	var orig_text_arr = orig_text.split('\n');
+	var options_str = '';
+	var idx = 0;
+	for(var i = 0; i < orig_text_arr.length; i ++) {
+        var t_str = $.trim(orig_text_arr[i]);
+        if(t_str.length > 0) {
+			options_str += '<tr>'
+					+ '	<th>' + t_str + '</th>'
+					+ '	<td class="td_tag"></td>'
+					+ '	<td>'
+					+ '		<label><input type="radio" name="tags[' + idx + ']" value="h2"> h2</label>'
+					+ '		<label><input type="radio" name="tags[' + idx + ']" value="h3"> h3</label>'
+					+ '		<label><input type="radio" name="tags[' + idx + ']" value="p"> p</label>'
+					+ '	</td>'
+					+ '</tr>';
+			idx ++;
+		}
+	}
+	
+	$('#options').remove();
+	
+	if(idx > 0) {
+		options_str = '<div class="container" id="options"><form><table>' + options_str + '</table></form><p class="tac"><input class="btn" type="submit" value="生成html" onClick="makeHtml()"></p></div>';
+	}
+	
+	$('#orig').after(options_str);
+	initRadios();
+}
+
+function initRadios() {
+	var trs = $('#options').find('tr');
+	//setRadios(trs, 'h2');
+	setRadios(trs, 'h3');
+	
+	$('#options').delegate('input', 'click', function() {
+		var me = $(this);
+		me.prop('checked', true);
+		me.closest('tr').find('.td_tag').html(me.val());
+		var next_trs = me.closest('tr').nextAll();
+		if(me.val() == 'h3') {
+			me.closest('tr').addClass('h3');
+			setRadios(next_trs, 'p');
+		} else if(me.val() == 'p') {
+			me.closest('tr').removeClass('h3');
+			setRadios(next_trs, 'h3');
+		}
+	});
+}
+
+function setRadios(trs, first_tag) {
+	if(trs.length == 0) {
+		return false;
+	}
+	trs.removeClass('h3');
+	
+	if(first_tag == 'h2') {
+		var even_tag = 'p';
+		var odd_tag = 'h3';
+	} else {
+		var even_tag = first_tag;
+		var odd_tag = (even_tag == 'h3') ? 'p' : 'h3';
+	}
+	
+	for(var i = 0; i < trs.length; i ++) {
+		var td_tag = trs.eq(i).find('.td_tag');
+		if(i == 0 && first_tag == 'h2') {
+			trs.eq(i).find('input[value="h2"]').prop('checked', true);
+			td_tag.html('h2');
+		} else if(i % 2 == 0) {
+			trs.eq(i).find('input[value="' + even_tag + '"]').prop('checked', true);
+			td_tag.html(even_tag);
+		} else {
+			trs.eq(i).find('input[value="' + odd_tag + '"]').prop('checked', true);
+			td_tag.html(odd_tag);
+		}
+		
+		if(td_tag.html() == 'h3') {
+			trs.eq(i).addClass('h3');
+		} else if(td_tag.html() == 'h2') {
+			trs.eq(i).addClass('h2');
+		}
+	}
+}
+
+function makeHtml() {
+	var trs = $('#options').find('tr');
+	if(trs.length == 0) {
+		return false;
+	}
+	
+	trs.removeClass('error');
+	
+	var result_str = '';
+	for(var i = 0; i < trs.length; i ++) {	
+		var str = trs.eq(i).find('th').html();
+		var tag = trs.eq(i).find('input:checked').val();
+		if(tag == 'h2') {
+			result_str += '<h2>' + str + '</h2>';
+		} else if(tag == 'h3') {
+			result_str += '<h3>' + str + '</h3>';
+		} else if(tag == 'p') {
+			result_str += '<p>' + str + '</p>';
+		} else {
+			trs.eq(i).addClass('error');
+			return false;
+		}
+		if(i != trs.length - 1) {
+			result_str += '\n';
+		}
+	}
+	
+	$('#options').after('<textarea id="result">' + result_str + '</textarea>');
+	$('#result').select();
+}
+
+function ReloadPage() {
+    self.location.href = self.location.href;
+}
+
+</script>
+</body>
+</html>

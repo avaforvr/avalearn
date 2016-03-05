@@ -1,0 +1,34 @@
+<h1>HTML转义</h1>
+<section class="plugin-panel">
+    <h2>效果展示</h2>
+    <div class="plugin-cont">
+        {% include sub_twig ~ 'html.html' %}
+        {% include sub_twig ~ 'js.html' %}
+    </div>
+</section>
+<section class="plugin-panel">
+    <h2>代码展示</h2>
+    <div class="plugin-cont">
+        <h3>HTML</h3>
+        <pre>{{ source(sub_twig ~ 'html.html')|e }}</pre>
+        <h3>JS</h3>
+        <pre>{{ source(sub_twig ~ 'js.html')|e }}</pre>
+    </div>
+</section>
+<section class="plugin-panel">
+    <h2>相关文件下载</h2>
+    <div class="plugin-cont">
+        <ul class="download">
+            <li>ZeroClipboard插件<a href="{{JS_PATH}}ZeroClipboard-master.zip" target="_blank">ZeroClipboard-master.zip</a></li>
+        </ul>
+    </div>
+</section>
+<section class="plugin-panel">
+    <h2>要点总结</h2>
+    <div class="plugin-cont">
+        <ul class="summary">
+            <li>js复制到剪贴板功能，IE下可以使用 <span class="highlight">window.clipboardData.setData</span> 实现，其它各浏览器不兼容，需要借助 <span class="highlight">ZeroClipboard</span> 插件，利用flash来实现复制到剪贴板功能，上面提供了必需的 <span class="highlight">ZeroClipboard.js</span> 和 <span class="highlight">ZeroClipboard.swf</span>，使用的时候只要引入 ZeroClipboard.js 就可以了。具体使用方法请参考：<a href="https://github.com/jonrohan/ZeroClipboard" target="_blank" class="fc2">https://github.com/jonrohan/ZeroClipboard</a>。</li>
+            <li>ZeroClipboard插件本地不起作用，必须上传到服务器才能使用。</li>
+        </ul>
+    </div>
+</section>

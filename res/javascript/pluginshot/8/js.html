@@ -1,0 +1,9 @@
+<script type="text/javascript" src="{{JS_PATH}}jquery/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="{{res_path}}imgSize.js"></script>
+<script>
+    $(document).ready(function(){
+        $(".imgList1 img").each(function(){ $(this).imgSize1({maxw:200,maxh:200}); });
+        $(".imgList2 img").each(function(){ $(this).imgSize2({maxw:200,maxh:200}); });
+        $(".imgList3 img").each(function(){ $(this).imgSize3({maxw:200}); });
+    })
+</script>

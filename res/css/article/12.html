@@ -1,0 +1,245 @@
+<style>
+    .box {
+        width: 100px;
+        height: 80px;
+        border: solid 1px #bbb;
+        position: relative;
+        line-height: 80px;
+        text-align: center;
+        color: #000;
+    }
+    .box img, .box:before {
+        display: block;
+        position: absolute;
+        top: 10px;
+        left: 10px;;
+        width: 80px;
+        height: 60px;
+    }
+    .box:before {
+        content: "";
+        background: #00aaff;
+    }
+    hr {
+        margin-top: 26px;
+    }
+    .effect-box p {
+        margin-bottom: 0;
+    }
+</style>
+
+<h1>CSS3学习笔记 - 转换</h1>
+
+<nav class="anchor-nav">
+    文章目录：
+    <ul>
+        <li>
+            <a href="#transform">transform</a>
+            <ul>
+                <li><a href="#translate">translate 移动</a></li>
+                <li><a href="#scale">scale 缩放</a></li>
+                <li><a href="#rotate">rotate 旋转</a></li>
+                <li><a href="#skew">skew 斜切</a></li>
+                <li><a href="#matrix">matrix 2D变换矩阵</a></li>
+                <li><a href="#matrix3d">matrix3d 3D变换矩阵</a></li>
+            </ul>
+        </li>
+        <li><a href="#transform-origin">transform-origin</a></li>
+        <li><a href="#perspective">perspective 透视</a></li>
+        <li><a href="#other">待整理</a></li>
+    </ul>
+</nav>
+
+<section id="transform">
+    <h2>transform 向元素应用2D或3D转换</h2>
+    <pre>transform: none|transform-functions;</pre>
+
+    <h4>none：不进行转换</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box"><img style="transform: none;" src="{{res_path}}images/12_1.jpg"/></div></dt>
+        <dd><pre>transform: none;</pre></dd>
+    </dl>
+
+    <section id="translate">
+        <hr/>
+        <h4>translate(x,y)：根据给定的 left（x 坐标） 和 top（y 坐标） 位置参数，从当前位置移动</h4>
+        <dl class="effect-box clearfix">
+            <dt><div class="box"><img style="transform: translate(10px, 10px);" src="{{res_path}}images/12_1.jpg"/></div></dt>
+            <dd><pre>transform: translate(10px, 10px);</pre></dd>
+        </dl>
+
+        <h4>translateX(x)：沿X轴移动</h4>
+        <dl class="effect-box clearfix">
+            <dt><div class="box"><img style="transform: translateX(10px);" src="{{res_path}}images/12_1.jpg"/></div></dt>
+            <dd><pre>transform: translateX(10px);</pre></dd>
+        </dl>
+
+        <h4>translateY(y)：沿Y轴移动</h4>
+        <dl class="effect-box clearfix">
+            <dt><div class="box"><img style="transform: translateY(10px);" src="{{res_path}}images/12_1.jpg"/></div></dt>
+            <dd><pre>transform: translateY(10px);</pre></dd>
+        </dl>
+
+        <h4>translateZ(z)：3D 转换，沿Z轴移动</h4>
+        <dl class="effect-box clearfix">
+            <dt><div class="box" style="-webkit-perspective: 500;"><img style="transform: translateZ(100px);" src="{{res_path}}images/12_1.jpg"/></div></dt>
+            <dd><pre>transform: translateZ(100px);</pre><p>translateZ和translate3d都属于3D变换，需要跟perspective结合使用才能达到透视效果，父元素添加属性：<br/><strong>-webkit-perspective: 500;</strong></p></dd>
+        </dl>
+        <dl class="effect-box clearfix">
+            <dt><div class="box" style="-webkit-perspective: 500;"><img style="transform: translateZ(-100px);" src="{{res_path}}images/12_1.jpg"/></div></dt>
+            <dd><pre>transform: translateZ(-100px);</pre></dd>
+        </dl>
+
+        <h4>translate3d(x,y,z)：3D 转换</h4>
+        <dl class="effect-box clearfix">
+            <dt><div class="box" style="-webkit-perspective: 500;"><img style="transform: translate3d(10px, 10px, -100px);" src="{{res_path}}images/12_1.jpg"/></div></dt>
+            <dd><pre>transform: translate3d(10px, 10px, -100px);</pre></dd>
+        </dl>
+    </section>
+
+    <section id="scale">
+        <hr/>
+        <h4>scale(x,y)</h4>
+        <dl class="effect-box clearfix">
+            <dt><div class="box"><img style="transform: scale(0.5, 1.5);" src="{{res_path}}images/12_1.jpg"/></div></dt>
+            <dd><pre>transform: scale(0.5, 1.5);</pre><p>x, y为缩放的倍数</p></dd>
+        </dl>
+
+        <h4>scaleX(x)</h4>
+        <dl class="effect-box clearfix">
+            <dt><div class="box"><img style="transform: scaleX(0.5);" src="{{res_path}}images/12_1.jpg"/></div></dt>
+            <dd><pre>transform: scaleX(0.5);</pre></dd>
+        </dl>
+
+        <h4>scaleY(y)</h4>
+        <dl class="effect-box clearfix">
+            <dt><div class="box"><img style="transform: scaleY(0.5);" src="{{res_path}}images/12_1.jpg"/></div></dt>
+            <dd><pre>transform: scaleY(0.5);</pre></dd>
+        </dl>
+    </section>
+
+    <section id="rotate">
+        <hr/>
+        <h4>rotate(angle)：2D旋转</h4>
+        <dl class="effect-box clearfix">
+            <dt><div class="box"><img style="transform: rotate(45deg);" src="{{res_path}}images/12_1.jpg"/></div></dt>
+            <dd><pre>transform: rotate(45deg);</pre><p>在参数中规定角度，角度单位是deg(度)</p></dd>
+        </dl>
+
+        <h4>rotateX(angle)：沿着 X 轴的3D旋转</h4>
+        <dl class="effect-box clearfix">
+            <dt><div class="box"><img style="transform: rotateX(45deg);" src="{{res_path}}images/12_1.jpg"/></div></dt>
+            <dd><pre>transform: rotateX(45deg);</pre></dd>
+        </dl>
+
+        <h4>rotateY(angle)：沿着 Y 轴的3D旋转</h4>
+        <dl class="effect-box clearfix">
+            <dt><div class="box"><img style="transform: rotateY(45deg);" src="{{res_path}}images/12_1.jpg"/></div></dt>
+            <dd><pre>transform: rotateY(45deg);</pre></dd>
+        </dl>
+
+        <h4>rotateZ(angle)：沿着 Z 轴的3D旋转</h4>
+        <dl class="effect-box clearfix">
+            <dt><div class="box"><img style="transform: rotateZ(45deg);" src="{{res_path}}images/12_1.jpg"/></div></dt>
+            <dd><pre>transform: rotateZ(45deg);</pre></dd>
+        </dl>
+
+        <h4>rotate3d(x,y,z,angle)：3D旋转</h4>
+        <dl class="effect-box clearfix">
+            <dt><div class="box"><img style="transform: rotate3d(1,1,1,45deg);" src="{{res_path}}images/12_1.jpg"/></div></dt>
+            <dd><pre>transform: rotate3d(1,1,1,45deg);</pre><p>rotate3d是rotateX, rotateY, rotateZ的综合，rotate3d(1,0,0,45deg)就相当于rotateX(45deg)。</p></dd>
+        </dl>
+    </section>
+
+    <section id="skew">
+        <hr/>
+        <h4>skew(x-angle,y-angle)：2D 斜切</h4>
+        <dl class="effect-box clearfix">
+            <dt><div class="box"><img style="transform: skew(20deg, 20deg);" src="{{res_path}}images/12_1.jpg"/></div></dt>
+            <dd><pre>transform: skew(20deg, 20deg);</pre><p>在参数中规定角度，角度单位是deg(度)，skew包含了skewX和skewY。</p></dd>
+        </dl>
+
+        <h4>skewX(angle)</h4>
+        <dl class="effect-box clearfix">
+            <dt><div class="box"><img style="transform: skewX(20deg);" src="{{res_path}}images/12_1.jpg"/></div></dt>
+            <dd><pre>transform: skewX(20deg);</pre></dd>
+        </dl>
+
+        <h4>skewY(angle)</h4>
+        <dl class="effect-box clearfix">
+            <dt><div class="box"><img style="transform: skewY(20deg);" src="{{res_path}}images/12_1.jpg"/></div></dt>
+            <dd><pre>transform: skewY(20deg);</pre></dd>
+        </dl>
+    </section>
+
+    <section id="matrix">
+        <hr/>
+        <h4>matrix 2D变换矩阵</h4>
+        <p></p>
+    </section>
+
+    <section id="matrix3d">
+        <hr/>
+        <h4>matrix3d 3D变换矩阵</h4>
+    </section>
+
+</section>
+
+<section id="transform-origin">
+    <h2>transform-origin 改变元素转换的基点</h2>
+    <pre>transform-origin: x-axis y-axis z-axis;</pre>
+    <p>
+        x-axis 可能的值：left、center、right、length、%<br/>
+        y-axis 可能的值：top、center、bottom、length、%<br/>
+        z-axis 可能的值：length <br/>
+        默认值：50% 50% 0
+    </p>
+    <dl class="effect-box clearfix">
+        <dt><div class="box"><img style="transform: translate(10px, 10px);" src="{{res_path}}images/12_1.jpg"/></div></dt>
+        <dt><div class="box"><img style="transform: translate(10px, 10px); transform-origin: left top;" src="{{res_path}}images/12_1.jpg"/></div></dt>
+        <dd><pre>transform: translate(10px, 10px);
+transform-origin: left top;</pre>
+            <p>似乎并没有什么影响</p>
+        </dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box"><img style="transform: scale(0.5, 0.5);" src="{{res_path}}images/12_1.jpg"/></div></dt>
+        <dt><div class="box"><img style="transform: scale(0.5, 0.5); transform-origin: left top;" src="{{res_path}}images/12_1.jpg"/></div></dt>
+        <dd><pre>transform: scale(0.5, 0.5);
+transform-origin: left top;</pre></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box"><img style="transform: rotate(15deg);" src="{{res_path}}images/12_1.jpg"/></div></dt>
+        <dt><div class="box"><img style="transform: rotate(15deg); transform-origin: left top;" src="{{res_path}}images/12_1.jpg"/></div></dt>
+        <dd><pre>transform: rotate(15deg);
+transform-origin: left top;</pre></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box"><img style="transform: skew(20deg, 20deg);" src="{{res_path}}images/12_1.jpg"/></div></dt>
+        <dt><div class="box"><img style="transform: skew(20deg, 20deg); transform-origin: left top;" src="{{res_path}}images/12_1.jpg"/></div></dt>
+        <dd><pre>transform: skew(20deg, 20deg);
+transform-origin: left top;</pre></dd>
+    </dl>
+
+</section>
+
+<section id="perspective">
+    <h2>perspective 透视</h2>
+    <p>perspective 属性定义了3D元素距视图的距离，单位为像素。</p>
+    <p>perspective 属性有两种写法：</p>
+    <p>写法一，用在舞台元素上（动画元素们的共同父辈元素），当为舞台元素定义perspective属性时，其子元素会获得透视效果，而不是该元素自身。</p>
+    <pre>div {
+    perspective: 500;
+    -webkit-perspective: 500; /* Safari 和 Chrome */
+}</pre>
+    <p>写法二，用在当前动画元素上，与transform的其他属性写在一起。</p>
+    <pre>transform: perspective(600px) rotateY(45deg);</pre>
+</section>
+
+<section id="other">
+    <h2>待整理</h2>
+    <ul class="summary">
+        <li>scaleZ(z)</li>
+        <li>scale3d(x,y,z)</li>
+    </ul>
+</section>

@@ -1,0 +1,11 @@
+/*按最大宽度和最大高度等比缩放，图片完整显示在该区域内*/
+.imgList1 { width:100%; overflow:hidden; float:left; padding-bottom:15px; }
+.imgList1 li { width:200px; height:200px; overflow:hidden; float:left; border:solid 1px #ccc; margin-right:10px; text-align:center; }
+
+/*按最大宽度和最大高度等比缩放，图片不一定完整显示在该区域内，取中间部分显示*/
+.imgList2 { width:100%; overflow:hidden; float:left; padding-bottom:15px; }
+.imgList2 li { width:200px; height:200px; overflow:hidden; float:left; border:solid 1px #ccc; margin-right:10px; }
+
+/*按最大宽度等比缩放，高度不限*/
+.imgList3 { width:100%; overflow:hidden; float:left; }
+.imgList3 li { width:200px; overflow:hidden; float:left; border:solid 1px #ccc; margin-right:10px; text-align:center; }

@@ -1,0 +1,25 @@
+/*向左滚动*/
+.scrollL { float:left; overflow:hidden; width:920px; height:134px; background:#ccc; border:solid 7px #397300; }
+.scrollL .scrollIn { float:left; }
+.scrollL .ulCont { float:left; }
+.scrollL .ulCopy { float:left; }
+.scrollL li { float:left; width:178px; padding:0 3px; }
+.scrollL img { width:178px; height:134px; }
+
+/*向右滚动*/
+.scrollR { float:left; overflow:hidden; width:920px; height:134px; background:#ccc; border:solid 7px #397300; margin-top:10px; }
+.scrollR .scrollIn { float:left; }
+.scrollR .ulCont { float:left; }
+.scrollR .ulCopy { float:left; }
+.scrollR li { float:left; width:178px; padding:0 3px; }
+.scrollR img { width:178px; height:134px; }
+
+/*向上滚动*/
+.scrollT { float:left; overflow:hidden; width:178px; height:420px; background:#ccc; border:solid 7px #397300; margin-top:15px; }
+.scrollT li { height:134px; padding:3px 0; }
+.scrollT img { width:178px; height:134px; }
+
+/*向下滚动*/
+.scrollB { float:left; overflow:hidden; width:178px; height:420px; background:#ccc; border:solid 7px #397300; margin:15px 0 0 15px; }
+.scrollB li { height:134px; padding:3px 0; }
+.scrollB img { width:178px; height:134px; }

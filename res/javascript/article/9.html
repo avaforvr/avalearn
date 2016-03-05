@@ -1,0 +1,16 @@
+<h1>JS页面跳转</h1>
+<h3>当前窗口跳转</h3>
+<pre>window.location.href = &#39;page.html&#39;;  //方法1
+window.history.back(-1);  //方法2，返回前一页面
+window.navigate(&#39;page.html&#39;);  //方法3，针对IE的方法，其它浏览器不兼容
+self.location = &#39;page.html&#39;;  //方法4</pre>
+
+<h3>父窗口跳转 (跳出frame)</h3>
+<pre>top.location = &#39;page.html&#39;;</pre>
+
+<h3>扩展：判断当前页面是否被嵌入iframe内</h3>
+<pre>if (top.location != self.location) {
+    alert(true); //iframe内的页面
+} else {
+    alert(false); //顶级窗口、弹出窗口
+}</pre>

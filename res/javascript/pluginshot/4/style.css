@@ -1,0 +1,6 @@
+.sele { height: 42px; position: relative; margin-bottom: 10px; }
+.sele input { position: absolute; left: 0; top: 0; height: 38px; line-height: 38px !important; overflow: hidden; cursor: pointer; padding: 0 36px 0 15px; background: url(chSelect.gif) no-repeat 100% 0 #fff; border: solid 2px #dbdbdb; color: #131313; font-size: 18px; font-family: "Microsoft YaHei"; }
+.sele .open { border: solid 2px #97c4ee; }
+.sele ul { width: 100%; position: absolute; top: 40px; left: 0; background: #fff; border-top: solid 2px #97c4ee; overflow-x: hidden; overflow-y: auto; display: none; }
+.sele li { cursor: pointer; height: 30px; line-height: 30px; white-space: nowrap; border: solid 2px #97c4ee; border-top: none; background: #fff; color: #333; font-size: 14px; padding: 0 15px; }
+.sele li:hover { background: #f1f1f1; }

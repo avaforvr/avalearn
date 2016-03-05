@@ -1,0 +1,27 @@
+<h1>随机显示一张图片</h1>
+<div class="plugin-panel">
+    <h2>效果展示</h2>
+    <div class="plugin-cont">
+        <p>每次刷新页面，随机显示一张图片</p>
+        {% include sub_twig ~ 'html.html' %}
+        {% include sub_twig ~ 'js.html' %}
+    </div>
+</div>
+<div class="plugin-panel">
+    <h2>代码展示</h2>
+    <div class="plugin-cont">
+        <h3>HTML</h3>
+        <pre>{{ source(sub_twig ~ 'html.html')|e }}</pre>
+        <h3>JS</h3>
+        <pre>{{ source(sub_twig ~ 'js.html')|e }}</pre>
+    </div>
+</div>
+<div class="plugin-panel">
+    <h2>要点总结</h2>
+    <div class="plugin-cont">
+        <ul class="summary">
+            <li>js随机函数 Math.random() 的使用。</li>
+            <li>Math.random() -- 返回0和1之间的伪随机数 可能为0，但总是小于1，[0,1)</li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,98 @@
+<h1>常用CSS代码</h1>
+<h3>Chrome中文版不支持12px以下的字体大小（英文版没有限制）：</h3>
+<pre>html { -webkit-text-size-adjust: none; }  /*webkit的私有属性*/</pre>
+<p>PC桌面版Chrome 27正式取消了-webkit-text-size-adjust属性的支持，如果定义该属性在Chrome调试窗口会显示Unknown property name，所有字号最小为12px。但是，移动端chrome/safari目前依然支持-webkit-text-size-adjust属性。</p>
+<pre>.chrome_adjust {
+    font-size: 9px;
+    -webkit-transform: scale(0.75);
+    -o-transform: scale(1);    //针对能识别-webkit的opera browser设置
+}</pre>
+<p>针对Chrome 27以后版本的浏览器，可以通过上面的方法进行局部缩放</p>
+
+<h3>有序列表，数字排序</h3>
+<pre>ol {
+    list-style: decimal;
+    margin-left: 40px;
+}
+ol li {
+    list-style: decimal-leading-zero;
+    list-style-position: outside;
+}</pre>
+<p class="note">注：属性为 <span class="highlight">decimal</span> 时，数字编号从1,2,3开始；属性为 <span class="highlight">decimal-leading-zero</span> 时，数字编号从01,02,03开始。<br/>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ol start=&quot;2&quot;&gt; <span class="highlight">start</span> 属性规定有序列表的开始点。</p>
+
+<h3>微软雅黑</h3>
+<pre>font-family: Microsoft YaHei;</pre>
+
+<h3>火狐强制出现滚动条</h3>
+<pre>html {
+    overflow: -moz-scrollbars-vertical;
+}</pre>
+
+<h3>display:inline-block 属性</h3>
+<pre>display: inline-block;
+*display: inline;
+*zoom: 1;</pre>
+<p>消除inline-block元素之间的间距，有两种解决方案：<br/>
+	1. 删除inline-block元素之间的空格和换行：<br/>
+	2. 外层元素设置：<br/></p>
+<pre>font-size: 0;
+*letter-spacing: -1px;</pre>
+
+<h3>css透明属性</h3>
+<pre>filter: alpha(opacity=40);
+opacity: 0.4;</pre>
+
+<h3>强制大小写</h3>
+<pre>text-transform: uppercase;   /*全大写*/
+text-transform: lowercase;   /*全小写*/
+text-transform: capitalize;    /*首字母大写*/</pre>
+
+<h3>元素没有背景css</h3>
+<pre>background: transparent;</pre>
+
+<h3>Clearfix Hack</h3>
+<pre>.clearfix:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    font-size: 0;
+    visibility: hidden;
+}
+.clearfix {
+    *zoom:1;
+}</pre>
+
+<h3>文字超出时省略号表示</h3>
+<pre>overflow: hidden;
+white-space: nowrap; 
+text-overflow: ellipsis;</pre>
+
+<h3>全是字母或数据组成的字符串强制换行，空格正常换行</h3>
+<pre>td {
+    word-break:break-all;
+    word-wrap:break-word;
+}</pre>
+<p>
+word-break:break-all; /*支持IE，chrome，FF不支持*/<br/>
+word-wrap:break-word;/*支持IE，chrome，FF*/
+</p>
+
+<h3>DIV垂直居中</h3>
+<pre>&lt;div style=&quot;height: 500px;width: 500px;display: table;border: 1px solid #ccc;&quot;&gt;
+    &lt;div style=&quot;border: 1px solid #f00;display: table-cell;vertical-align: middle; text-align:center; margin:auto auto;&quot;&gt;
+        &lt;p&gt;
+            aaaaaaaaaaaaaaaa
+        &lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+<h3>hr标签样式</h3>
+<pre>hr {
+    background: #ccc;
+    height: 1px;
+    line-height: 1px;
+    font-size: 0;
+    border: none;
+}</pre>

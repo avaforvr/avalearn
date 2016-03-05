@@ -1,0 +1,30 @@
+<script>
+    function InputText(element, options) {
+        if (!element) { return false; }
+        var me = this;
+        me.container = element;
+        me.options = options || {};
+        me.options.initValue = me.container.getAttribute('data-value') || 'Please input';
+        if (me.container.addEventListener) {
+            me.container.addEventListener('focus', function() { me.focus.call(me); }, false);
+            me.container.addEventListener('blur', function() { me.blur.call(me); }, false);
+        } else if (me.container.attachEvent) {
+            me.container.attachEvent('onfocus', function() { me.focus.call(me); });
+            me.container.attachEvent('onblur', function() { me.blur.call(me); });
+        }
+    }
+    InputText.prototype = {
+        focus: function() {
+            if (this.container.value == this.options.initValue) {
+                this.container.value = '';
+            }
+        },
+        blur: function() {
+            if (this.container.value == '') {
+                this.container.value = this.options.initValue;
+            }
+        }
+    };
+    new InputText(document.getElementById('idTxt'));
+    new InputText(document.getElementById('idTxt2'));
+</script>

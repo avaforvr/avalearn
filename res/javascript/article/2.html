@@ -1,0 +1,229 @@
+<style>
+    span + span {
+        margin-left: 15px;;
+    }
+</style>
+
+<h1>获取各种宽高及距离</h1>
+<h3>获取屏幕和文档信息</h3>
+<p>测试环境：1680*1050分辨率，火狐、IE7</p>
+<table class="table1" width="100%">
+    <thead>
+        <tr>
+            <td>描述</td>
+            <td>代码及说明</td>
+            <td>兼容</td>
+            <td>值</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>屏幕分辨率的宽</td>
+            <td>window.screen.width</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="right">值</span></td>
+            <td>1680</td>
+        </tr>
+        <tr>
+            <td>屏幕分辨率的高</td>
+            <td>window.screen.height</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="right">值</span></td>
+            <td>1050</td>
+        </tr>
+        <tr>
+            <td>屏幕可用工作区宽度</td>
+            <td>window.screen.availWidth</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="right">值</span></td>
+            <td>1680</td>
+        </tr>
+        <tr>
+            <td>屏幕可用工作区高度</td>
+            <td>window.screen.availHeight</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="right">值</span></td>
+            <td>1050 - 工具栏高度</td>
+        </tr>
+        <tr>
+            <td rowspan="2">网页可见区域宽</td>
+            <td>document.body.clientWidth</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="right">值</span></td>
+            <td>网页可见区域宽 - margin - border - 滚动条(17)</td>
+        </tr>
+        <tr>
+            <td>document.body.offsetWidth</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="right">值</span></td>
+            <td>网页可见区域宽 - margin - 滚动条(17)</td>
+        </tr>
+        <tr>
+            <td rowspan="2">网页可见区域高</td>
+            <td>document.body.clientHeight</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="right">值</span></td>
+            <td>正文高度 + padding</td>
+        </tr>
+        <tr>
+            <td>document.body.offsetHeight</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="right">值</span></td>
+            <td>正文高度 + padding + border</td>
+        </tr>
+        <tr>
+            <td>网页正文全文宽</td>
+            <td>document.body.scrollWidth</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="wrong">值</span></td>
+            <td><span class="highlight">正文宽度不溢出</span><br />
+                IE7：网页可见区域宽 - margin - border -  滚动条(17)<br />
+                火狐：网页可见区域宽 - margin - 滚动条(17)<br />
+                <span class="highlight">正文宽度溢出</span><br />
+                IE7：正文宽度 + padding<br />
+                火狐：网页可见区域宽 - margin - 滚动条(17)</td>
+        </tr>
+        <tr>
+            <td>网页正文全文高</td>
+            <td>document.body.scrollHeight</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="wrong">值</span></td>
+            <td>IE7：正文高度 + padding<br />
+                火狐：正文高度 + padding + border</td>
+        </tr>
+        <tr>
+            <td rowspan="2">网页被卷去的上边距</td>
+            <td>document.body.scrollTop</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="right">值</span></td>
+            <td>恒为0</td>
+        </tr>
+        <tr>
+            <td>document.documentElement.scrollTop</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="right">值</span></td>
+            <td>正常，但是值有差异</td>
+        </tr>
+        <tr>
+            <td rowspan="2">网页被卷去的左边距</td>
+            <td>document.body.scrollLeft</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="right">值</span></td>
+            <td>恒为0</td>
+        </tr>
+        <tr>
+            <td>document.documentElement.scrollLeft</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="right">值</span></td>
+            <td>正常，但是值有差异</td>
+        </tr>
+        <tr>
+            <td rowspan="2">网页正文部分上边距</td>
+            <td>window.screenTop</td>
+            <td><span class="right">IE7</span><span class="wrong">火狐</span></td>
+            <td>IE7 正常，火狐 undefined</td>
+        </tr>
+        <tr>
+            <td>window.screenY</td>
+            <td><span class="wrong">IE7</span><span class="right">火狐</span></td>
+            <td>IE7 undefined，火狐 正常</td>
+        </tr>
+        <tr>
+            <td rowspan="2">网页正文部分左边距</td>
+            <td>window.screenLeft</td>
+            <td><span class="right">IE7</span><span class="wrong">火狐</span></td>
+            <td>IE7 正常，火狐 undefined</td>
+        </tr>
+        <tr>
+            <td>window.screenX</td>
+            <td><span class="wrong">IE7</span><span class="right">火狐</span></td>
+            <td>IE7 undefined，火狐 正常</td>
+        </tr>
+    </tbody>
+</table>
+<p class="note">
+    注：1. 上表中的margin、padding、border都是指“body”的属性；<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;2. "兼容"一栏中，绿色代表支持或计算方法一致，红色代表不支持或计算方法不一致，“值”是指值的计算方式，由于各种因素的影响，精确值可能并不相同。
+</p>
+<p><strong>学习总结</strong>：为尽量消除浏览器之间的差异，建议body上添加“margin:0; padding:0; border:none;”这三个属性。</p>
+
+<h3>client、offset、scroll的对比</h3>
+<p>测试环境：1680*1050分辨率，火狐、IE7</p>
+<table class="table1" style="width:100%;">
+    <thead>
+        <tr>
+            <td>描述</td>
+            <td>代码及说明</td>
+            <td>兼容</td>
+            <td>值</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="3">对象的宽度</td>
+            <td>obj.clientWidth</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="right">值</span></td>
+            <td>width + padding</td>
+        </tr>
+        <tr>
+            <td>obj.offsetWidth</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="right">值</span></td>
+            <td>width + padding + border</td>
+        </tr>
+        <tr>
+            <td>obj.scrollWidth</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="wrong">值</span></td>
+            <td><span class="highlight">子元素宽度不溢出</span><br />
+                IE7、火狐：自身width + 自身padding <br />
+                <span class="highlight">子元素宽度溢出</span><br />
+                IE7：子元素高（width + padding + border + margin） + 自身padding-left + 自身padding-right<br />
+                火狐：子元素高（width + padding + border + margin） + 自身padding-left</td>
+        </tr>
+        <tr>
+            <td rowspan="3">对象的高度</td>
+            <td>obj.clientHeight</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="right">值</span></td>
+            <td>height + padding</td>
+        </tr>
+        <tr>
+            <td>obj.offsetHeight</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="right">值</span></td>
+            <td>height + padding + border</td>
+        </tr>
+        <tr>
+            <td>obj.scrollHeight</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="wrong">值</span></td>
+            <td><span class="highlight">子元素高度不溢出</span><br />
+                IE7：子元素高（width + padding + border + margin） + 自身padding<br />
+                火狐：自身height + padding<br />
+                <span class="highlight">子元素高度溢出</span><br />
+                IE7：子元素高（height + padding + border + margin） + 自身padding-top + 自身padding-bottom<br />
+                火狐：子元素高（height + padding + border + margin） + 自身padding-top</td>
+        </tr>
+        <tr>
+            <td rowspan="3">对象的横坐标</td>
+            <td>obj.clientLeft</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="right">值</span></td>
+            <td>border-left-width</td>
+        </tr>
+        <tr>
+            <td>obj.offsetLeft</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="wrong">值</span></td>
+            <td>IE7：对象（包含border）左上角与父级元素（不包含border）左上角的距离，不受相对/绝对定位影响<br />
+                火狐：对象（包含border）左上角与相对/绝对定位的祖先元素（不包含border）左上角的距离</td>
+        </tr>
+        <tr>
+            <td>obj.scrollLeft</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="wrong">值</span></td>
+            <td>IE7：子元素高（width + padding + border + margin） - 自身width + 17<br />
+                火狐：子元素高（width + padding + border + margin） - 自身width + 17 - 自身padding-left</td>
+        </tr>
+        <tr>
+            <td>对象的纵坐标</td>
+            <td>obj.clientTop</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="right">值</span></td>
+            <td>border-top-width</td>
+        </tr>
+        <tr>
+            <td>---------</td>
+            <td>obj.offsetTop</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="wrong">值</span></td>
+            <td>IE7：对象（包含border）左上角与父级元素左上角的距离，不受相对/绝对定位影响<br />
+                火狐：对象（包含border）左上角与相对/绝对定位的祖先元素（不包含border）左上角的距离</td>
+        </tr>
+        <tr>
+            <td>---------</td>
+            <td>obj.scrollTop</td>
+            <td><span class="right">IE7</span><span class="right">火狐</span><span class="wrong">值</span></td>
+            <td>IE7：子元素高（height + padding + border + margin） - 自身height + 17<br />
+                火狐：子元素高（height + padding + border + margin） - 自身height + 17 - 自身padding-bottom</td>
+        </tr>
+    </tbody>
+</table>
+<p><strong>学习总结</strong>：测试scroll相关属性时发现，父元素padding与子元素margin在IE和火狐中有不同状况的重叠，建议需要控制间距时，直接在子元素上添加margin，不要在父元素上添加padding。</p>

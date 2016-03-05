@@ -1,0 +1,42 @@
+<h1>不带按钮的无缝滚动</h1>
+<div class="plugin-panel">
+    <h2>效果展示</h2>
+    <div class="plugin-cont">
+        <link type="text/css" rel="stylesheet" href="{{res_path}}style.css" />
+        {% include sub_twig ~ 'html.html' %}
+        {% include sub_twig ~ 'js.html' %}
+    </div>
+</div>
+<div class="plugin-panel">
+    <h2>代码展示</h2>
+    <div class="plugin-cont">
+        <h3>HTML</h3>
+        <pre>{{ source(sub_twig ~ 'html.html')|e }}</pre>
+        <h3>JS</h3>
+        <pre>{{ source(sub_twig ~ 'js.html')|e }}</pre>
+        <h3>CSS</h3>
+        <pre>{{ source(sub_twig ~ 'style.css')|e }}</pre>
+    </div>
+</div>
+<div class="plugin-panel">
+    <h2>相关文件下载</h2>
+    <div class="plugin-cont">
+        <ul class="download">
+            <li>向左滚动<a href="{{res_path}}scrollL.js" target="_blank">scrollL.js</a></li>
+            <li>向右滚动<a href="{{res_path}}scrollR.js" target="_blank">scrollR.js</a></li>
+            <li>向上滚动<a href="{{res_path}}scrollT.js" target="_blank">scrollT.js</a></li>
+            <li>向下滚动<a href="{{res_path}}scrollB.js" target="_blank">scrollB.js</a></li>
+        </ul>
+    </div>
+</div>
+<div class="plugin-panel">
+    <h2>要点总结</h2>
+    <div class="plugin-cont">
+        <ul class="summary">
+            <li>以上滚动js代码的原理是：将ulCont中的代码复制到ulCopy中，scrollIn开始滚动；当 ulCopy的最后一个标签完全进入可见区域时，scrollIn跳到ulCont的最后一个标签完全进入可见区域的位置。</li>
+            <li><span class="highlight">ulCopy</span>的使用(实现无缝滚动)；</li>
+            <li><span class="highlight">滚动距离关键点</span>的判断；</li>
+            <li>头部调用函数时<span class="highlight">传参</span>。</li>
+        </ul>
+    </div>
+</div>

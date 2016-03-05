@@ -1,0 +1,375 @@
+<h1>git 学习笔记（二）</h1>
+<h3>SSH Keys</h3>
+<p><a href="page6.html" target="_blank">Generating SSH Keys</a></p>
+
+<h3>配置邮箱和用户名</h3>
+<pre>git config --global user.email "yywang1@i9i8.com"
+git config --global user.name "yywang1"</pre>
+
+<h3>提交修改文件</h3>
+<pre>git status                                       # 查看修改了哪些文件
+git diff / git diff file                          # 查看修改代码
+q                                                     # 退出diff
+git commit -m 'files changed' -a       #提交修改</pre>
+
+<h3>删除文件</h3>
+<pre>git rm [path]/* -r                                    #批量删除path目录下的文件
+git commit -a -m 'remove files in **'       #提交修改</pre>
+
+<h3>分支操作</h3>
+<table class="table1" width="100%">
+    <thead>
+        <tr>
+            <td>命令</td>
+            <td>说明</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td width="25%">git branch</td>
+            <td>查看本地分支</td>
+        </tr>
+        <tr>
+            <td>git branch [branchname]</td>
+            <td>在当前 commit 对象上新建一个分支（不会自动切换到该分支）</td>
+        </tr>
+        <tr>
+            <td>git checkout [branchname]</td>
+            <td>切换到[branchname]分支</td>
+        </tr>
+        <tr>
+            <td>git checkout -b [branchname]</td>
+            <td>新建并切换到[branchname]分支，相当于上面两条指令的合并</td>
+        </tr>
+        <tr>
+            <td>git merge [branchname]</td>
+            <td>合并[branchname]到当前分支</td>
+        </tr>
+        <tr>
+            <td>git merge -–no-ff [branchname]</td>
+            <td>合并[branchname]到当前分支，–no-ff 标记会使合并永远创建一个新的commit对象，即使该合并能以fast-forward的方式进行。这么做可以避免丢失特性分支存在的历史信息，同时也能清晰的展现一组commit一起构成一个特性。这么做会造成一些（空的）commit对象，但这么做是利大于弊的。</td>
+        </tr>
+        <tr>
+            <td>git merge --squash [branchname]</td>
+            <td>合并[branchname]到当前分支，把多次分支commit历史压缩为一次，不保留历史commit。</td>
+        </tr>
+        <tr>
+            <td>git branch -d [branchname]</td>
+            <td>能删除已经参与了合并的分支，对于未有合并的分支是无法删除的。</td>
+        </tr>
+        <tr>
+            <td>git branch -D [branchname]</td>
+            <td>强制删除一个分支，未合并分支也会被删除</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>版本(tag)操作</h3>
+<table class="table1" width="100%">
+    <thead>
+        <tr>
+            <td width="28%">命令</td>
+            <td>说明</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>git tag</td>
+            <td>查看版本</td>
+        </tr>
+        <tr>
+            <td>git tag [name]</td>
+            <td>创建版本</td>
+        </tr>
+        <tr>
+            <td>git tag -d [name]</td>
+            <td>删除版本</td>
+        </tr>
+        <tr>
+            <td>git tag | xargs git tag -d</td>
+            <td>删除本地所有tag</td>
+        </tr>
+        <tr>
+            <td>git tag -l | xargs -n 1 git push --delete origin</td>
+            <td>删除远程所有tag</td>
+        </tr>
+        <tr>
+            <td>git tag -r</td>
+            <td>查看远程版本</td>
+        </tr>
+        <tr>
+            <td>git push origin [name]</td>
+            <td>创建远程版本(本地版本push到远程)</td>
+        </tr>
+        <tr>
+            <td>git push origin :refs/tags/[name]</td>
+            <td>删除远程版本</td>
+        </tr>
+        <tr>
+            <td>git pull origin --tags</td>
+            <td>合并远程仓库的tag到本地</td>
+        </tr>
+        <tr>
+            <td>git push origin --tags</td>
+            <td>上传本地tag到远程仓库</td>
+        </tr>
+        <tr>
+            <td>git tag -a [name] -m 'yourMessage'</td>
+            <td>创建带注释的tag</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>回退操作</h3>
+<table class="table1" width="100%">
+    <thead>
+        <tr>
+            <td width="25%">命令</td>
+            <td>说明</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>git reset --hard HEAD</td>
+            <td>回滚到修改之前的状态</td>
+        </tr>
+        <tr>
+            <td>git reset --hard 47a4c8</td>
+            <td>回滚到某版本，47a4c8为版本号</td>
+        </tr>
+        <tr>
+            <td>git checkout -- [filename]</td>
+            <td>用暂存区中filename文件来覆盖工作区中的filename文件。相当于取消自上次提交以来的本地修改。</td>
+        </tr>
+        <tr>
+            <td>git checkout -- . / git checkout .</td>
+            <td>取消所有本地的修改（相对于暂存区），相当于用暂存区的所有文件直接覆盖本地文件，不给用户任何确认的机会！</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>远程仓库操作</h3>
+<table class="table1" width="100%">
+    <thead>
+        <tr>
+            <td width="35%">命令</td>
+            <td>说明</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>git remote add [name] [url]</td>
+            <td>添加远程仓库，如：<br>git remote add origin git@github.com:yywang1/books.git</td>
+        </tr>
+        <tr>
+            <td>git remote</td>
+            <td>列出已经存在的远程分支</td>
+        </tr>
+        <tr>
+            <td>git remote -v</td>
+            <td>列出远程分支的详细信息，在每一个名字后面列出其远程url</td>
+        </tr>
+        <tr>
+            <td>git remote rename origin orig</td>
+            <td>将远程仓库origin重命名为orig</td>
+        </tr>
+        <tr>
+            <td>git remote set-url [name] [newurl]</td>
+            <td>修改远程仓库url，如：<br>git remote set-url origin git@github.com:yywang1/books.git</td>
+        </tr>
+        <tr>
+            <td>git remote remove [name]</td>
+            <td>删除远程仓库</td>
+        </tr>
+        <tr>
+            <td>git push [remoteName] [localBranchName]</td>
+            <td>将分支推送到远程仓库，如将master分支推送到origin远程仓库：<br>git push origin master</td>
+        </tr>
+        <tr>
+            <td>git push [remoteName] [localBranchName]:[remoteBranchName]</td>
+            <td>将本地某分支推送到远程仓库某分支，如提交本地test分支作为远程的test分支：<br>git push origin test:test</td>
+        </tr>
+        <tr>
+            <td>git pull [remoteName] [localBranchName]</td>
+            <td>从远程获取最新版本并merge到本地</td>
+        </tr>
+        <tr>
+            <td>git fetch [remoteName] [localBranchName]</td>
+            <td>从远程获取最新版本到本地，不会自动merge</td>
+        </tr>
+        <tr>
+            <td>git branch -r</td>
+            <td>查看远程分支</td>
+        </tr>
+        <tr>
+            <td>git push -f [remoteName] [localBranchName]</td>
+            <td>将分支强制推送到远程仓库，利用强覆盖方式用你本地的代码替代git仓库内的内容</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>文件操作</h3>
+<table class="table1" width="100%">
+    <thead>
+        <tr>
+            <td width="30%">命令</td>
+            <td>说明</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>git clean -f [filename]</td>
+            <td>清除未被追踪的目录或文件</td>
+        </tr>
+        <tr>
+            <td>git rm [filename]</td>
+            <td>清除已追踪的文件</td>
+        </tr>
+        <tr>
+            <td>git mv [oldfilename] [newfilename]</td>
+            <td>文件/目录重命名</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>其它命令</h3>
+<table class="table1" width="100%">
+    <thead>
+        <tr>
+            <td width="30%">命令</td>
+            <td>说明</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>clear</td>
+            <td>清屏 <span class="note">(注：cmd.exe中清屏指令是 cls)</span></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>取消追踪</h3>
+<h4>忽略目录及目录中的文件</h4>
+<p>在代码目录下建立.gitignore文件，内容如下</p>
+<pre># 忽略templates目录及目录下所有文件
+templates/
+
+# 忽略掉文件
+test.php</pre>
+<h4>保留目录，忽略目录中的文件</h4>
+<p>1. 在代码目录下建立.gitignore，内容如下</p>
+<p>2. 在templates目录下建立名为 .gitkeep 的空文件（文件名随意，但要和.gitignore中对应），这样这个目录就保留下来了</p>
+<pre># 忽略templates目录中的所有文件
+templates/*
+
+#保留templates目录中的.gitkeep文件
+!templates/.gitkeep
+
+#也可以保留templates目录中的其它文件，如 test.html：
+!templates/test.html</pre>
+<p>示例：books项目中的.gitignore文件</p>
+<pre># 以'#' 开始的行，被视为注释.
+
+#过滤数据库文件、sln解决方案文件、配置文件  
+*.mdb  
+*.ldb  
+*.sln  
+*.config 
+
+# 忽略所有缓存文件
+templates/caches/*
+!templates/caches/.gitkeep
+templates/compiled/*
+!templates/compiled/.gitkeep
+templates/loc.books.com/*
+!templates/loc.books.com/.gitkeep
+
+# 忽略所有上传文件
+files/*
+!files/.gitkeep
+
+# 忽略临时上传文件
+temp/*
+!temp/.gitkeep
+
+# 忽略文件
+test.php</pre>
+
+<h3>报错</h3>
+<table class="table1" width="100%">
+        <thead>
+            <tr>
+                <td>报错信息</td>
+                <td>说明及解决方法</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>git push origin master 报错：<br>
+                    fatal: 'origin' does not appear to be a git repository<br>
+                    fatal: Could not read from remote repository.</td>
+                <td>输入：git remote add origin git@github.com:yywang1/books.git</td>
+            </tr>
+            <tr>
+                <td>git remote add origin git@github.com:yywang1/books.git 报错：<br>fatal: remote origin already exists.</td>
+                <td>更换远端origin仓库的url：<br>git remote set-url origin git@github.com:yywang1/books.git</td>
+            </tr>
+            <tr>
+                <td>warning: LF will be replaced by CRLF in [filename].</td>
+                <td>输入：git config --global core.autocrlf false<br>
+                删掉项目中的.git文件夹 git  rm -rf .git<br>
+                重新git init -&gt; git add -A  问题解决</td>
+            </tr>
+            <tr>
+                <td>git fetch origin master报错：Permission denied (publickey).</td>
+                <td>$ ssh -T yywang1@github.com<br>
+                Warning: Permanently added 'github.com,192.30.252.131' (RSA) to the list of known hosts.<br>
+                Permission denied (publickey).<br><br>
+                $ ssh-add -l<br>
+                The agent has no identities.<br><br>
+                $ ssh-add ~/.ssh/id_rsa<br>
+                Enter passphrase for /c/Users/Administrator/.ssh/id_rsa:（输入密码）<br>
+                Identity added: /c/Users/Administrator/.ssh/id_rsa (/c/Users/Administrator/.ssh/id_rsa)<br><br>
+                $ ssh-add -l<br>
+                2048 dc:d7:ca:fe:5b:3a:bd:b6:78:f9:03:94:41:51:34:82 /c/Users/Administrator/.ssh/id_rsa (RSA)<br><br>
+                $ ssh -T git@github.com<br>
+                Warning: Permanently added 'github.com,192.30.252.131' (RSA) to the list of known hosts.<br>
+                Hi yywang1! You've successfully authenticated, but GitHub does not provide shell access.</td>
+            </tr>
+            <tr>
+                <td>使用https开头的git仓库路径，git pull origin master 报错：<br>
+                fatal: unable to access 'https://g.pupugao.com/v5/esmeralda-editor.git/': SSL certificate problem: self signed certificate</td>
+                <td>设置 git https 访问不验证证书：<pre>$ git config http.sslVerify false</pre>可以看到.git/config文件中添加了两行代码：
+            <pre>[http]
+sslVerify = false</pre></td>
+            </tr>
+            <tr>
+                <td>推送代码时报错：POST git-receive-pack (chunked)<br>
+                    该错误是因为https下推送的代码体积过大引起的
+                </td>
+                <td>.git/config文件中添加了两行代码：
+            <pre>[http]
+postBuffer = 524288000</pre></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>

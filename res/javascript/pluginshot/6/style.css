@@ -1,0 +1,28 @@
+/*按钮*/
+.btnLeft, .btnRight { display:block; width:16px; height:31px; overflow:hidden; line-height: 200px; background:url("http://loc.avalearn.com/public/images/btn.gif") no-repeat; }
+.btnLeft { background-position:0 0; }
+.btnRight { background-position:0 -33px; }
+.btnTop, .btnBot { display:block; width:31px; height:16px; overflow:hidden; line-height: 200px; background:url("http://loc.avalearn.com/public/images/btn.gif") no-repeat; }
+.btnTop { background-position:0 -66px; }
+.btnBot { background-position:0 -84px; }
+
+/*横向滚动*/
+.scrollLR { background:#397300; padding:7px 33px; float:left; width:736px; position:relative; margin-bottom:10px; }
+.scrollLR .btnLeft { position:absolute; top:59px; left:7px; }
+.scrollLR .btnRight { position:absolute; top:59px; right:7px; }
+.scrollLR .noAvail { filter:alpha(opacity=30); opacity: 0.3; cursor:default; }
+.scrollLR .scrollWrap { float:left; overflow:hidden; width:736px; height:134px; background:#ccc; }
+.scrollLR .scrollIn { float:left; }
+.scrollLR .ulCont { float:left; }
+.scrollLR .ulCopy { float:left; }
+.scrollLR li { float:left; width:178px; padding:0 3px; }
+.scrollLR img { width:178px; height:134px; vertical-align:bottom; }
+
+/*纵向滚动*/
+.scrollTB { background:#397300; padding:33px 7px; float:left; width:178px; height:420px; position:relative; margin-right:10px; }
+.scrollTB .btnTop { position:absolute; top:7px; left:74px; }
+.scrollTB .btnBot { position:absolute; bottom:7px; left:74px; }
+.scrollTB .noAvail { filter:alpha(opacity=30); opacity: 0.3; cursor:default; }
+.scrollTB .scrollWrap { overflow:hidden; width:178px; height:420px; background:#ccc; }
+.scrollTB li { height:134px; padding:3px 0; }
+.scrollTB img { width:178px; height:134px; vertical-align:bottom; }

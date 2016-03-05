@@ -1,0 +1,8 @@
+.imgPlay { background: #397300; padding: 7px 33px; width: 600px; position: relative; margin: auto; }
+.imgPlay .btnLeft, .imgPlay .btnRight { display: block; width: 16px; height: 31px; overflow: hidden; text-indent: -1000px; background: url("http://loc.avalearn.com/public/images/btn.gif") no-repeat; position: absolute; top: 231px; }
+.imgPlay .btnLeft { background-position: 0 0; left: 7px; }
+.imgPlay .btnRight { background-position: 0 -33px; right: 7px; }
+.imgPlay .imgList { width: 600px; height: 480px; overflow: hidden; position: relative; background: #FFF; }
+.imgPlay li { width: 600px; height: 480px; overflow: hidden; position: absolute; left: 0; top: 0; }
+.imgPlay img { display: block; width: 600px; height: 450px; vertical-align: bottom; }
+.imgPlay span { display: block; height: 30px; line-height: 30px; overflow: hidden; background: #fff; text-align: center; }

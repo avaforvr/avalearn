@@ -1,0 +1,21 @@
+<h1>html 代码备份</h1>
+<h3>插入flash</h3>
+<pre>&lt;object classid=&quot;clsid27CDB6E-AE6D-11cf-96B8-444553540000&quot; codebase=&quot;http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0&quot;
+width=&quot;1000&quot; height=&quot;800&quot;&gt;
+    &lt;param name=&quot;movie&quot; value=&quot;/res/html/article/images/move.swf&quot;&gt;
+    &lt;param name=&quot;quality&quot; value=&quot;high&quot;&gt;
+    &lt;param name=&quot;wmode&quot; value=&quot;transparent&quot;&gt;
+    &lt;embed src=&quot;/res/html/article/images/move.swf&quot; width=&quot;1000&quot; height=&quot;800&quot;
+    quality=&quot;high&quot; wmode=&quot;transparent&quot; pluginspage=&quot;http://www.macromedia.com/go/getflashplayer&quot;
+    type=&quot;application/x-shockwave-flash&quot;&gt;
+    &lt;/embed&gt;
+&lt;/object&gt;</pre>
+<h4>插入透明背景flash</h4>
+<p>1. 保存透明背景的flash。发布设置 —> 格式（html）—> html（窗口模式：透明无窗口）；</p>
+<p>2. 修改HTML。&lt;object&gt;中加上 <span class="highlight">&lt;param name=&quot;WMODE&quot; value=&quot;transparent&quot;&gt;</span>，&lt;embed&gt;标签中添加属性 <span class="highlight">wmode=&quot;transparent&quot;</span>。</p>
+
+<h3>背景透明iframe</h3>
+<pre>&lt;iframe src=&quot;&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; allowtransparency=&quot;true&quot;&gt;&lt;/iframe&gt;</pre>
+
+<h3>鼠标悬浮时变色</h3>
+<pre onmouseover="style.backgroundColor='#eee'" onmouseout="style.backgroundColor='#fafafa'">&lt;pre onmouseover=&quot;style.backgroundColor=&#39;#eee&#39;&quot; onmouseout=&quot;style.backgroundColor=&#39;#fafafa&#39;&quot;&gt;&lt;/pre&gt;</pre>

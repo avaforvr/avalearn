@@ -1,0 +1,97 @@
+<style>
+    .box {
+        width: 100px;
+        padding: 14px 20px;
+        background: #edf7fe;
+        border: solid 1px #789CB6;
+        color: #000;
+    }
+</style>
+
+<h1>CSS3学习笔记 - 文本</h1>
+
+<nav class="anchor-nav">
+    文章目录：
+    <a href="#text-shadow">text-shadow</a>
+    <a href="#text-overflow">text-overflow</a>
+    <a href="#word-break">word-break</a>
+    <a href="#word-wrap">word-wrap</a>
+    <a href="#text-justify">text-justify</a>
+</nav>
+
+<section id="text-shadow">
+    <h2>text-shadow</h2>
+    <pre>text-shadow: h-shadow v-shadow blur color;</pre>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="text-shadow: 2px 2px 0 #f00;">Day day up!</div></dt>
+        <dd><pre>text-shadow: 2px 2px 0 #f00;</pre></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="text-shadow: 0 1px 3px #f00;">Day day up!</div></dt>
+        <dd><pre>text-shadow: 0 1px 3px #f00;</pre></dd>
+    </dl>
+</section>
+
+<section id="text-overflow">
+    <h2>text-overflow 文本溢出时修剪文本</h2>
+    <pre>text-overflow: clip|ellipsis;</pre>
+
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="text-overflow: clip; white-space: nowrap; overflow: hidden;">Day day up!Day day up!Day day up!</div></dt>
+        <dd>
+            <pre>text-overflow: clip;
+white-space: nowrap;
+overflow: hidden;</pre>
+            <p>测试发现，clip加不加没什么效果，跟浏览器默认行为是一样的。可用于清除ellipsis属性。</p>
+        </dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Day day up!Day day up!Day day up!</div></dt>
+        <dd>
+            <pre>text-overflow: ellipsis;
+white-space: nowrap;
+overflow: hidden;</pre>
+            <p>只写text-overflow: ellipsis;是没用的，上面三个属性同时使用才能显示省略号。</p>
+        </dd>
+    </dl>
+</section>
+
+<section id="word-break">
+    <h2>word-break</h2>
+    <pre>word-break: normal|break-all|keep-all;</pre>
+
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="word-break: normal;">Day day up Daydayup1234567好好学习天天向上</div></dt>
+        <dd><pre>word-break: normal;</pre><p>使用浏览器默认的换行规则，单词内不换行。</p></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="word-break: break-all;">Day day up Daydayup1234567好好学习天天向上</div></dt>
+        <dd><pre>word-break: break-all;</pre><p>在长单词内部换行，<strong>长单词不会另起一行，开头和结尾都被截断</strong>。</dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="word-break: keep-all;">Day day up Daydayup1234567好好学习天天向上</div></dt>
+        <dd><pre>word-break: keep-all;</pre>只能在半角空格或连字符处换行。</dd>
+    </dl>
+</section>
+
+<section id="word-wrap">
+    <h2>word-wrap</h2>
+    <pre>word-wrap: normal|break-word;</pre>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="word-wrap: normal;">Day day up Daydayup1234567好好学习天天向上</div></dt>
+        <dd><pre>word-wrap: normal;</pre><p>使用浏览器默认的换行规则，单词内不换行。</p></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="word-wrap: break-word;">Day day up Daydayup1234567好好学习天天向上</div></dt>
+        <dd><pre>word-wrap: break-word;</pre><p>在长单词内部换行，<strong>长单词另起一行，开头不截断</strong>。</p></dd>
+    </dl>
+    <p><strong>注意区分 <span class="highlight">word-break: break-all;</span> 和 <span class="highlight">word-wrap: break-word;</span></strong></p>
+</section>
+
+<section id="text-justify">
+    <h2>text-justify 齐行改变单词间的间隔</h2>
+    <ol>
+        <li>只有IE支持，其它浏览器不支持。</li>
+        <li>必须跟 <span class="highlight">text-align:justify;</span> 一起使用。</li>
+    </ol>
+</section>

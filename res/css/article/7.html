@@ -1,0 +1,7 @@
+<h1>LESSCSS 问题整理</h1>
+<h3>字体为宋体时，使用“\5b8b\4f53”表示'宋体'，导致文件无法解析(“\”引起的错误)</h3>
+<p>错误：font-family:Tahoma, <strong class="wrong">\5b8b\4f53</strong>, Geneva, sans-serif;</p>
+<p>正确：font-family:Tahoma, <strong class="right">'宋体'</strong>, Geneva, sans-serif;</p>
+<h3>LESSCSS不经编译，直接在浏览器端使用时，需要注意：</h3>
+<p>1. 引入文件的顺序：先引入*.less文件，后引入less.js文件；<br>
+2. 浏览器端使用时是使用ajax来拉取.less文件，因此直接在本机文件系统打开（即地址是file://开头）或者是有跨域的情况下会拉取不到.less文件，导致样式无法生效。</p>

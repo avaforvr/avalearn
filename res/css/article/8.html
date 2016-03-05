@@ -1,0 +1,247 @@
+<style>
+    .box {
+        width: 100px;
+        height: 100px;
+        background: #edf7fe;
+        border: solid 1px #789CB6;
+        text-align: center;
+        line-height: 100px;
+        color: #000;
+    }
+    .desc {
+        width: 102px;
+        height: 102px;
+        overflow: hidden;
+        background-image: url("{{res_path}}images/8_1.gif");
+        background-repeat: 0 0;
+    }
+    .desc1 {
+        background-position: 0 0;
+    }
+    .desc2 {
+        background-position: 0 -102px;
+    }
+    .box-bi {
+        width: 100px;
+        height: 60px;
+        border: solid 15px #bbb;
+    }
+</style>
+
+<h1>CSS3学习笔记 - 边框</h1>
+
+<nav class="anchor-nav">
+    文章目录：
+    <a href="#border-radius">border-radius</a>
+    <a href="#box-shadow">box-shadow</a>
+    <a href="#border-image">border-image</a>
+</nav>
+
+<section id="border-radius">
+    <h2>border-radius 圆角</h2>
+    <h4>写法一</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="border-top-left-radius: 30px 15px;">top-left</div></dt>
+        <dt><div class="desc desc1"></div></dt>
+        <dd>
+            <pre>border-top-left-radius: 30px 15px;</pre>
+        </dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="border-top-left-radius: 30px;">top-left</div></dt>
+        <dt><div class="desc desc2"></div></dt>
+        <dd>
+            <pre>border-top-left-radius: 30px;</pre>
+        </dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="border-top-right-radius: 30px 15px;">top-right</div></dt>
+        <dt><div class="box" style="border-bottom-right-radius: 30px 15px;">bottom-right</div></dt>
+        <dt><div class="box" style="border-bottom-left-radius: 30px 15px;">bottom-left</div></dt>
+        <dd>
+            左侧赋值均为 30px 15px，<strong>上下在前，左右在后。</strong>
+        </dd>
+    </dl>
+
+    <h4>写法二（简写）</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="border-radius: 10px 20px 30px 40px;"></div></dt>
+        <dd><pre>border-radius: 10px 20px 30px 40px;</pre><p>从左到右四个值对应的圆角分别是：左上、右上、右下、左下。</p></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="border-radius: 10px 20px 40px;"></div></dt>
+        <dd><pre>border-radius: 10px 20px 40px;</pre><p>从左到右三个值对应的圆角分别是：左上、右上/左下、右下。</p></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="border-radius: 10px 40px;"></div></dt>
+        <dd><pre>border-radius: 10px 40px;</pre><p>从左到右两个值对应的圆角分别是：左上/右下、右上/左下。</p></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="border-radius: 10px;"></div></dt>
+        <dd><pre>border-radius: 10px;</pre><p>四个角，不解释。</p></dd>
+    </dl>
+
+    <h4>写法三：border-radius: 1-4 length|% / 1-4 length|%</h4>
+    <dl class="effect-box clearfix">
+    <dt><div class="box" style="border-radius: 10px / 20px;"></div></dt>
+    <dd><pre>border-radius: 10px / 20px;</pre><p>“/”左侧为上下弧度，右侧为左右弧度，顺序参考写法二</p></dd>
+</dl>
+</section>
+
+<section id="box-shadow">
+    <h2>box-shadow 阴影</h2>
+    <pre>box-shadow: h-shadow v-shadow blur spread color inset;</pre>
+
+    <h4>h-shadow: 必需，水平阴影的位置。</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="box-shadow: 5px 5px;"></div></dt>
+        <dd><pre>box-shadow: 5px 5px;</pre></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="box-shadow: 15px 5px;"></div></dt>
+        <dd><pre>box-shadow: 15px 5px;</pre></dd>
+    </dl>
+
+    <h4>v-shadow: 必需，垂直阴影的位置。</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="box-shadow: 5px 5px;"></div></dt>
+        <dd><pre>box-shadow: 5px 5px;</pre></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="box-shadow: 5px 15px;"></div></dt>
+        <dd><pre>box-shadow: 5px 15px;</pre></dd>
+    </dl>
+
+    <h4>blur: 模糊距离。</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="box-shadow: 0 0 5px;"></div></dt>
+        <dd><pre>box-shadow: 0 0 5px;</pre><p>上下左右4个方向各扩展了5px的模糊阴影</p></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="box-shadow: 5px 5px 5px;"></div></dt>
+        <dd><pre>box-shadow: 5px 5px 5px;</pre><p>上下左右4个方向各扩展了5px的模糊阴影后向右下方偏移5px</p></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="box-shadow: 5px 5px 10px;"></div></dt>
+        <dd><pre>box-shadow: 5px 5px 10px;</pre></dd>
+    </dl>
+
+    <h4>spread: 阴影的尺寸。</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="box-shadow: 5px 5px 0 0;"></div></dt>
+        <dd><pre>box-shadow: 5px 5px 0 0;</pre><p>spread为0时，阴影宽高与容器宽高（包含边框）相等</p></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="box-shadow: 0 0 0 5px;"></div></dt>
+        <dd><pre>box-shadow: 0 0 0 5px;</pre><p>四个方向黑色区域宽高均为5px，阴影整体宽高各增加10px</p></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="box-shadow: 5px 5px 0 5px;"></div></dt>
+        <dd><pre>box-shadow: 5px 5px 0 5px;</pre><p>阴影增加宽高10px后向右下方偏移5px</p></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="box-shadow: 0 0 5px 5px;"></div></dt>
+        <dd><pre>box-shadow: 0 0 5px 5px;</pre><p>blur+spread测试，四个方向的投影各为10px，且10px区域都是模糊的，并不是5px实体+5px模糊区域</p></dd>
+    </dl>
+
+    <h4>color: 阴影的颜色。</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="box-shadow: 5px 5px 0 0 #d00;"></div></dt>
+        <dd><pre>box-shadow: 5px 5px 0 0 #d00;</pre></dd>
+    </dl>
+
+    <h4>inset: 外部阴影 (outset) 改为内部阴影。</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="box-shadow: 0 0 0 0 #000 inset;"></div></dt>
+        <dd><pre>box-shadow: 0 0 0 0 #000 inset;</pre></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="box-shadow: 0 0 0 5px #000 inset;"></div></dt>
+        <dd><pre>box-shadow: 0 0 0 5px #000 inset;</pre></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="box-shadow: 0 0 5px 0 #000 inset;"></div></dt>
+        <dd><pre>box-shadow: 0 0 5px 0 #000 inset;</pre></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="box-shadow: 5px 5px 5px 5px #000 inset;"></div></dt>
+        <dd><pre>box-shadow: 5px 5px 5px 5px #000 inset;</pre></dd>
+    </dl>
+</section>
+
+<section id="border-image">
+    <h2>border-image 边框图片</h2>
+    <pre>border-image: border-image-source border-image-slice border-image-repeat;</pre>
+
+    <dl class="effect-box clearfix">
+        <dt><img src="{{res_path}}images/8_2.png" width="90" height="90" alt="边框背景图片"/></dt>
+        <dd><p>边框背景图片(80%透明度); 每个色块尺寸为30px*30px</p></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box-bi"></div></dt>
+        <dd><pre>width: 100px; height: 60px; border: solid 15px #bbb;</pre><p>该代码为下面容器的通用样式</p></dd>
+    </dl>
+
+    <h4>border-image-source: 用在边框的图片的路径</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box-bi" style="border-image:url('{{res_path}}images/8_2.png');"></div></dt>
+        <dd><pre>border-image:url('{{res_path}}images/8_2.png');</pre><p>默认剪裁位置100%</p></dd>
+    </dl>
+
+    <h4>border-image-slice: 图片剪裁位置</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box-bi" style="border-image:url('{{res_path}}images/8_2.png') 30 round;"></div></dt>
+        <dd><pre>border-image:url('{{res_path}}images/8_2.png') 30 round;</pre><p>注意：border-image-slice没有单位，专指像素；<br/>可以使用百分比，如：border-image:url('{{res_path}}images/8_2.png') 33.33% round;</p></dd>
+    </dl>
+
+    <dl class="effect-box clearfix">
+        <dt><img src="{{res_path}}images/8_3.gif" width="180" height="180" alt="切割原理"/></dt>
+        <dd>
+            <p>切割原理，以 border-image-slice 为 10 20 30 40 为例。<br/>按照左侧图片所示将边框背景图片切割为九个区域。<br/>效果如下：</p>
+            <dl class="effect-box clearfix">
+                <dt><div class="box box-bi" style="border-image:url('{{res_path}}images/8_2.png') 10 20 30 40 round;"></div></dt>
+                <dd><pre>border-image:url('{{res_path}}images/8_2.png') 10 20 30 40 round;</pre></dd>
+            </dl>
+        </dd>
+    </dl>
+
+    <h4>border-image-repeat: 边框中间部分的重复类型</h4>
+    <p>该属性有三个值：round（平铺）、repeat（重复）、stretch（拉伸）。</p>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box-bi" style="border-image:url('{{res_path}}images/8_2.png') 30 round;"></div></dt>
+        <dd><pre>border-image:url('{{res_path}}images/8_2.png') 30 round;</pre><p>round 背景重复，改变图片大小其正好在区域内显示</p></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box-bi" style="border-image:url('{{res_path}}images/8_2.png') 30 repeat;"></div></dt>
+        <dd><pre>border-image:url('{{res_path}}images/8_2.png') 30 repeat;</pre><p>repeat 背景重复，不改变图片大小，边缘会截断</p></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box-bi" style="border-image:url('{{res_path}}images/8_2.png') 30 stretch;"></div></dt>
+        <dd><pre>border-image:url('{{res_path}}images/8_2.png') 30 stretch;</pre><p>stretch 背景不重复，拉伸图片，充满整个区域</p></dd>
+    </dl>
+
+    <p>border-image-repeat 参数可以是 0~2个</p>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box-bi" style="border-image:url('{{res_path}}images/8_2.png') 30;"></div></dt>
+        <dd><pre>border-image:url('{{res_path}}images/8_2.png') 30;</pre><p>0个参数，即默认，效果为stretch</p></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box-bi" style="border-image:url('{{res_path}}images/8_2.png') 30 round;"></div></dt>
+        <dd><pre>border-image:url('{{res_path}}images/8_2.png') 30 round;</pre><p>1个参数，水平及垂直方向均使用此参数</p></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box-bi" style="border-image:url('{{res_path}}images/8_2.png') 30 round stretch;"></div></dt>
+        <dd><pre>border-image:url('{{res_path}}images/8_2.png') 30 round;</pre><p>2个参数，水平方向使用第一个参数，垂直方向使用第二个参数</p></dd>
+    </dl>
+
+    <h4>深入理解border-image的宽度和展示方式</h4>
+    <dl class="effect-box clearfix">
+        <dt><img src="{{res_path}}images/8_4.gif" width="402" height="402" alt="九宫格"/></dt>
+        <dd>
+            <p>border-image-slice 将边框背景图片切割成九个图片部分，包含左上、右上、右下、左下4个<strong>角边框图片</strong>和上右下左4个<strong>边框图片</strong>。</p>
+            <p>将容器边框也分为9个部分，与border-image一一对应，背景图片将分别填充进容器边框的相应区域。</p>
+            <p>其中4个角边框图片缩放后充满边框的4个角，类似stretch效果。</p>
+            <p>4个边框图片将按照border-image-repeat属性填充容器边框的相应区域。</p>
+        </dd>
+    </dl>
+</section>

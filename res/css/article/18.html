@@ -1,0 +1,48 @@
+<h1>自适应两栏和三栏布局</h1>
+<p>除了本文使用的方法之外，还可以使用CSS负边距实现。<a href="{{WEB_ROOT}}article.php?pid=css_19#negative-two">传送门</a></p>
+
+<section>
+    <h2>两栏布局</h2>
+    <p>下面的方法，左侧或右侧固定宽度都适用，以左侧固定为例。需要注意的是DOM中侧边元素一定要在内容元素前面。</p>
+    <h4>方法一</h4>
+    {% include sub_twig ~ 'noNegativeTwo1.html' %}
+    <dl class="collapse collapse-code">
+        <dt><span class="btn-white collapse-btn">查看代码</span></dt>
+        <dd class="collapse-cont hide"><pre>{{ source(sub_twig ~ 'noNegativeTwo1.html')|e }}</pre></dd>
+    </dl>
+    <p>该方法的缺陷是，右侧内容中不能出现clear: left元素，清除左浮动的元素位置会移到左侧下方。</p>
+    <p>解决办法有两种:一种是容器上添加属性 overflow:hidden；另一种增加一层容器，形成方法二。</p>
+
+    <h4>方法二</h4>
+    {% include sub_twig ~ 'noNegativeTwo2.html' %}
+    <dl class="collapse collapse-code">
+        <dt><span class="btn-white collapse-btn">查看代码</span></dt>
+        <dd class="collapse-cont hide"><pre>{{ source(sub_twig ~ 'noNegativeTwo2.html')|e }}</pre></dd>
+    </dl>
+
+    <h4>方法三</h4>
+    <p>使用这种方法，左侧是否固定宽度都可以，右侧会根据容器宽度和左侧宽度改变。<br/>优点是足够灵活，容器层级少；缺点是超出容器范围的元素会隐藏。</p>
+    {% include sub_twig ~ 'noNegativeTwo3.html' %}
+    <dl class="collapse collapse-code">
+        <dt><span class="btn-white collapse-btn">查看代码</span></dt>
+        <dd class="collapse-cont hide"><pre>{{ source(sub_twig ~ 'noNegativeTwo3.html')|e }}</pre></dd>
+    </dl>
+</section>
+
+<section>
+    <h2>三栏布局</h2>
+    <p>原理和优缺点跟上方的两栏布局相同。</p>
+    <h4>方法一</h4>
+    {% include sub_twig ~ 'noNegativeThree1.html' %}
+    <dl class="collapse collapse-code">
+        <dt><span class="btn-white collapse-btn">查看代码</span></dt>
+        <dd class="collapse-cont hide"><pre>{{ source(sub_twig ~ 'noNegativeThree1.html')|e }}</pre></dd>
+    </dl>
+
+    <h4>方法二</h4>
+    {% include sub_twig ~ 'noNegativeThree2.html' %}
+    <dl class="collapse collapse-code">
+        <dt><span class="btn-white collapse-btn">查看代码</span></dt>
+        <dd class="collapse-cont hide"><pre>{{ source(sub_twig ~ 'noNegativeThree2.html')|e }}</pre></dd>
+    </dl>
+</section>

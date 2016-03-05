@@ -1,0 +1,94 @@
+{% for catKey, cat in resources %}
+<section class="panel index-panel" id="{{catKey}}">
+    <h2>{{cat['title']|upper}}</h2>
+
+    {# 第一个textlist不加边框 #}
+    {% set isFirstList = true %}
+	
+	{% if cat['article']|length > 0 %}
+        {% for group in cat['article'] %}
+            <ul class="textlist{{isFirstList ? ' first' : ''}}">
+                {% for page in group['list'] %}
+                <li>
+                    <a href="{{WEB_ROOT}}article.php?pid={{catKey}}_{{page['pageId']}}">
+                        {% if page['status'] %}
+                            <span>[{{page['status']}}]</span>
+                        {% endif %}
+                        {{page['title']}}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+
+            {% if group['relevant'] %}
+                <ul class="textlist relevant">
+                    {% for page in group['relevant'] %}
+                    <li>
+                        <a href="{{WEB_ROOT}}article.php?pid={{catKey}}_{{page['pageId']}}">
+                            {% if page['status'] %}
+                            <span>[{{page['status']}}]</span>
+                            {% endif %}
+                            {{page['title']}}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% set isFirstList = false %}
+        {% endfor %}
+    {% endif %}
+
+    {% if cat['plugin']|length > 0 %}
+        <ul class="textlist{{isFirstList ? ' first' : ''}}">
+            {% for page in cat['plugin'] %}
+                <li>
+                    <a href="{{WEB_ROOT}}plugin.php?pid={{catKey}}_{{page['pageId']}}">
+                        {% if page['status'] %}
+                            <span>[{{page['status']}}]</span>
+                        {% endif %}
+                        {{page['title']}}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+        {% set isFirstList = false %}
+    {% endif %}
+
+    {% if cat['pluginshot']|length > 0 %}
+        <ul class="imglist clearfix{{isFirstList ? ' first' : ''}}">
+            {% for index, page in cat['pluginshot'] %}
+                <li>
+                    <a href="{{WEB_ROOT}}{{page['isThirdParty'] ? 'tool' : 'pluginshot' }}.php?pid={{catKey}}_{{page['pageId']}}">
+                        <img src="{{page['effect']}}" alt="查看详细">
+                        <p>
+                            {% if page['status'] %}
+                                [{{page['status']}}]
+                            {% endif %}
+                            {{page['title']}}
+                        </p>
+                    </a>
+                </li>
+                {#
+                    {% if index % 5 == 4 %}
+                        <li class="sep"></li>
+                    {% endif %}
+                 #}
+            {% endfor %}
+        </ul>
+        {% set isFirstList = false %}
+    {% endif %}
+	
+</section>
+{% endfor %}
+
+<section class="panel friendlink">
+    <h2 class="clearfix"><span class="fl">常用素材网站</span></h2>
+    <p>
+        <a href="http://www.zcool.com.cn/" target="_blank">站酷（ZCOOL）</a>
+        <a href="http://www.lanrentuku.com/" target="_blank">懒人图库</a>
+        <a href="http://www.mypsd.com.cn/" target="_blank">蚂蚁图库</a>
+        <a href="http://www.poluoluo.com/" target="_blank">破洛洛</a>
+        <a href="http://www.freeimages.com/" target="_blank">freeimages</a>
+    </p>
+</section>

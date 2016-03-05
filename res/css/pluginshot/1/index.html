@@ -1,0 +1,27 @@
+<h1>三级下拉导航</h1>
+<section class="plugin-panel">
+    <h2>效果展示</h2>
+    <div class="plugin-cont">
+        <link type="text/css" rel="stylesheet" href="{{res_path}}style.css" />
+        {% include sub_twig ~ 'html.html' %}
+    </div>
+</section>
+<section class="plugin-panel">
+    <h2>代码展示</h2>
+    <div class="plugin-cont">
+        <h3>HTML</h3>
+        <pre>{{ source(sub_twig ~ 'html.html')|e }}</pre>
+        <h3>CSS</h3>
+        <pre>{{ source(sub_twig ~ 'style.css')|e }}</pre>
+    </div>
+</section>
+<section class="plugin-panel">
+    <h2>要点总结</h2>
+    <div class="plugin-cont">
+        <ul class="summary">
+            <li>兼容IE6+，Chrome, Firefox等。</li>
+            <li>overflow属性是关键，建议该段代码中除了现存的overflow属性以外不要再出现<span class="highlight">overflow:hidden</span>。</li>
+            <li>如果鼠标无法悬浮在子菜单上，可以尝试给它的父标签设置高度或宽度。</li>
+        </ul>
+    </div>
+</section>

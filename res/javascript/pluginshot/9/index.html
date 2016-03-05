@@ -1,0 +1,36 @@
+<h1>图片等比缩放(有加载中状态)</h1>
+<div class="plugin-panel">
+    <h2>效果展示</h2>
+    <div class="plugin-cont">
+        <link type="text/css" rel="stylesheet" href="{{res_path}}style.css" />
+        {% include sub_twig ~ 'html.html' %}
+        {% include sub_twig ~ 'js.html' %}
+    </div>
+</div>
+<div class="plugin-panel">
+    <h2>代码展示</h2>
+    <div class="plugin-cont">
+        <h3>HTML</h3>
+        <pre>{{ source(sub_twig ~ 'html.html')|e }}</pre>
+        <h3>JS</h3>
+        <pre>{{ source(sub_twig ~ 'js.html')|e }}</pre>
+        <h3>CSS</h3>
+        <pre>{{ source(sub_twig ~ 'style.css')|e }}</pre>
+    </div>
+</div>
+<div class="plugin-panel">
+    <h2>相关文件下载</h2>
+    <div class="plugin-cont">
+        <ul class="download">
+            <li>图片等比缩放js<a href="{{res_path}}imgSize.js" target="_blank">imgSize.js</a></li>
+        </ul>
+    </div>
+</div>
+<div class="plugin-panel">
+    <h2>要点总结</h2>
+    <div class="plugin-cont">
+        <ul class="summary">
+            <li>读取图片的尺寸，要使用<span class="highlight">Image()</span>类，否则读取的尺寸经常出现错误。</li>
+        </ul>
+    </div>
+</div>

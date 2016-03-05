@@ -1,0 +1,37 @@
+.textlist {
+    border-top: dashed 1px #ccc;
+    padding: (@space - 5) 0;
+    .clearfix();
+    &.first, &.relevant {
+        border-top: none;
+        padding-top: 0;
+    }
+    li {
+        float: left;
+        width: 33.3%;
+        overflow: hidden;
+    }
+    a {
+        display: block;
+        padding: 5px 0 5px 10px;
+        white-space: nowrap;
+    }
+    span {
+        color: #999;
+    }
+}
+@media screen and (max-width: 680px) {
+    .textlist li {
+        width: 50%;
+    }
+}
+@media screen and (max-width: 340px) {
+    .textlist {
+        li {
+            width: 100%;
+        }
+        a {
+            white-space: normal;
+        }
+    }
+}

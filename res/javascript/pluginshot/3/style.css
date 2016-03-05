@@ -1,0 +1,9 @@
+.tabs-1 { width:600px; margin:auto; }
+.tabs-2 { padding: 20px; }
+.tabs-tags { height:29px; overflow:visible; border:solid 1px #285000; border-width: 0 0 1px 1px; }
+.tabs-tags li { float:left; height:28px; line-height:28px; border:solid 1px #285000; border-width: 1px 1px 0 0; overflow:hidden; cursor:pointer; padding:0 20px; background:#3e7b00; color:#fff; }
+.tabs-tags .hover { background:#285000; }
+.tabs-tags .active { cursor:default; background:#fff; border-bottom: none; padding-bottom: 1px; color:#000; }
+.tabs-conts { clear:both; border:solid 1px #285000; border-top:none; }
+.tabs-cont { text-align:center; line-height:200px; display: none; }
+.tabs-cont:first-child { display: block; }

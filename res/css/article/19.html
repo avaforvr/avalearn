@@ -1,0 +1,110 @@
+{% include sub_twig ~ 'style.html' %}
+
+<h1>CSS负边距</h1>
+
+<section>
+    <h2>使用负边距会发生什么</h2>
+    <p>以下例子中，只有绿色方块使用负边距，黑色边框容器和蓝色方块仅用来做位置参照。</p>
+
+    <h4>不使用负边距时的样式跟使用了负边距（margin: -5px -10px -15px -20px;）的效果对比</h4>
+    <dl class="effect-box clearfix">
+        <dt class="border-wrap" style="width: 200px; height: 100px;"><div class="box box1"></div><div class="box box2"></div></dt>
+        <dt class="border-wrap" style="width: 200px; height: 100px;"><div class="box box1" style="margin: -5px -10px -15px -20px;"></div><div class="box box2"></div></dt>
+        <dt class="border-wrap" style="width: 100px; height: 200px;"><div class="box box1"></div><div class="box box2 clear"></div></dt>
+        <dt class="border-wrap" style="width: 100px; height: 200px;"><div class="box box1" style="margin: -5px -10px -15px -20px;"></div><div class="box box2 clear"></div></dt>
+    </dl>
+
+    <h4>效果解析</h4>
+    <p>当margin-top、margin-left为负值的时候，元素上移、左移，后面跟着的元素也会跟着一起移动。<br/>
+        当margin-bottom、margin-right为负值的时候，元素本身位置不受影响，但是后面的元素会向上、向左移动，造成重叠。</p>
+    <p><img src="{{res_path}}images/18_1.png" width="760" height="440" alt="负边距效果图"/></p>
+</section>
+
+<section>
+    <h2>改变位置或消除间距</h2>
+    {% include sub_twig ~ 'title.html' %}
+    <dl class="collapse">
+        <dt><span class="btn-white collapse-btn">查看代码</span></dt>
+        <dd class="collapse-cont hide"><pre>{{ source(sub_twig ~ 'title.html')|e }}</pre></dd>
+    </dl>
+</section>
+
+<section>
+    <h2>增加容器宽度</h2>
+    <dl class="effect-box clearfix">
+        <dt style="width: 100px; height: 100px; border-bottom: 10px solid #000;"><div class="box3">AVA</div></dt>
+        <dt style="width: 100px; height: 100px; border-bottom: 10px solid #000;"><div class="box3" style="margin-right: -100px;">AVA</div></dt>
+        <dt style="width: 80px; height: 100px;"></dt>
+        <dd>
+            <p>容器宽100px（底下带有黑色边框的区域）；<br/>
+                左侧为原始样式，宽100px; <br/>
+                右侧使用样式 <strong class="highlight">margin-right: -100px;</strong> 右侧超出容器100px, 元素实际宽度为200px。</p>
+            <p>注意：使用负边距增加宽度的元素<strong>不能设置固定宽度</strong>。</p>
+        </dd>
+    </dl>
+</section>
+
+<section id="negative-two">
+    <h2>两栏布局</h2>
+    <section class="mb4">
+        <h3>左侧固定，右侧自适应</h3>
+        {% include sub_twig ~ 'negativeTwo1.html' %}
+        <dl class="collapse">
+            <dt><span class="btn-white collapse-btn">查看代码</span></dt>
+            <dd class="collapse-cont hide"><pre>{{ source(sub_twig ~ 'negativeTwo1.html')|e }}</pre></dd>
+        </dl>
+    </section>
+
+    <section class="mb4">
+        <h3>右侧固定，左侧自适应</h3>
+        <h4>方法一</h4>
+        {% include sub_twig ~ 'negativeTwo2.html' %}
+        <dl class="collapse">
+            <dt><span class="btn-white collapse-btn">查看代码</span></dt>
+            <dd class="collapse-cont hide"><pre>{{ source(sub_twig ~ 'negativeTwo2.html')|e }}</pre></dd>
+        </dl>
+
+        <h4>方法二</h4>
+        {% include sub_twig ~ 'negativeTwo3.html' %}
+        <dl class="collapse">
+            <dt><span class="btn-white collapse-btn">查看代码</span></dt>
+            <dd class="collapse-cont hide"><pre>{{ source(sub_twig ~ 'negativeTwo3.html')|e }}</pre></dd>
+        </dl>
+    </section>
+</section>
+
+<section>
+    <h2>三栏布局</h2>
+    {% include sub_twig ~ 'negativeThree1.html' %}
+    <dl class="collapse">
+        <dt><span class="btn-white collapse-btn">查看代码</span></dt>
+        <dd class="collapse-cont hide">
+            <pre>{{ source(sub_twig ~ 'negativeThree1.html')|e }}</pre>
+            <p>综合了上文中的“左侧固定，右侧自适应”的方法一和“右侧固定，左侧自适应”的方法二</p>
+        </dd>
+    </dl>
+</section>
+
+<section>
+    <h2>多列布局</h2>
+    <p>原理及呈现：外层容器使用margin-top和margin-left的负间距消除左侧和上方空白，使两侧元素排列在容器边缘。</p>
+    <h4>用法一</h4>
+    {% include sub_twig ~ 'negativeMultiColumn1.html' %}
+    <dl class="collapse">
+        <dt><span class="btn-white collapse-btn">查看代码</span></dt>
+        <dd class="collapse-cont hide">
+            <pre>{{ source(sub_twig ~ 'negativeMultiColumn1.html')|e }}</pre>
+            <p>综合了上文中的“左侧固定，右侧自适应”的方法一和“右侧固定，左侧自适应”的方法二</p>
+        </dd>
+    </dl>
+
+    <h4>用法二</h4>
+    {% include sub_twig ~ 'negativeMultiColumn2.html' %}
+    <dl class="collapse">
+        <dt><span class="btn-white collapse-btn">查看代码</span></dt>
+        <dd class="collapse-cont hide">
+            <pre>{{ source(sub_twig ~ 'negativeMultiColumn2.html')|e }}</pre>
+            <p>综合了上文中的“左侧固定，右侧自适应”的方法一和“右侧固定，左侧自适应”的方法二</p>
+        </dd>
+    </dl>
+</section>

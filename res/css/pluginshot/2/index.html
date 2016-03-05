@@ -1,0 +1,29 @@
+<h1>浮动层</h1>
+<section class="plugin-panel">
+    <h2>效果展示</h2>
+    <div class="plugin-cont">
+        <link type="text/css" rel="stylesheet" href="{{res_path}}style.css" />
+        {% include sub_twig ~ 'html.html' %}
+        {% include sub_twig ~ 'js.html' %}
+    </div>
+</section>
+<section class="plugin-panel">
+    <h2>代码展示</h2>
+    <div class="plugin-cont">
+        <h3>HTML</h3>
+        <pre>{{ source(sub_twig ~ 'html.html')|e }}</pre>
+        <h3>CSS</h3>
+        <pre>{% include sub_twig ~ 'style.css' %}</pre>
+        <h3>JS</h3>
+        <pre>{{ source(sub_twig ~ 'js.html')|e }}</pre>
+    </div>
+</section>
+<section class="plugin-panel">
+    <h2>要点总结</h2>
+    <div class="plugin-cont">
+        <ul class="summary">
+            <li>当浮动代码外层标签中存在<span class="highlight">position:relative;</span>或<span class="highlight">position:absolute;</span>时容易引起bug，建议该段代码放在body的最后面。</li>
+            <li>IE6中select层级过高，会盖在浮动层上面，针对这一问题，在灰背景中添加iframe标签可解决。</li>
+        </ul>
+    </div>
+</section>

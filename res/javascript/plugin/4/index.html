@@ -1,0 +1,27 @@
+<h1>事件绑定和移除</h1>
+<section class="plugin-panel">
+    <h2>效果展示</h2>
+    <div class="plugin-cont">
+        {% include sub_twig ~ 'desc.html' %}
+        {% include sub_twig ~ 'html.html' %}
+        {% include sub_twig ~ 'js.html' %}
+    </div>
+</section>
+<section class="plugin-panel">
+    <h2>代码展示</h2>
+    <div class="plugin-cont">
+        <h3>HTML</h3>
+        <pre>{{ source(sub_twig ~ 'html.html')|e }}</pre>
+        <h3>JS</h3>
+        <pre>{{ source(sub_twig ~ 'js.html')|e }}</pre>
+    </div>
+</section>
+<section class="plugin-panel">
+    <h2>要点总结</h2>
+    <div class="plugin-cont">
+        <ul class="summary">
+            <li><span class="highlight">addEventListener</span> 兼容IE9、火狐、Chrome，<span class="highlight">attachEvent</span> 兼容IE6、IE7；第二个参数是函数名，不能加括号，否则不等第一个参数定义的事件触发就会直接运行。</li>
+            <li>使用 addEventListener/attachEvent 方法后，this指针发生变化，使用 <span class="highlight">call()</span> 改变指针对象。</li>
+        </ul>
+    </div>
+</section>

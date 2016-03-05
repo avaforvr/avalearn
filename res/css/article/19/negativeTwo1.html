@@ -1,0 +1,23 @@
+<style>
+    .n2-sidebar-1 {
+        position: relative;/*这个很重要，不加的话鼠标点击不到该区域*/
+        float: left;
+        width: 200px;
+        background: #0f0;
+    }
+    .n2-content-1 {
+        width: 100%;
+        float: left;
+        margin-left: -200px;
+    }
+    .n2-content-in-1 {
+        margin-left: 200px;
+        background: #ccc;
+    }
+</style>
+<div class="n2-wrapper clearfix">
+    <div class="n2-sidebar-1">侧边固定宽度</div>
+    <div class="n2-content-1">
+        <div class="n2-content-in-1">根据外层容器宽度改变</div>
+    </div>
+</div>

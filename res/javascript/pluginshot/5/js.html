@@ -1,0 +1,13 @@
+<script type="text/javascript" src="{{JS_PATH}}jquery/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="{{res_path}}scrollL.js" charset="utf-8"></script>
+<script type="text/javascript" src="{{res_path}}scrollR.js"></script>
+<script type="text/javascript" src="{{res_path}}scrollT.js"></script>
+<script type="text/javascript" src="{{res_path}}scrollB.js"></script>
+<script>
+    $(document).ready(function(){
+        $(".scrollL").scrollL({unitS:184,speed:10});//unitS: 每个li所占的宽度或高度  speed: 滚动速度
+        $(".scrollR").scrollR({unitS:184,speed:10});
+        $(".scrollT").scrollT({unitS:140,speed:10});
+        $(".scrollB").scrollB({unitS:140,speed:10});
+    })
+</script>

@@ -1,0 +1,17 @@
+<h1>Fiddler在线调试JS&CSS</h1>
+
+<h3>Fiddler下载地址</h3>
+<p><a href="http://www.telerik.com/fiddler" target="_blank">http://www.telerik.com/fiddler</a></p>
+
+<h3>修改静态文件重定向路径</h3>
+<ol>
+    <li>打开软件后找到右侧AutoResponder标签。</li>
+    <li>从左侧文件列表中将目标文件拖到右侧AutoResponder空白处或点击Add Rule按钮，添加重定向规则。</li>
+    <li>填写原路径和本地访问路径，Save。</li>
+    <li>浏览器访问正式环境，即可看到本地调试的效果。</li>
+</ol>
+<p><img src="{{res_path}}images/12_1.jpg" /></p>
+
+<h3>遇到的问题和解决方法</h3>
+<p>Fiddle无法抓取Chrome的请求：代理插件SwitchySharp选择System Proxy选项即可解决。</p>
+<p>PS：Fiddle会自动给浏览器设置一个代理127.0.0.1 端口8888，并且记忆浏览器的代理设置，所有的请求先走Fiddle代理，再走浏览器代理。使用代理插件，可能会直接屏蔽了fiddler的代理，因此无法监听到请求。</p>

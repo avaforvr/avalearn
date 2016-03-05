@@ -1,0 +1,10 @@
+<header class="header">
+    <div class="container">
+        <a href="{{WEB_ROOT}}" class="logo">Ava is learning...</a>
+        <nav class="header-nav clearfix">
+            {% for cat in categories %}
+                <a href="{{ cat.url }}">{{ cat.title }}</a>
+            {% endfor %}
+        </nav>
+    </div>
+</header>

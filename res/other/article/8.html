@@ -1,0 +1,50 @@
+<h1>Sublime 使用笔记</h1>
+
+<h3>Sublime Text2安装Package Control</h3>
+<h4>方法一：</h4>
+<p>访问 <a href="https://sublime.wbond.net/installation" target="_blank">Package Control</a> 站点按照提示复制一段python命令安装Package Control</p>
+<ol>
+    <li><span class="highlight">ctrl+`</span> 或 <span class="highlight">View > Show Console</span> 打开Sublime控制台</li>
+    <li>
+        复制相应版本的代码，粘贴到Sublime控制台中。<br>下面是 Sublime Text2 的代码
+        <pre>import urllib2,os; pf=&#39;Package Control.sublime-package&#39;; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler( ))); open( os.path.join( ipp, pf), &#39;wb&#39; ).write( urllib2.urlopen( &#39;http://sublime.wbond.net/&#39; +pf.replace( &#39; &#39;,&#39;%20&#39; )).read()); print( &#39;Please restart Sublime Text to finish installation&#39;)</pre>
+    </li>
+    <li>回车，OK</li>
+</ol>
+<h4>方法二：</h4>
+<p>下载Package Control插件包 <a href="https://sublime.wbond.net/Package%20Control.sublime-package" target="_blank">Package Control.sublime-package</a> 到插件目录 <span class="highlight">Preference -&gt; Browse Packages</span>，重启Sublime</p>
+
+<h3>插件安装：</h3>
+<ol>
+    <li><span class="highlight">ctr+shift+P</span> 调出控制面板</li>
+    <li>输入 <span class="highlight">Install Package</span></li>
+    <li>输入并选择你要安装的package</li>
+    <li>回车</li>
+</ol>
+
+<h3>插件卸载：</h3>
+<ol>
+    <li><span class="highlight">ctr+shift+P</span> 调出控制面板</li>
+    <li>输入 <span class="highlight">Remove Package</span></li>
+    <li>输入你要删除的package</li>
+    <li>回车，OK</li>
+</ol>
+
+<h3>列出全部扩展</h3>
+<ol>
+    <li><span class="highlight">ctr+shift+P</span> 调出控制面板</li>
+    <li>输入 <span class="highlight">List Packages</span></li>
+    <li>回车</li>
+</ol>
+<p></p>
+
+<h3>安装CSS格式化插件CompactExpandCss</h3>
+<ol>
+    <li>ctr+shift+P -> 输入Install Package -> 输入并选择CompactExpandCss</li>
+    <li>选择Preferences -> Key Bindings - User，添加如下代码<br>
+    <pre>{ &quot;keys&quot;: [&quot;ctrl+super+]&quot;], &quot;command&quot;: &quot;compact_expand_css&quot;, &quot;args&quot;: { &quot;action&quot;: &quot;expand&quot; }  },
+{ &quot;keys&quot;: [&quot;ctrl+super+[&quot;], &quot;command&quot;: &quot;compact_expand_css&quot;, &quot;args&quot;: { &quot;action&quot;: &quot;compact&quot; } }</pre>
+    </li>
+    <li>打开一个css文件，<span class="highlight">Ctrl+Alt+[</span> 格式化为一行显示，<span class="highlight">Ctrl+Alt+]</span> 格式化为多行显示。</li>
+</ol>
+<p class="note">ps：站长工具在线CSS格式化：<a href="http://tool.chinaz.com/Tools/CssFormat.aspx" target="_blank">http://tool.chinaz.com/Tools/CssFormat.aspx</a>，使用这个可以统一空格。</p>

@@ -1,0 +1,12 @@
+<h1> PHP 代码备份 </h1>
+<h3>打印数组变量的方法</h3>
+<pre>function p() {
+    $argvs = func_get_args();
+    echo &quot;&lt;div style=&#92;&quot;text-align: left;&#92;&quot;&gt;&#92;r&#92;n&quot;;
+    foreach($argvs as $v) {
+        echo &quot;&lt;xmp&gt;&quot;;
+        print_r($v);
+        echo &quot;&lt;/xmp&gt;&#92;r&#92;n&quot;;
+    }
+    echo &quot;&#92;r&#92;n&lt;/div&gt;&#92;r&#92;n&quot;;
+}</pre>

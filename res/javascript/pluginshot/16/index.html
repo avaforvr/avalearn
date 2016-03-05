@@ -1,0 +1,38 @@
+<h1>图片播放</h1>
+<div class="plugin-panel">
+    <h2>效果展示</h2>
+    <div class="plugin-cont">
+        <link type="text/css" rel="stylesheet" href="{{res_path}}style.css" />
+        {% include sub_twig ~ 'html.html' %}
+        {% include sub_twig ~ 'js.html' %}
+
+    </div>
+</div>
+<div class="plugin-panel">
+    <h2>代码展示</h2>
+    <div class="plugin-cont">
+        <h3>HTML</h3>
+        <pre>{{ source(sub_twig ~ 'html.html')|e }}</pre>
+        <h3>JS</h3>
+        <pre>{{ source(sub_twig ~ 'js.html')|e }}</pre>
+        <h3>CSS</h3>
+        <pre>{{ source(sub_twig ~ 'style.css')|e }}</pre>
+    </div>
+</div>
+<div class="plugin-panel">
+    <h2>相关文件下载</h2>
+    <div class="plugin-cont">
+        <ul class="download">
+            <li>图片播放js<a href="{{res_path}}imgPlay.js" target="_blank">imgPlay.js</a></li>
+        </ul>
+    </div>
+</div>
+<div class="plugin-panel">
+    <h2>要点总结</h2>
+    <div class="plugin-cont">
+        <ul class="summary">
+            <li>图片缩放根据实际需要选择函数，可参考图片等比缩放特效。</li>
+        </ul>
+    </div>
+
+</div>

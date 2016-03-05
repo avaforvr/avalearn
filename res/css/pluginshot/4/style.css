@@ -1,0 +1,8 @@
+
+.effectList dd { margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; }
+.effectList button, .effectList input, .effectList a { margin: 10px; vertical-align: baseline; }
+
+.tab { width: 100%; margin-top:15px; }
+.tabTit { padding-bottom: 5px; }
+.tabTit input { margin: 0 20px 20px 0;  vertical-align: baseline; }
+.tabCont_c { display:none; }

@@ -1,0 +1,90 @@
+<style>
+    .box {
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        font-size: 32px;
+        text-align: center;
+        background: #ccc;
+        color: #fff;
+    }
+    .box-group .box {
+        float: left;
+        margin: 0 10px 10px 0;
+    }
+    .box-group .small {
+        font-size: 24px;
+    }
+</style>
+
+<h1>CSS3学习笔记 - 渐变</h1>
+
+<nav class="anchor-nav">
+    文章目录：
+    <ul>
+        <li><a href="#linear-gradient">linear-gradient 线性渐变</a></li>
+        <li><a href="#radial-gradient">radial-gradient 径向渐变</a></li>
+    </ul>
+</nav>
+
+<section id="linear-gradient">
+    <h2>linear-gradient 线性渐变</h2>
+    <pre>background: linear-gradient(direction, color-stop1, color-stop2, ...); /*方向*/</pre>
+    <pre>background: linear-gradient(angle, color-stop1, color-stop2, ...); /*角度*/</pre>
+    <p>为了创建一个线性渐变，你必须至少定义两种颜色结点。同时，你也可以设置一个起点和一个方向（或一个角度）。</p>
+    <p>以下示例为绿色到黄色渐变。</p>
+
+    <h4>使用方向direction</h4>
+    <div class="box-group clearfix mb2">
+        <div class="box" style="background: linear-gradient(green, yellow);">&darr;</div>
+        <div class="box" style="background: linear-gradient(to top, green, yellow);">&uarr;</div>
+        <div class="box" style="background: linear-gradient(to right, green, yellow);">&rarr;</div>
+        <div class="box" style="background: linear-gradient(to left, green, yellow);">&larr;</div>
+        <div class="box" style="background: linear-gradient(to top left, green, yellow);">↖</div>
+        <div class="box" style="background: linear-gradient(to top right, green, yellow);">↗</div>
+        <div class="box" style="background: linear-gradient(to bottom left, green, yellow);">↙</div>
+        <div class="box" style="background: linear-gradient(to bottom right, green, yellow);">↘</div>
+    </div>
+
+    <p>兼容写法，以左上到右下方向为例：</p>
+    <pre>#grad {
+    background: -webkit-linear-gradient(left top, green , yellow); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(bottom right, green, yellow);   /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(bottom right, green, yellow); /* Firefox 3.6 - 15 */
+    background: linear-gradient(to bottom right, green , yellow);  /* 标准的语法 */
+}</pre>
+
+    <h4>使用角度angle</h4>
+    <p>direction 为预定义的角度，使用angle可以设置更灵活的角度。</p>
+    <div class="box-group clearfix mb2">
+        <div class="box" style="background: linear-gradient(315deg, green, yellow);">315↖</div>
+        <div class="box" style="background: linear-gradient(0deg, green, yellow);"><span class="small">0/360</span>&uarr;</div>
+        <div class="box" style="background: linear-gradient(45deg, green, yellow);">45↗</div>
+        <div class="clear"></div>
+        <div class="box" style="background: linear-gradient(270deg, green, yellow);">270&larr;</div>
+        <div class="box"></div>
+        <div class="box" style="background: linear-gradient(90deg, green, yellow);">90&rarr;</div>
+        <div class="clear"></div>
+        <div class="box" style="background: linear-gradient(225deg, green, yellow);">225↙</div>
+        <div class="box" style="background: linear-gradient(180deg, green, yellow);">180&darr;</div>
+        <div class="box" style="background: linear-gradient(135deg, green, yellow);">135↘</div>
+    </div>
+    <p>兼容写法：</p>
+    <pre>#grad {
+    background: -webkit-linear-gradient(180deg, green, yellow); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(180deg, green, yellow);      /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(180deg, green, yellow);    /* Firefox 3.6 - 15 */
+    background: linear-gradient(180deg, green, yellow);         /* 标准的语法 */
+}</pre>
+</section>
+
+<section id="radial-gradient">
+    <h2>radial-gradient 径向渐变</h2>
+    <pre></pre>
+
+    <h4></h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style=""></div></dt>
+        <dd><pre></pre><p></p></dd>
+    </dl>
+</section>

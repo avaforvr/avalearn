@@ -1,0 +1,9 @@
+.imgPlay { width:550px; height:300px; overflow:hidden; position:relative; margin:0 auto; }
+.imgPlay li { width:350px; height:100%; overflow:hidden; position:absolute; top:0; background:#e6e6e6; }
+.imgPlay .tit { width:30px; height:270px; padding:15px 10px; overflow:hidden; float:left; text-align:center; color:#fff; font:normal 18px/28px "Microsoft YaHei", sans-serif; cursor:pointer; }
+.imgPlay .li1 .tit { background:#50a000; }
+.imgPlay .li2 .tit { background:#a00000; }
+.imgPlay .li3 .tit { background:#006ca0; }
+.imgPlay .li4 .tit { background:#a00096; }
+.imgPlay .li5 .tit { background:#a09200; }
+.imgPlay .cont { width:300px; height:300px; overflow:hidden; float:left; text-align:center; color:#333; font-size:14px; line-height:300px; }

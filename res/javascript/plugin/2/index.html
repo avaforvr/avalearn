@@ -1,0 +1,25 @@
+<h1>倒计时</h1>
+<section class="plugin-panel">
+    <h2>效果展示</h2>
+    <div class="plugin-cont">
+        {% include sub_twig ~ 'html.html' %}
+        {% include sub_twig ~ 'js.html' %}
+    </div>
+</section>
+<section class="plugin-panel">
+    <h2>代码展示</h2>
+    <div class="plugin-cont">
+        <h3>HTML</h3>
+        <pre>{{ source(sub_twig ~ 'html.html')|e }}</pre>
+        <h3>JS</h3>
+        <pre>{{ source(sub_twig ~ 'js.html')|e }}</pre>
+    </div>
+</section>
+<section class="plugin-panel">
+    <h2>要点总结</h2>
+    <div class="plugin-cont">
+        <ul class="summary">
+            <li>prototype 中 this 指示的对象</li>
+        </ul>
+    </div>
+</section>

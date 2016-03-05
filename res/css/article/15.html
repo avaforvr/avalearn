@@ -1,0 +1,168 @@
+<style>
+    .box {
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        font-size: 32px;
+        text-align: center;
+        background: #789CB6;
+        color: #fff;
+    }
+    .box-sizing:after {
+        display: block;
+        content: '';
+        width: 100%;
+        height: 100%;
+        background: #7fbf4d;
+    }
+    .box-sizing {
+        border:solid 10px #000;
+        padding: 10px;
+    }
+</style>
+
+<h1>CSS3学习笔记 - 界面</h1>
+
+<nav class="anchor-nav">
+    文章目录：
+    <ul>
+        <li><a href="#appearance">appearance</a></li>
+        <li><a href="#box-sizing">box-sizing</a></li>
+        <li><a href="#outline-offset">outline-offset</a></li>
+        <li><a href="#resize">resize</a></li>
+    </ul>
+</nav>
+
+<section class="clearfix">
+    <h2>代码范例</h2>
+    <h4>box，宽高均为100px</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box"></div></dt>
+        <dd>
+            <pre>.box {
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    font-size: 32px;
+    text-align: center;
+    background: #789CB6;
+    color: #fff;
+}
+.box:after {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: #7fbf4d;
+}</pre>
+        </dd>
+    </dl>
+</section>
+
+<section id="appearance">
+    <h2>appearance 使元素看上去像标准的用户界面元素(浏览器默认的样式)，默认为normal</h2>
+    <pre>appearance: normal|icon|window|button|menu|field;</pre>
+    <p>
+        <strong>测试 span 元素</strong><br/>
+        <span>使用appearance之前，默认为normal</span><br/>
+        <span style="-webkit-appearance: button; -moz-appearance: button;">-webkit-appearance: button; -moz-appearance: button;</span>
+    </p>
+    <p>
+        <strong>测试 button 元素</strong><br/>
+        <button>使用appearance之前，默认为normal</button><br/>
+        <button style="-webkit-appearance: normal; -moz-appearance: normal;">-webkit-appearance: normal; -moz-appearance: normal;</button><br/>
+        <button style="-webkit-appearance: none; -moz-appearance: none;">-webkit-appearance: none; -moz-appearance: none;</button><br/>
+        <button style="-webkit-appearance: button; -moz-appearance: button;">-webkit-appearance: button; -moz-appearance: button;</button>
+    </p>
+</section>
+
+<section id="box-sizing">
+    <h2>box-sizing 盒模型组成模式，默认为content-box</h2>
+    <pre>box-sizing: content-box|border-box|inherit;</pre>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box-sizing"></div></dt>
+        <dd>
+            <p>box-sizing属性测试使用的样式，添加border和padding属性，宽高均为100px，背景为蓝色，content区域使用绿色填满</p>
+            <pre>.box-sizing {
+    border:solid 10px #000;
+    padding: 10px;
+}
+.box-sizing:after {
+    display: block;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: #7fbf4d;
+}</pre>
+        </dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box-sizing" style="box-sizing: content-box;"></div></dt>
+        <dd>
+            <pre>box-sizing: content-box;</pre>
+            <p>width和height不包含padding和border，内容区域宽高为100px，为默认样式。</p>
+        </dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box box-sizing" style="box-sizing: border-box;"></div></dt>
+        <dd>
+            <pre>box-sizing: border-box;</pre>
+            <p>width和height包含padding和border，内容区域宽高为60px</p>
+        </dd>
+    </dl>
+</section>
+
+<section id="outline-offset">
+    <h2>outline-offset 对轮廓进行偏移，并在边框边缘进行绘制</h2>
+    <pre>outline-offset: length|inherit;</pre>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="border:3px solid #000; outline:3px solid #f00; outline-offset: 0;"></div></dt>
+        <dd>
+            <pre>border:3px solid #000;
+outline:3px solid #f00;
+outline-offset: 0;</pre>
+            <p>outline-offset需要outline属性一起设置</p>
+        </dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="border:3px solid #000; outline:3px solid #f00; outline-offset: 15px;"></div>
+        <div class="box" style="border:3px solid #000; outline:3px solid #f00; outline-offset: -30px;">Ava</div></dt>
+        <dd>
+            <p>上面的容器：</p>
+            <pre>border:3px solid #000;
+outline:3px solid #f00;
+outline-offset: 15px;</pre>
+            <p>下面的容器：</p>
+            <pre>border:3px solid #000;
+outline:3px solid #f00;
+outline-offset: -15px;</pre>
+            <p>从左侧两个挨在一起的容器可以看出，轮廓不占用空间</p>
+        </dd>
+    </dl>
+</section>
+
+<section id="resize">
+    <h2>resize 规定是否可由用户调整元素的尺寸，默认为none</h2>
+    <pre>resize: none|both|horizontal|vertical;</pre>
+    <dl class="effect-box clearfix">
+        <dt><input class="box" style="resize: both;" value="input"></dt>
+        <dt><textarea class="box" style="resize: both;">textarea</textarea></dt>
+        <dt><div class="box" style="resize: both; overflow:auto;">div</div></dt>
+        <dd>
+            <pre>resize: both;</pre>
+            <p>输入框没效果，textarea有效果，div需要配合overflow:auto才生效;</p>
+        </dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="resize: horizontal; overflow:auto;">div</div></dt>
+        <dd>
+            <pre>resize: horizontal; overflow:auto;</pre>
+        </dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="resize: vertical; overflow:auto;">div</div></dt>
+        <dd>
+            <pre>resize: vertical; overflow:auto;</pre>
+        </dd>
+    </dl>
+</section>

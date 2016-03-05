@@ -1,0 +1,106 @@
+<h1>用CSS3写的按钮</h1>
+<section class="plugin-panel">
+	<h2>效果展示</h2>
+	<div class="plugin-cont">
+		<link type="text/css" rel="stylesheet" href="{{res_path}}style.css" />
+		<link type="text/css" rel="stylesheet" href="{{res_path}}style_common.css" />
+		<link type="text/css" rel="stylesheet" href="{{res_path}}style_button1.css" />
+		<link type="text/css" rel="stylesheet" href="{{res_path}}style_button2.css" />
+		<link type="text/css" rel="stylesheet" href="{{res_path}}style_button3.css" />
+		<link type="text/css" rel="stylesheet" href="{{res_path}}style_button4.css" />
+		<link type="text/css" rel="stylesheet" href="{{res_path}}style_button5.css" />
+		<link type="text/css" rel="stylesheet" href="{{res_path}}style_button6.css" />
+		<link type="text/css" rel="stylesheet" href="{{res_path}}style_button7.css" />
+		<link type="text/css" rel="stylesheet" href="{{res_path}}style_button8.css" />
+		<link type="text/css" rel="stylesheet" href="{{res_path}}style_button9.css" />
+		<link type="text/css" rel="stylesheet" href="{{res_path}}style_button10.css" />
+		<link type="text/css" rel="stylesheet" href="{{res_path}}style_button11.css" />
+		{% include sub_twig ~ 'html.html' %}
+	</div>
+</section>
+<section class="plugin-panel">
+	<h2>代码展示</h2>
+	<div class="plugin-cont">
+		<h3>公共样式</h3>
+		<pre>{{ source(sub_twig ~ 'style_common.css')|e }}</pre>
+		<h3>各按钮样式<span>点击按钮查看对应样式</span></h3>
+		<div class="tab">
+			<div class="tabTit">
+				<input type="button" class="button1" value="button1">
+				<input type="button" class="button2" value="button2">
+				<input type="button" class="button3" value="button3">
+				<input type="button" class="button4" value="button4">
+				<input type="button" class="button5" value="button5">
+				<input type="button" class="button6" value="button6">
+				<input type="button" class="button7" value="button7">
+				<input type="button" class="button8" value="button8">
+				<input type="button" class="button9" value="button9">
+				<input type="button" class="button10" value="button10">
+				<input type="button" class="button11" value="button11">
+			</div>
+			<div class="tabCont">
+				<div class="tabCont_c" style="display:block"><pre>{{ source(sub_twig ~ 'style_button1.css')|e }}</pre></div>
+				<div class="tabCont_c"><pre>{{ source(sub_twig ~ 'style_button2.css')|e }}</pre></div>
+				<div class="tabCont_c"><pre>{{ source(sub_twig ~ 'style_button3.css')|e }}</pre></div>
+				<div class="tabCont_c"><pre>{{ source(sub_twig ~ 'style_button4.css')|e }}</pre></div>
+				<div class="tabCont_c"><pre>{{ source(sub_twig ~ 'style_button5.css')|e }}</pre></div>
+				<div class="tabCont_c"><pre>{{ source(sub_twig ~ 'style_button6.css')|e }}</pre></div>
+				<div class="tabCont_c"><pre>{{ source(sub_twig ~ 'style_button7.css')|e }}</pre></div>
+				<div class="tabCont_c"><pre>{{ source(sub_twig ~ 'style_button8.css')|e }}</pre></div>
+				<div class="tabCont_c"><pre>{{ source(sub_twig ~ 'style_button9.css')|e }}</pre></div>
+				<div class="tabCont_c"><pre>{{ source(sub_twig ~ 'style_button10.css')|e }}</pre></div>
+				<div class="tabCont_c"><pre>{{ source(sub_twig ~ 'style_button11.css')|e }}</pre></div>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="plugin-panel">
+	<h2>button6在各浏览器中的效果</h2>
+	<div class="plugin-cont">
+		<table>
+			<tr>
+				<td>Chrome</td>
+				<td><img src="{{res_path}}button6_chrome.png"></td>
+			</tr>
+			<tr>
+				<td>FF</td>
+				<td><img src="{{res_path}}button6_ff.png"></td>
+			</tr>
+			<tr>
+				<td>IE10</td>
+				<td><img src="{{res_path}}button6_ie10.png"></td>
+			</tr>
+			<tr>
+				<td>IE9</td>
+				<td><img src="{{res_path}}button6_ie9.png"></td>
+			</tr>
+			<tr>
+				<td>IE8</td>
+				<td><img src="{{res_path}}button6_ie8.png"></td>
+			</tr>
+			<tr>
+				<td>IE7</td>
+				<td><img src="{{res_path}}button6_ie7.png"></td>
+			</tr>
+		</table>
+	</div>
+</section>
+<section class="plugin-panel">
+	<h2>要点总结</h2>
+	<div class="plugin-cont">
+		<ul class="summary">
+			<li>很遗憾，IE8及以下版本浏览器不支持圆角，无法实现以上显示效果。</li>
+			<li>原文：<a href="http://hellohappy.org/css3-buttons/" target="_blank" class="fc2">CSS3 buttons</a></li>
+		</ul>
+	</div>
+</section>
+
+<script type="text/javascript" src="{{JS_PATH}}jquery/jquery-1.11.2.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$('.tabTit input').click(function() {
+			var i=$(this).index();
+			$('.tabCont_c').eq(i).show().siblings().hide();
+		});
+	});
+</script>

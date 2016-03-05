@@ -1,0 +1,49 @@
+<script>
+    function Timer(endTime, htmlElemId) {
+        this.endTime = endTime;
+        this.isEnd = false; //倒计时是否已结束
+        this.htmlElem = document.getElementById(htmlElemId);
+    }
+    Timer.prototype = {
+        start: function () {
+            return new Date();
+        },
+        end: function () {
+            return new Date(this.endTime);
+        },
+        init: function () {
+            var offsetm = this.end() - this.start();
+            if (offsetm <= 0) {
+                this.isEnd = true;
+            } else {
+                this.isEnd = false;
+                this.days = Math.floor(offsetm / (1000 * 60 * 60 * 24));
+                offsetm = offsetm - this.days * 1000 * 60 * 60 * 24;
+                this.hours = Math.floor(offsetm / (1000 * 60 * 60));
+                offsetm = offsetm - this.hours * 1000 * 60 * 60;
+                this.mins = Math.floor(offsetm / (1000 * 60));
+                offsetm = offsetm - this.mins * 1000 * 60;
+                this.seconds = Math.floor(offsetm / 1000);
+            }
+        },
+        run: function () {
+            var _self = this;
+            setInterval(function () {
+                _self.init();
+                _self.print();
+            }, 1000);
+        },
+        print: function () {
+            if (this.isEnd) {
+                this.htmlElem.innerHTML = '距离 ' + this.endTime + ' 倒计时已结束';
+            } else {
+                this.htmlElem.innerHTML = '距离 ' + this.endTime + ' 还有 ' + this.days + ' 天 ' + this.hours + ' 时 ' + this.mins + ' 分 ' + this.seconds + ' 秒';
+            }
+        }
+    };
+
+    var t = new Timer('2013-12-25', 'countdown');
+    t.run();
+    var t2 = new Timer('2020-12-25', 'countdown2');
+    t2.run();
+</script>

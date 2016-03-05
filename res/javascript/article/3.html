@@ -1,0 +1,137 @@
+<h1>JS中对象的创建</h1>
+<h3>最简单的方式</h3>
+<pre>var person = new Object();
+person.name = &quot;Ann&quot;;
+person.gender = &quot;female&quot;;
+person.age = 18;
+document.write(&quot;My name is &quot; + person.name + &quot;.&quot;);
+</pre>
+<p>注：虽然这种方式简单，但是如果使用这种方式创建对象的话，会产生大量的重复代码，每次创建一个对象，都要重新写过这么多代码。</p>
+
+<h3>工厂模式</h3>
+<p>写法一</p>
+<pre>var Person = function(name, gender, age) {
+    var o = {};
+    o.name = name;
+    o.gender = gender;
+    o.age = age;
+    o.printInfo = function() {
+        document.write(&quot;My name is &quot; + o.name + &quot;.&quot;);
+    };
+    return o;
+}
+var person = new Person(&quot;Ann&quot;, &quot;female&quot;, 18);</pre>
+<p>写法二</p>
+<pre>var Person = function (name, gender, age) {
+    var o = {
+        name : name,
+        gender : gender,
+        age : age,
+        printInfo : function () {
+            document.write("My name is " + o.name + ".");
+        }
+    };
+    return o;
+}
+var person = new Person("Ann", "female", 18);</pre>
+<p>注：可以任意调用这个函数，每次都会返回一个包含制定属性和方法的对象。这个方式解决了上面创建多个类似对象的问题，但是没有解决识别一个对象类型的问题（识别对象类型在大部分地方都很有用）。</p>
+
+<h3>构造函数模式</h3>
+<pre>var Person = function (name, gender, age) {
+    this.name = name;
+    this.gender = gender;
+    this.age = age;
+    this.printInfo = function () {
+        document.write(&quot;My name is &quot; + this.name + &quot;.&quot;);
+    };
+}
+var person = new Person(&quot;Ann&quot;, &quot;female&quot;, 18);
+var person2 = new Person(&quot;Tom&quot;, &quot;male&quot;, 18);
+</pre>
+<p>构造函数也是普通函数，任何函数只要通过new操作符调用，那它就可以作为构造函数，而任何函数，如果不通过new操作符调用，那它跟普通函数也不会有什么两样。</p>
+<p>以上构造函数中的方法要在每个实例上重新创建一遍，例如，每个实例都有一个printInfo的方法，但是这两个方法不是同一个Function的实例，函数也是一个对象，这样会在内存中重复创建很多相同的方法，所以可以像下面这样解决这个问题：</p>
+<pre>var Person = function (name, gender, age) {
+    this.name = name;
+    this.gender = gender;
+    this.age = age;
+    this.printInfo = printInfo;
+};
+
+var printInfo = function () {
+    document.write(&quot;My name is &quot; + this.name + &quot;.&quot;);
+};
+
+var person = new Person(&quot;Ann&quot;, &quot;female&quot;, 18);
+person.printInfo(); //输出：My name is Ann.
+var person2 = new Person(&quot;Tom&quot;, &quot;male&quot;, 18);
+person2.printInfo(); //输出：My name is Tom.</pre>
+<p>在上面代码中，把display函数的定义移到了构造函数外面，然后在构造函数内部将display属性设置成全局的display函数，这样就只在内存中创建了一个display函数。</p>
+<p>问题是，这样定义如果需要很多方法，那势必要在全局定义很多函数，但是却只能为某个构造函数所产生的各个实例所调用，这样不仅代码难看，而且毫无封装性可言。</p>
+
+<h3>原型模式</h3>
+<p>写法一</p>
+<pre>var Person = function () {};
+Person.prototype.name = &quot;Ann&quot;;
+Person.prototype.gender = &quot;female&quot;;
+Person.prototype.age = 18;
+Person.prototype.printInfo = function () {
+    document.write(&quot;My name is &quot; + this.name + &quot;.&quot;);
+};
+var person = new Person(&quot;Ann&quot;, &quot;female&quot;, 18);
+person.printInfo(); //输出：My name is Ann.
+</pre>
+<p>写法二(简化)</p>
+<pre>var Person = function () {};
+Person.prototype = {
+    name : &quot;Ann&quot;,
+    gender : &quot;female&quot;,
+    age : 18,
+    printInfo : function () {
+        document.write(&quot;My name is &quot; + this.name + &quot;.&quot;);
+    }
+};
+
+var person = new Person();
+person.printInfo();
+</pre>
+<p>使用原型模式，新创建的对象还会具有相同的属性和方法，而且这些属性和方法是所有实例共享的，不像构造函数模式那样，函数是一个实例一个实例特有的，虽然实现功能一样。</p>
+<p>原型模式的问题是，原型模式少了传参，每个实例都是相同的属性值。如果属性值是引用类型的，则每个实例共享相同的属性值，任意一个对象更改了，其他对象也会收到更改后的值，因为引用类型的值是在堆中，属性变量只是一个指针指向它而已。测试代码如下：</p>
+<pre>var Person = function () {};
+Person.prototype = {
+    name : &quot;Ann&quot;,
+    gender : &quot;female&quot;,
+    age : 18,
+    intrests : [&quot;run&quot;, &quot;sing&quot;, &quot;read&quot;],
+    printInfo : function () {
+        document.write(&quot;My name is &quot; + this.name + &quot;.&quot;);
+    }
+};
+
+var person = new Person();
+var person2 = new Person();
+document.write(person.name); //输出：Ann
+document.write(person.intrests); //输出：run,sing,read
+
+person.name = &quot;Lucy&quot;;
+person.intrests.push(&quot;film&quot;);
+document.write(person.name); //输出：Lucy
+document.write(person2.name); //输出：Ann
+document.write(person.intrests); //输出：run,sing,read,film
+document.write(person2.intrests); //输出：run,sing,read,film
+</pre>
+
+<h3>结合使用构造函数和原型模式</h3>
+<pre>var Person = function (name, gender, age) {
+    this.name = name;
+    this.gender = gender;
+    this.age = age;
+}
+Person.prototype = {
+    printInfo : function () {
+        document.write(&quot;My name is &quot; + this.name + &quot;.&quot;);
+    }
+};
+var person = new Person(&quot;Ann&quot;, &quot;female&quot;, 18);
+</pre>
+<p>构造函数定义实例属性，原型模式定义实例共享的属性和方法。</p>
+<p class="from">参考：<a href="http://blog.sina.com.cn/s/blog_4c81e6230100z0g1.html" target="_blank">http://blog.sina.com.cn/s/blog_4c81e6230100z0g1.html</a></p>

@@ -1,0 +1,100 @@
+<h1>JS数组的操作</h1>
+<h3>数组的创建</h3>
+<pre>var arr = new Array();　//创建一个数组
+var arr = new Array(3);　//创建一个数组并指定长度，注意不是上限，是长度
+var arr = new Array('a','b','c');　//创建一个数组并赋值</pre>
+<p>注：方法二创建的数组中追加的元素超过指定长度时，数组的长度随之改变</p>
+<h3>数组赋值</h3>
+<pre>arr[0] = 5;</pre>
+<h3>数组取值</h3>
+<pre>var x = arr[0];</pre>
+<h3>数组元素的添加</h3>
+<pre>var arr = new Array('a','b','c');    //创建数组
+arr.push('d','e');    //将一个或多个新元素添加到数组结尾，并返回数组新长度(返回5，arr=['a','b','c','d','e'])
+arr.unshift('d','e');    //将一个或多个新元素添加到数组开始，数组中的元素自动后移，返回数组新长度(返回5，arr=['d','e','a','b','c'])
+arr.splice(1,0,['d','e']);    //将一个或多个新元素插入到数组的指定位置(位置1)，插入位置的元素自动后移(返回""，['a','d','e','b','c'])</pre>
+<h3>数组元素的删除</h3>
+<pre>var arr = new Array('a','b','c');    //创建数组
+arr.pop();    //移除最后一个元素并返回该元素值(返回['c']，arr=['a','b'])
+arr.shift();    //移除第一个元素并返回该元素值，数组中元素自动前移(返回['a']，arr=['b','c'])
+arr.splice(1,2);    //删除从指定位置开始的指定数量的元素(从位置1开始的2个元素)，数组形式返回所移除的元素(返回['b','c']，arr=['a'])
+arr.length = 2;    //将数组的长度减少到2，索引等于或超过2的元素被丢弃(arr=['a','b'])</pre>
+<h3>数组的截取</h3>
+<pre>var arr=new Array('a','b','c','d');    //创建数组
+arr.slice(1,3);    //截取数组中指定位置的一部分(从2到4)，用它来复制数组(返回['b','c']，arr=['a','b','c','d'])
+arr.slice(1);    //省略了end参数，则截取的数组包含从指定位置开始到数组结束的所有元素(返回['b','c','d']，arr=['a','b','c','d'])
+arr.slice(-3,2);    //参数为负数时，将其当做(参数 = length + 参数)处理，效果等同于arr.slice(1,2) (返回['b']，arr=['a','b','c','d'])</pre>
+<h3>数组的合并</h3>
+<pre>var arr = new Array('a','b','c');    //创建数组
+arr.concat('d','e');    //将多个数组（或字符串）连接为一个数组，返回连接好的新的数组(返回['a','b','c','d','e']，arr=['a','b','c'])</pre>
+<h3>数组元素的排序</h3>
+<pre>var arr=new Array('b','c','a');    //创建数组
+arr.reverse();    //反转元素（最前的排到最后、最后的排到最前），返回数组地址(arr=['a','c','b'])
+arr.sort();    //对数组元素排序，返回数组地址(arr=['a','b','c'])</pre>
+<h3>数组元素的字符串化</h3>
+<pre>var arr = new Array('a','b','c');    //创建数组
+arr.join('|');    //返回字符串，这个字符串将数组的每一个元素值连接在一起，中间用指定符号隔开(返回a|b|c，arr=['a','b','c'])
+arr.join();    //参数为空时，中间用“,”隔开(返回“a,b,c”，arr=['a','b','c'])</pre>
+<h3>数组的length属性</h3>
+<pre>var arr = new Array();
+alert(arr.length);    //0
+var arr=[0,1,2,3,4];
+alert(arr.length);    //5
+arr[10]=10;
+alert(arr.length);    //11
+alert(arr[6]);    //undefined
+alert(arr[10]);    //10</pre>
+<p>事实上，使用new Array()形式创建的数组，其初始长度就是为0，正是对其中未定义元素的操作，才使数组的长度发生变化。利用length属性可以方便的增加或者减少数组的容量。</p>
+<h3>prototype 属性</h3>
+<pre>function array_max() {
+    var maxValue = this[0];
+    for (var i = 1; i &lt; this.length; i++) {
+        if (maxValue &lt; this[i]) {
+            maxValue = this[i];
+        }
+    }
+    return maxValue;
+}
+Array.prototype.getMax = array_max;
+var arr = new Array(1, 2, 3, 4, 5, 6);
+var x = arr.getMax(); //x=6
+</pre>
+<p>以上代码执行后，x为数组arr中的最大值(6)。prototype 属性是 object 共有的。</p>
+<h3>constructor 属性</h3>
+<pre>var x = new String();
+if (x.constructor == String) {
+    document.write(x.constructor); //输出：function String() { [native code] }
+}
+
+function MyFunc() {
+    this.name = &#39;test&#39;;
+}
+var y = new MyFunc();
+if (y.constructor == MyFunc) {
+    document.write(y.constructor); //输出：function MyFunc(){ this.name = &#39;test&#39;;}
+}</pre>
+<h3>排除数组中的重复元素</h3>
+<pre>function unique(arr) {
+    arr = arr || [];
+    var a = {}; //等同于 var a = new Object();
+    for (var i = 0; i &lt; arr.length; i++) {
+        var v = arr[i];
+        if (typeof(a[v]) == &#39;undefined&#39;) {
+            a[v] = 1;
+        }
+    }
+    arr.length = 0;
+    for (var i in a) {
+        arr[arr.length] = i;
+    }
+    return arr;
+}
+var arr = [&#39;a&#39;, &#39;b&#39;, &#39;b&#39;, &#39;c&#39;, &#39;c&#39;];
+document.write(unique(arr)); //输出 a,b,c
+</pre>
+<p>
+    以上代码主要包括三个步骤(注意对象的用法)：<br />
+    1. 创建对象a，a的属性名为数组中的不重复元素；<br />
+    2. 清空原数组arr；<br />
+    3. 遍历对象a，给arr重新赋值
+</p>

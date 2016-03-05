@@ -1,0 +1,46 @@
+.header {
+    margin-bottom: @space;
+    background: #272727;
+    .gradient(top, #323232, #202020);
+}
+.logo {
+    float: left;
+    padding: 0 15px;
+    display: block;
+    background: #3a3a3a;
+    color: #fff;
+    font-size: @font-size-large;
+    text-decoration: none;
+    line-height: 40px;
+    &:hover {
+        background: #454545;
+        text-decoration: none;
+    }
+    @media screen and (max-width: 680px) {
+        float: none;
+        text-align: center;
+    }
+}
+
+//导航
+.header-nav {
+    float: right;
+    padding: 6px 0;
+    line-height: 2;
+    a {
+        margin-right: @space;
+        color: #ddd;
+        font-size: 14px;
+        white-space: nowrap;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    @media screen and (max-width: 680px) {
+        float: none;
+        padding-left: @space;
+        a {
+            float: left;
+        }
+    }
+}

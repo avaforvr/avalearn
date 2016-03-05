@@ -1,0 +1,30 @@
+<h1> 分享链接整理 </h1>
+<h3>分享到Facebook</h3>
+<pre>&lt;a href=&quot;http://www.facebook.com/sharer.php?u={$socialShareUrl}&quot; target=&quot;_blank&quot; rel=&quot;nofollow&quot;&gt;Facebook&lt;/a&gt;</pre>
+<p><img src="{{res_path}}images/3_1.gif"> Facebook分享按钮代码如下（放到服务器上才可用）</p>
+<pre>&lt;fb:like href=&quot;http://developers.facebook.com/docs/reference/plugins/like&quot; send=&quot;false&quot; layout=&quot;button_count&quot; width=&quot;450&quot; show_faces=&quot;false&quot;&gt;&lt;/fb:like&gt;
+&lt;div id=&quot;fb-root&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = &quot;//connect.facebook.net/en_US/all.js#xfbml=1&quot;;
+fjs.parentNode.insertBefore(js, fjs);
+}(document, &#39;script&#39;, &#39;facebook-jssdk&#39;));
+&lt;/script&gt;</pre>
+
+<h3>分享到twitter</h3>
+<pre>&lt;a href=&quot;http://twitter.com/home?status={$socialShareUrl}&quot; target=&quot;_blank&quot; rel=&quot;nofollow&quot;&gt;Twitter&lt;/a&gt;</pre>
+
+<h3>分享到Pinterest</h3>
+<pre>&lt;a href=&quot;http://pinterest.com/pin/create/button/?url={$socialShareUrl}&amp;title={$socialShareTitle}&amp;media={$socialShareImg}&amp;is_video=false&quot; target=&quot;_blank&quot; rel=&quot;nofollow&quot;&gt;Pinterest&lt;/a&gt;</pre>
+
+<h3>分享到Google</h3>
+<pre>&lt;a href=&quot;http://www.google.com/bookmarks/mark?op=add&amp;bkmk='{$socialShareUrl}'&amp;title={$socialShareTitle}&quot; target=&quot;_blank&quot; rel=&quot;nofollow&quot;&gt;Google&lt;/a&gt;</pre>
+
+<h3>分享到linkedin</h3>
+<pre>&lt;a href=&quot;http://www.linkedin.com/shareArticle?mini=true&amp;url={$socialShareUrl}&amp;title={$socialShareTitle}&amp;source=ADD_YOUR_BLOG_URL_HERE&quot; target=&quot;_blank&quot; rel=&quot;nofollow&quot;&gt;linkedin&lt;/a&gt;</pre>
+
+<h3>分享到yahoo</h3>
+<pre>&lt;a href=&quot;http://myweb2.search.yahoo.com/myresults/bookmarklet?u={$socialShareUrl}&amp;t={$socialShareTitle}&quot; target=&quot;_blank&quot; rel=&quot;nofollow&quot;&gt;雅虎&lt;/a&gt;</pre>

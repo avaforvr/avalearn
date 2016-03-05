@@ -1,0 +1,212 @@
+<style>
+    .box, .box1, .box2, .box3 {
+        width: 100px;
+        height: 80px;
+        padding: 10px;
+        border: dotted 10px #bbb;
+        position: relative;
+        line-height: 80px;
+        text-align: center;
+        color: #000;
+    }
+    .box1:after, .box2:after, .box3:after {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        display: block;
+        width: 100px;
+        height: 80px;
+        overflow: hidden;
+        background: #000;
+        opacity: 0.4;
+        content: '';
+    }
+    .box1 {
+        background: url("{{res_path}}images/9_1.gif") no-repeat;
+    }
+    .box2 {
+        background: url("{{res_path}}images/9_2.gif") no-repeat;
+    }
+    .box3 {
+        background: #ff0;
+    }
+</style>
+
+<h1>CSS3学习笔记 - 背景</h1>
+
+<nav class="anchor-nav">
+    文章目录：
+    <a href="#background-size">background-size</a>
+    <a href="#background-origin">background-origin</a>
+    <a href="#background-clip">background-clip</a>
+    <a href="#background-image">background-image</a>
+</nav>
+
+<section class="clearfix">
+    <div class="fl" style="width: 40%;">
+        <p>以下代码中使用的背景图片有：</p>
+        <dl class="effect-box clearfix">
+            <dt><img src="{{res_path}}images/9_1.gif" width="50" height="50" alt=""/></dt>
+            <dd>图片1 <br/>图片尺寸：50px*50px</dd>
+        </dl>
+        <dl class="effect-box clearfix">
+            <dt><img src="{{res_path}}images/9_2.gif" width="150" height="150" alt=""/></dt>
+            <dd>图片2 <br/>图片尺寸：150px*150px</dd>
+        </dl>
+    </div>
+    <div class="fr" style="width: 60%;">
+        <p>盒子容器样式</p>
+        <pre>.box1, .box2 {
+    width: 100px;
+    height: 80px;
+    padding: 10px;
+    border: solid 10px #bbb;
+}
+.box1 {
+    background: url("{{res_path}}images/9_1.gif") no-repeat;
+}
+.box2 {
+    background: url("{{res_path}}images/9_2.gif") no-repeat;
+}</pre>
+    </div>
+</section>
+
+<section id="background-size">
+    <h2>background-size 背景图片的尺寸</h2>
+    <pre>background-size: length|percentage|cover|contain;</pre>
+
+    <h4>length：背景图像的高度和宽度</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box1" style="background-size: 20px 40px;"></div></dt>
+        <dd><pre>background-size: 20px 40px;</pre><p>背景图片缩小，第一个值设置宽度，第二个值设置高度。</p></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box1" style="background-size: 100px;"></div></dt>
+        <dd><pre>background-size: 100px;</pre><p>背景图片放大，只设置一个值，则第二个值会被设置为 "auto"，背景图片根据宽度按比例缩放。</p></dd>
+    </dl>
+
+    <h4>percentage：以父元素的百分比来设置背景图像的宽度和高度</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box1" style="background-size: 20% 40%;"></div></dt>
+        <dd><pre>background-size: 20% 40%;</pre><p>计算父元素的宽高时，包括padding，不包括border。即背景图片实际宽度为：content宽度（100px）加上 padding宽度（20px），再乘以20%，结果为24px。 </p></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box1" style="background-size: 100%;"></div></dt>
+        <dd><pre>background-size: 100%;</pre><p></p></dd>
+    </dl>
+
+    <h4>cover：把背景图像扩展至足够大，以使背景图像<span class="highlight">完全覆盖</span>背景区域</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box1" style="background-size: cover;"></div></dt>
+        <dd><pre>background-size: cover;</pre><p>背景图尺寸小于容器尺寸时，图片按比例放大。背景图片覆盖内容区域，有可能显示不完整。</p></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box2" style="background-size: cover;"></div></dt>
+        <dd><pre>background-size: cover;</pre><p>背景图尺寸大于容器尺寸时，图片按比例缩小。背景图片覆盖内容区域，有可能显示不完整。</p></dd>
+    </dl>
+
+    <h4>contain：把背景图像扩展至最大尺寸，以使其宽度和高度<span class="highlight">完全适应</span>内容区域。</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box1" style="background-size: contain;"></div></dt>
+        <dd><pre>background-size: contain;</pre><p>背景图尺寸小于容器尺寸时，图片按比例放大。背景图片完整显示在内容区域内。</p></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box2" style="background-size: contain;"></div></dt>
+        <dd><pre>background-size: contain;</pre><p>背景图尺寸大于容器尺寸时，图片按比例缩小。背景图片完整显示在内容区域内。</p></dd>
+    </dl>
+</section>
+
+<section id="background-origin">
+    <h2>background-origin 背景图片的定位区域</h2>
+    <pre>background-origin: padding-box|border-box|content-box;</pre>
+
+    <h4>border-box：背景图像相对于边框盒来定位</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box1" style="background-origin: border-box;"></div></dt>
+        <dd><pre>background-origin: border-box;</pre></dd>
+    </dl>
+
+    <h4>padding-box：背景图像相对于内边距框来定位</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box1" style="background-origin: padding-box;"></div></dt>
+        <dd><pre>background-origin: padding-box;</pre></dd>
+    </dl>
+
+    <h4>content-box：背景图像相对于内容框来定位</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box1" style="background-origin: content-box;"></div></dt>
+        <dd><pre>background-origin: content-box;</pre></dd>
+    </dl>
+</section>
+
+<section id="background-clip">
+    <h2>background-clip 背景的绘制区域</h2>
+    <pre>background-clip: border-box|padding-box|content-box;</pre>
+    <p>注意：黄色区域是颜色，不是图片。</p>
+
+    <h4>border-box: 背景被裁剪到边框盒</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box3" style="background-clip: border-box;"></div></dt>
+        <dd><pre>background-clip: border-box;</pre></dd>
+    </dl>
+
+    <h4>padding-box: 背景被裁剪到内边距框</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box3" style="background-clip: padding-box;"></div></dt>
+        <dd><pre>background-clip: padding-box;</pre></dd>
+    </dl>
+
+    <h4>content-box: 背景被裁剪到内容框</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box3" style="background-clip: content-box;"></div></dt>
+        <dd><pre>background-clip: content-box;</pre></dd>
+    </dl>
+
+    <h4>background-clip 与 background-origin 的对比</h4>
+    <p>背景为图片时：</p>
+    <dl class="effect-box clearfix">
+        <dt><div class="box1" style="background-origin: border-box;"></div></dt>
+        <dt><div class="box1" style="background-origin: padding-box;"></div></dt>
+        <dt><div class="box1" style="background-origin: content-box;"></div></dt>
+        <dd><strong>background-origin</strong><br/>正常</dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box1" style="background-clip: border-box;"></div></dt>
+        <dt><div class="box1" style="background-clip: padding-box;"></div></dt>
+        <dt><div class="box1" style="background-clip: content-box;"></div></dt>
+        <dd><strong>background-clip</strong><br/>background-clip: border-box 不起作用，其它正常。</dd>
+    </dl>
+
+    <p>背景为颜色时：</p>
+    <dl class="effect-box clearfix">
+        <dt><div class="box3" style="background-origin: border-box;">border-box</div></dt>
+        <dt><div class="box3" style="background-origin: padding-box;">padding-box</div></dt>
+        <dt><div class="box3" style="background-origin: content-box;">content-box</div></dt>
+        <dd><strong>background-origin</strong><br/>三种属性都不起作用</dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box3" style="background-clip: border-box;">border-box</div></dt>
+        <dt><div class="box3" style="background-clip: padding-box;">padding-box</div></dt>
+        <dt><div class="box3" style="background-clip: content-box;">content-box</div></dt>
+        <dd><strong>background-clip</strong><br/>正常</dd>
+    </dl>
+    <p>结论：背景为图片时，使用background-origin；背景为颜色时，使用background-clip。</p>
+</section>
+
+<section id="background-image">
+    <h2>background-image 多重背景图片</h2>
+    <p>CSS3 允许一个元素使用多个背景图像。</p>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="background-image: url('{{res_path}}images/9_1.gif'), url('{{res_path}}images/9_2.gif'); background-repeat: no-repeat;"></div></dt>
+        <dd>
+            <pre>background-image: url('images/9_1.gif'), url('images/9_2.gif');
+background-repeat: no-repeat;</pre>
+        </dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="background: url('{{res_path}}images/9_1.gif') repeat-x 25px 25px, url('{{res_path}}images/9_2.gif') no-repeat 0 0;"></div></dt>
+        <dd>
+            <pre>background: url('images/9_1.gif') repeat-x 25px 25px, url('images/9_2.gif') no-repeat 0 0;</pre>
+        </dd>
+    </dl>
+</section>

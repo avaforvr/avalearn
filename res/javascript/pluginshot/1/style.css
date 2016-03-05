@@ -1,0 +1,25 @@
+/*一级菜单*/
+.topnav { background:#397300; width:650px; height: 34px; margin: 0 auto; }
+.topnav ul, .topnav li, .topnav a { display:block; }
+.topnav li { position:relative; }
+.topnav a { text-decoration: none; }
+.topnav .group1 { float: left; height: 34px; }
+.topnav .a1 { float: left; padding: 0 30px; height: 34px; line-height: 34px; color:#fff; white-space:nowrap; }
+.topnav .a1:hover { background:#285000; color:#FFF; }
+.topnav .multi .a1 { background:url(bgpic.gif) no-repeat 100% 15px; }
+.topnav .multi .a1:hover, .topnav .over>.a1 { background-color: #285000; }
+.topnav .over>.a1 { background-position: 100% -24px; }
+
+/*二级菜单*/
+.topnav .group2 { width:100%; border-bottom:solid 1px #285000; }
+.topnav .menu1 { display:none; position:absolute; top:34px; z-index:1000; width:160px; background:#3e7b00; border:solid 1px #285000; border-bottom:none; }
+.topnav .a2 { padding:0 10px; line-height:25px; color:#FFF; }
+.topnav .a2:hover { background:#285000; color:#FFF; }
+.topnav .multi .a2 { background:url(bgpic.gif) no-repeat 100% -70px; }
+.topnav .multi .a2:hover, .topnav .over>.a2 { background-color: #285000; }
+
+/*三级菜单*/
+.topnav .menu3 { display:none; position:absolute; top:-1px; z-index:1000; width:160px; background:#3e7b00; border:solid 1px #285000; border-bottom:none; }
+.topnav .group3 { width:100%; border-bottom:solid 1px #285000; }
+.topnav .a3 { padding:0 10px; line-height:25px; color:#FFF; }
+.topnav .a3:hover { background:#285000; color:#FFF; }

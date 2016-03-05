@@ -1,0 +1,38 @@
+<h1>仿select下拉框</h1>
+<div class="plugin-panel">
+    <h2>效果展示</h2>
+    <div class="plugin-cont">
+        <link type="text/css" rel="stylesheet" href="{{res_path}}style.css" />
+        {% include sub_twig ~ 'html.html' %}
+        {% include sub_twig ~ 'js.html' %}
+    </div>
+</div>
+<div class="plugin-panel">
+    <h2>代码展示</h2>
+    <div class="plugin-cont">
+        <h3>HTML</h3>
+        <pre>{{ source(sub_twig ~ 'html.html')|e }}</pre>
+        <h3>JS</h3>
+        <pre>{{ source(sub_twig ~ 'js.html')|e }}</pre>
+        <h3>CSS</h3>
+        <pre>{{ source(sub_twig ~ 'style.css')|e }}</pre>
+    </div>
+</div>
+<div class="plugin-panel">
+    <h2>相关文件下载</h2>
+    <div class="plugin-cont">
+        <ul class="download">
+            <li>仿select的js<a href="{{res_path}}funcSelect.js" target="_blank">funcSelect.js</a></li>
+        </ul>
+    </div>
+</div>
+<div class="plugin-panel">
+    <h2>要点总结</h2>
+    <div class="plugin-cont">
+        <ul class="summary">
+            <li>三个参数：下拉选项中li的高度，不出现滚动的情况下可以显示的li的最大个数，最外层div与输入框宽度的差值；</li>
+            <li>js中加入了判断语句，若输入框处被替换成a或span等标签，则不执行点击下拉选项赋值的操作；</li>
+            <li>使用 <span class="highlight">get(0)</span> 可以选择一个实际的DOM元素并且对他直接操作，$(this).get(0)与$(this)[0]等价。</li>
+        </ul>
+    </div>
+</div>

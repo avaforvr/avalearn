@@ -1,0 +1,13 @@
+<h1>JS代码备份</h1>
+<h3>把字符串作为 URI 组件进行编码</h3>
+<pre>encodeURIComponent(URIstring)</pre>
+
+<h3>兼容所有终端，获取窗口高度</h3>
+<pre>var windowHeight = window.innerHeight ? window.innerHeight : $(window).height();
+var windowWidth = window.innerWidth ? window.innerWidth : $(window).width();</pre>
+<p>遇到bug: 使用 $(window).height() 获取ipad窗口高度有误差。</p>
+
+<h3>字符串首字母大写</h3>
+<pre>string.replace(/(^|\s+)\w/g, function (s) {
+    return s.toUpperCase();
+})</pre>

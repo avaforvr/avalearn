@@ -1,0 +1,13 @@
+<script type="text/javascript" src="{{JS_PATH}}jquery/jquery-1.11.2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var imgList = [
+            "{{IMG_PATH}}examples/pic1.jpg",
+            "{{IMG_PATH}}examples/pic2.jpg",
+            "{{IMG_PATH}}examples/pic3.jpg"
+        ];
+        var len = imgList.length;
+        var randIndex = Math.floor(Math.random() * len); //随机生成一个0 ~ len-1的整数
+        $("#random-wrap").append('<img src="' + imgList[randIndex] + '">');
+    })
+</script>

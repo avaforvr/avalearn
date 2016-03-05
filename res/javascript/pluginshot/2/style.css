@@ -1,0 +1,15 @@
+/*一级菜单*/
+.topnav { position:relative; margin: 0 auto; width:600px; height: 34px; overflow: hidden; background:#397300; }
+.topnav ul, .topnav li, .topnav a { display:block; }
+.topnav li { position:relative; float: left; height: 34px; }
+.topnav a { float: left; padding: 0 36px 0 35px; color:#fff; height: 34px; line-height: 34px; white-space:nowrap; text-decoration: none; }
+.topnav a:hover { color:#fff; background:#285000; }
+.topnav .multi>a { background:url(bgpic.gif) no-repeat 100% 15px; }
+.topnav .multi>a:hover, .topnav .over>a { background-color: #285000; }
+.topnav .over>a { background-position: 100% -24px; }
+
+/*二级菜单*/
+.topnav li ul { overflow:hidden; position:absolute; top:34px; z-index:1000; width:190px; background:#397300; border-top:solid 1px #285000; }
+.topnav li li { position:static; float:none; height:25px; border:solid 1px #285000; border-top:none; }
+.topnav li li a { height:25px; line-height:25px; float:none; padding:0 10px; background:none; }
+.topnav li li a:hover { color:#fff; background:#285000; }

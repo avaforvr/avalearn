@@ -1,0 +1,28 @@
+<h1>用CSS3写遨游的logo</h1>
+<section class="plugin-panel">
+	<h2>效果展示</h2>
+	<div class="plugin-cont">
+		<link type="text/css" rel="stylesheet" href="{{res_path}}style.css" />
+		{% include sub_twig ~ 'html.html' %}
+		<div class="tip mt4">步骤分解:</div>
+		<img src="{{res_path}}steps.gif" width="100%" />
+	</div>
+</section>
+<section class="plugin-panel">
+	<h2>代码展示</h2>
+	<div class="plugin-cont">
+		<h3>HTML</h3>
+		<pre>{{ source(sub_twig ~ 'html.html')|e }}</pre>
+		<h3>CSS</h3>
+		<pre>{{ source(sub_twig ~ 'style.css')|e }}</pre>
+	</div>
+</section>
+<section class="plugin-panel">
+	<h2>要点总结</h2>
+	<div class="plugin-cont">
+		<ul class="summary">
+			<li>很遗憾，IE8及以下版本浏览器不支持圆角，无法实现以上显示效果。</li>
+			<li>原文：<a href="http://www.css3-html5.com/CSS3-Tutorial/20110408675.html" target="_blank" class="fc2">用css3写遨游的logo</a></li>
+		</ul>
+	</div>
+</section>
