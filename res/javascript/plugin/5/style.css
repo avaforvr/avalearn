@@ -1,0 +1,5 @@
+#board { position: relative; margin: 50px auto 0; width: 98%; height: 300px; border: solid 10px #ccc; background: #f5f5f5; text-align: center; -webkit-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; }
+#board:after { color: #fff; content: 'BOARD'; font: normal 60px/300px Arial, Sans-serif; }
+#board span { position: absolute; top: 0; left: 0; display: block; width: 100px; height: 100px; color: #fff; font: normal 24px/100px Arial, Sans-serif; cursor: pointer; }
+#board .box-1 { background: #00f; }
+#board .box-2 { left: 100px; background: #008000; }

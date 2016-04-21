@@ -1,0 +1,114 @@
+<script>
+    //事件绑定
+    function addEvents(target, type, func) {
+        if (target.addEventListener)
+            target.addEventListener(type, func, false);
+        else if (target.attachEvent)
+            target.attachEvent("on" + type, func);
+        else target["on" + type] = func;
+    }
+
+    //事件移除
+    function removeEvents(target, type, func) {
+        if (target.removeEventListener)
+            target.removeEventListener(type, func, false);
+        else if (target.detachEvent)
+            target.detachEvent("on" + type, func);
+        else target["on" + type] = null;
+    }
+
+    //判断设备是否支持触屏
+    function isSupportTouch() {
+        return "ontouchend" in document ? true : false;
+    }
+
+    //获取鼠标或touch坐标
+    function getCoordinate(e) {
+        e = isSupportTouch() ? event.touches[0] : ((e) ? e : window.event);
+        return {
+            x: e.clientX,
+            y: e.clientY
+        }
+    }
+
+    //获取拖拽相关Events
+    var getDragEvents = function () {
+        if (isSupportTouch()) {
+            return {
+                start: 'touchstart',
+                end: 'touchend',
+                move: 'touchmove',
+            };
+        } else {
+            return {
+                start: 'mousedown',
+                end: 'mouseup',
+                move: 'mousemove',
+            };
+        }
+    };
+
+    //绑定拖拽事件
+    var initDrag = function (setting) {
+        if (!setting || !setting.board || !setting.box) {
+            return;
+        }
+
+        var param = {
+            "board": setting.board,
+            "box": setting.box
+        };
+        var data = {
+            boxWidth: param.box.offsetWidth,
+            boxHeight: param.box.offsetHeight,
+            boardWidth: param.board.clientWidth,
+            boardHeight: param.board.clientHeight,
+            flag: false
+        };
+        var events = getDragEvents();
+
+        //移动box
+        var move = function (e) {
+            var pos = getCoordinate(e);
+
+            var left = Math.max(pos.x - data.flag.disX, 0);
+            left = Math.min(left, (data.boardWidth - data.boxWidth));
+            var top = Math.max(pos.y - data.flag.disY, 0);
+            top = Math.min(top, (data.boardHeight - data.boxHeight));
+
+            param.box.style.left = left + 'px';
+            param.box.style.top = top + 'px';
+
+            e.preventDefault(); //禁止文档拖动
+        };
+
+        //开始移动，绑定相关事件，记录初始坐标和间距
+        var startMove = function (e) {
+            var pos = getCoordinate(e);
+            data.flag = {
+                x: pos.x,
+                y: pos.y,
+                disX: pos.x - param.box.offsetLeft,
+                disY: pos.y - param.box.offsetTop
+            };
+            addEvents(document, events.move, move);
+            addEvents(document, events.end, stopMove);
+        };
+
+        //停止移动，解除相关事件
+        var stopMove = function (e) {
+            removeEvents(document, events.move, move);
+            removeEvents(document, events.end, stopMove);
+        };
+
+        //鼠标在box上按下时开始移动
+        addEvents(param.box, events.start, startMove);
+    };
+
+    //遍历box，绑定事件
+    var board = document.getElementById('board'),
+        boxes = board ? board.getElementsByTagName('span') : [];
+    for (var i = 0; i < boxes.length; i++) {
+        initDrag({"board": board, "box": boxes[i]});
+    }
+</script>
