@@ -1,0 +1,98 @@
+<script>
+    //按下键盘上的键，激活相应键
+    //====================================================================================================
+    (function () {
+        //判断是否有两个相同的键，如Shift、Ctrl等
+        var isCouple = function (keyCode) {
+            return (keyCode == 13 || keyCode == 16 || keyCode == 17 || keyCode == 18);
+        };
+
+        //激活
+        var activate = function (e) {
+            var keyCode = (e ? e : window.event).keyCode;
+            if (isCouple(keyCode)) {
+                $(document.getElementById('key-' + keyCode + '-1')).addClass('active');
+                $(document.getElementById('key-' + keyCode + '-2')).addClass('active');
+            } else {
+                $(document.getElementById('key-' + keyCode)).addClass('active');
+            }
+        };
+
+        //取消激活
+        var cancelActivate = function (e) {
+            var keyCode = (e ? e : window.event).keyCode;
+            if (isCouple(keyCode)) {
+                $(document.getElementById('key-' + keyCode + '-1')).removeClass('active');
+                $(document.getElementById('key-' + keyCode + '-2')).removeClass('active');
+            } else {
+                $(document.getElementById('key-' + keyCode)).removeClass('active');
+            }
+        }
+
+        $(document).on('keydown', activate).on('keyup', cancelActivate);
+    })();
+
+
+    //点击绿色键，输入文本
+    //====================================================================================================
+    (function () {
+        var board = $('#key-board'),
+            result = $('#result'),
+            isCaps = false,//大写锁定状态
+            isShift = false,//Shift键状态
+            resultArr = [],//所有字符的集合
+            shareKeys = [192, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 189, 187, 219, 221, 220, 186, 222, 188, 190, 191];//含有两个字符的键
+
+        board.on('click', '.edit', function () {
+            var key = $(this),
+                keyCode = parseInt((($(this).attr('id')).split('-'))[1]);
+
+            switch (true) {
+                case (keyCode == 16)://Shift
+                    isShift = !isShift;
+                    board.find('#key-16-1, #key-16-2').toggleClass('on');
+                    return;
+
+                case (keyCode == 20)://Caps Lock
+                    isCaps = !isCaps;
+                    key.toggleClass('on');
+                    return;
+
+                case (keyCode >= 65 && keyCode <= 90)://普通字母
+                    var letter = key.html();
+                    if (isCaps === isShift) {
+                        resultArr.push(letter.toLowerCase());
+                    } else {
+                        resultArr.push(letter.toUpperCase());
+                    }
+                    break;
+
+                case ($.inArray(keyCode, shareKeys) != -1)://含有两个字符的键
+                    var letter = (key.html()).split('<br>');
+                    resultArr.push(isShift ? letter[0] : letter[1]);
+                    break;
+
+                case (keyCode == 32)://空格
+                    resultArr.push(' ');
+                    break;
+
+                case (keyCode == 9)://Tab
+                    resultArr.push('    ');
+                    break;
+
+                case (keyCode == 13)://Enter
+                    resultArr.push('<br>');
+                    break;
+
+                case (keyCode == 8)://BackSpace
+                    resultArr.pop();
+                    break;
+
+                default:
+                    break;
+            }
+
+            result.html(resultArr.join(''));
+        });
+    })();
+</script>
