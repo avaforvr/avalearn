@@ -1,0 +1,39 @@
+<h1>原生js添加移除class</h1>
+<h2>添加class</h2>
+<pre>/**
+ * @description 为元素添加一个class
+ * @param target DOM元素
+ * @param className 类名
+ */
+function addClass(target, className) {
+    if (!target) {
+        return;
+    }
+    var classArr = target.className.split(&#39; &#39;);
+    for (var i = 0; i &lt; classArr.length; i++) {
+        if (classArr[i] == className) {
+            return;
+        }
+    }
+    classArr.push(className);
+    target.className = classArr.join(&#39; &#39;);
+};</pre>
+
+<h2>移除class</h2>
+<pre>/**
+ * @description 移除元素的某个class
+ * @param target DOM元素
+ * @param className 类名
+ */
+function removeClass(target, className) {
+    if (!target) {
+        return;
+    }
+    var classArr = target.className.split(&#39; &#39;);
+    for (var i = 0; i &lt; classArr.length; i++) {
+        if (classArr[i] == className) {
+            classArr.splice(i, 1);
+        }
+    }
+    target.className = classArr.join(&#39; &#39;);
+};</pre>

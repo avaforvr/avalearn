@@ -71,7 +71,8 @@
                     {"pageId": "8", "title": "jQuery对象与DOM对象的转换"},
                     {"pageId": "9", "title": "JS页面跳转"},
                     {"pageId": "10", "title": "JavaScript模块编程之写法"},
-                    {"pageId": "11", "title": "指定js文件加载完成后执行回调函数", "status": "进行中"}
+                    {"pageId": "11", "title": "指定js文件加载完成后执行回调函数", "status": "进行中"},
+                    {"pageId": "12", "title": "原生js添加移除class"}
                 ]
             }
         ],
