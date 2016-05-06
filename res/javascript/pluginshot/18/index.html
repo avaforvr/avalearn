@@ -1,0 +1,26 @@
+<h1>方向键控制方向</h1>
+<section class="plugin-panel">
+    <h2>效果展示</h2>
+    <div class="plugin-cont">
+        <link type="text/css" rel="stylesheet" href="{{res_path}}style.css" />
+        {% include sub_twig ~ 'html.html' %}
+        <script src="{{res_path}}main.js"></script>
+    </div>
+</section>
+<section class="plugin-panel">
+    <h2>代码展示</h2>
+    <div class="plugin-cont">
+        <div class="tab plugin-tab">
+            <ul class="tab-tags">
+                <li class="tab-tag active">JS</li>
+                <li class="tab-tag">HTML</li>
+                <li class="tab-tag">CSS</li>
+            </ul>
+            <div class="tab-conts">
+                <div class="tab-cont"><pre>{{ source(sub_twig ~ 'main.js')|e }}</pre></div>
+                <div class="tab-cont"><pre>{{ source(sub_twig ~ 'html.html')|e }}</pre></div>
+                <div class="tab-cont"><pre>{{ source(sub_twig ~ 'style.css')|e }}</pre></div>
+            </div>
+        </div>
+    </div>
+</section>

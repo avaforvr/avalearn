@@ -101,6 +101,7 @@
             {"pageId": "15", "title": "图片播放"},
             {"pageId": "16", "title": "图片播放"},
             {"pageId": "17", "title": "模拟键盘"},
+            {"pageId": "18", "title": "方向键控制方向"}
         ]
     },
     "php": {
