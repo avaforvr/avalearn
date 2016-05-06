@@ -2,7 +2,7 @@
 <div class="plugin-panel">
     <h2>效果展示</h2>
     <div class="plugin-cont">
-        <link type="text/css" rel="stylesheet" href="{{res_path}}style.css" />
+        <link type="text/css" rel="stylesheet" href="{{res_path}}style.css?{{version}}" />
         {% include sub_twig ~ 'html.html' %}
         {% include sub_twig ~ 'js.html' %}
     </div>
@@ -22,10 +22,10 @@
     <h2>相关文件下载</h2>
     <div class="plugin-cont">
         <ul class="download">
-            <li>向左滚动<a href="{{res_path}}scrollL.js" target="_blank">scrollL.js</a></li>
-            <li>向右滚动<a href="{{res_path}}scrollR.js" target="_blank">scrollR.js</a></li>
-            <li>向上滚动<a href="{{res_path}}scrollT.js" target="_blank">scrollT.js</a></li>
-            <li>向下滚动<a href="{{res_path}}scrollB.js" target="_blank">scrollB.js</a></li>
+            <li>向左滚动<a href="{{res_path}}scrollL.js?{{version}}" target="_blank">scrollL.js</a></li>
+            <li>向右滚动<a href="{{res_path}}scrollR.js?{{version}}" target="_blank">scrollR.js</a></li>
+            <li>向上滚动<a href="{{res_path}}scrollT.js?{{version}}" target="_blank">scrollT.js</a></li>
+            <li>向下滚动<a href="{{res_path}}scrollB.js?{{version}}" target="_blank">scrollB.js</a></li>
         </ul>
     </div>
 </div>

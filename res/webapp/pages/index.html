@@ -60,7 +60,7 @@
             {% for index, page in cat['pluginshot'] %}
                 <li>
                     <a href="{{WEB_ROOT}}{{page['isThirdParty'] ? 'tool' : 'pluginshot' }}.php?pid={{catKey}}_{{page['pageId']}}">
-                        <img src="{{page['effect']}}" alt="查看详细">
+                        <img src="{{page['effect']}}?{{version}}" alt="查看详细">
                         <p>
                             {% if page['status'] %}
                                 [{{page['status']}}]

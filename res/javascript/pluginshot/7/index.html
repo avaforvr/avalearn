@@ -2,7 +2,7 @@
 <div class="plugin-panel">
     <h2>效果展示</h2>
     <div class="plugin-cont">
-        <link type="text/css" rel="stylesheet" href="{{res_path}}style.css" />
+        <link type="text/css" rel="stylesheet" href="{{res_path}}style.css?{{version}}" />
         {% include sub_twig ~ 'html.html' %}
         {% include sub_twig ~ 'js.html' %}
     </div>
@@ -22,10 +22,10 @@
     <h2>相关文件下载</h2>
     <div class="plugin-cont">
         <ul class="download">
-            <li>非自动 非无缝 滑动<a href="{{res_path}}slide1.js" target="_blank">slide1.js</a></li>
-            <li>自动 非无缝 滑动<a href="{{res_path}}slide2.js" target="_blank">slide2.js</a></li>
-            <li>非自动 无缝 滑动<a href="{{res_path}}slide3.js" target="_blank">slide3.js</a></li>
-            <li>自动 无缝 滑动<a href="{{res_path}}slide4.js" target="_blank">slide4.js</a></li>
+            <li>非自动 非无缝 滑动<a href="{{res_path}}slide1.js?{{version}}" target="_blank">slide1.js</a></li>
+            <li>自动 非无缝 滑动<a href="{{res_path}}slide2.js?{{version}}" target="_blank">slide2.js</a></li>
+            <li>非自动 无缝 滑动<a href="{{res_path}}slide3.js?{{version}}" target="_blank">slide3.js</a></li>
+            <li>自动 无缝 滑动<a href="{{res_path}}slide4.js?{{version}}" target="_blank">slide4.js</a></li>
         </ul>
     </div>
 </div>

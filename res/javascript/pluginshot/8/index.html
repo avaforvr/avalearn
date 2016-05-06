@@ -2,7 +2,7 @@
 <div class="plugin-panel">
     <h2>效果展示</h2>
     <div class="plugin-cont">
-        <link type="text/css" rel="stylesheet" href="{{res_path}}style.css" />
+        <link type="text/css" rel="stylesheet" href="{{res_path}}style.css?{{version}}" />
         {% include sub_twig ~ 'html.html' %}
         {% include sub_twig ~ 'js.html' %}
     </div>
@@ -22,7 +22,7 @@
     <h2>相关文件下载</h2>
     <div class="plugin-cont">
         <ul class="download">
-            <li>图片等比缩放js<a href="{{res_path}}imgSize.js" target="_blank">imgSize.js</a></li>
+            <li>图片等比缩放js<a href="{{res_path}}imgSize.js?{{version}}" target="_blank">imgSize.js</a></li>
         </ul>
     </div>
 </div>
