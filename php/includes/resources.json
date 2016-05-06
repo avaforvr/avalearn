@@ -81,8 +81,7 @@
             {"pageId": "2", "title": "倒计时"},
             {"pageId": "3", "title": "输入框对象练习"},
             {"pageId": "4", "title": "事件绑定和移除"},
-            {"pageId": "5", "title": "拖拽"},
-            {"pageId": "6", "title": "模拟键盘"}
+            {"pageId": "5", "title": "拖拽"}
         ],
         "pluginshot": [
             {"pageId": "1", "title": "多级下拉导航"},
@@ -100,7 +99,8 @@
             {"pageId": "13", "title": "图片播放"},
             {"pageId": "14", "title": "图片播放"},
             {"pageId": "15", "title": "图片播放"},
-            {"pageId": "16", "title": "图片播放"}
+            {"pageId": "16", "title": "图片播放"},
+            {"pageId": "17", "title": "模拟键盘"},
         ]
     },
     "php": {
