@@ -76,15 +76,110 @@
     background: -moz-linear-gradient(180deg, green, yellow);    /* Firefox 3.6 - 15 */
     background: linear-gradient(180deg, green, yellow);         /* 标准的语法 */
 }</pre>
+
+    <h4>使用多个颜色结点</h4>
+    <p>三个颜色结点的渐变，还可以有更多个结点。</p>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="background: linear-gradient(green, yellow, red);">&darr;</div></dt>
+        <dd><pre>background: linear-gradient(green, yellow, red);</pre></dd>
+    </dl>
+
+    <h4>使用透明度（Transparency）</h4>
+    <p>背景绿色，透明度0到1渐变。为了添加透明度，使用 rgba() 函数来定义颜色结点。</p>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="background: linear-gradient(rgba(0,128,0,0), rgba(0,128,0,1));">&darr;</div></dt>
+        <dd><pre>background: linear-gradient(rgba(0,128,0,0), rgba(0,128,0,1));</pre></dd>
+    </dl>
+
+    <h4>重复的线性渐变 repeating-linear-gradient</h4>
+    <p>repeating-linear-gradient() 函数用于重复线性渐变。颜色后面的百分比或长度是该颜色的起始位置。</p>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="background: repeating-linear-gradient(green, yellow 10%, red 20%);">&darr;</div></dt>
+        <dd><pre>background: repeating-linear-gradient(green, yellow 10%, red 20%);</pre></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="background: repeating-linear-gradient(green, yellow 25px, red 50px);">&darr;</div></dt>
+        <dd><pre>background: repeating-linear-gradient(green, yellow 25px, red 50px);</pre></dd>
+    </dl>
+
+    <h4>制作条纹背景</h4>
+    <p>常规用法，Chrome某些角度下线条边缘不流畅。需要加上1px的小技巧来修复。</p>
+    <p>修复前</p>
+    <div class="box-group clearfix mb2">
+        <div class="box" style="background: repeating-linear-gradient(90deg, yellow 0, yellow 2px, green 0, green 6px);"></div>
+        <div class="box" style="background: repeating-linear-gradient(135deg, yellow 0, yellow 2px, green 0, green 6px);"></div>
+        <div class="box" style="background: repeating-linear-gradient(120deg, yellow 0, yellow 2px, green 0, green 6px);"></div>
+    </div>
+    <p>修复后(后面的长度也可以换成em等单位)</p>
+    <div class="box-group clearfix mb2">
+        <div class="box" style="background: repeating-linear-gradient(135deg, green 0, yellow 1px, yellow 2px, green calc(2px + 1px), green 6px);"></div>
+        <div class="box" style="background: repeating-linear-gradient(120deg, green 0, yellow 1px, yellow 2px, green calc(2px + 1px), green 6px);"></div>
+    </div>
 </section>
 
 <section id="radial-gradient">
     <h2>radial-gradient 径向渐变</h2>
-    <pre></pre>
+    <pre>background: radial-gradient(center, shape size, start-color, ..., last-color);</pre>
 
-    <h4></h4>
     <dl class="effect-box clearfix">
-        <dt><div class="box" style=""></div></dt>
-        <dd><pre></pre><p></p></dd>
+        <dt><div class="box" style="background: radial-gradient(green, yellow);"></div></dt>
+        <dd><pre>background: radial-gradient(green, yellow)</pre></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="background: radial-gradient(green, yellow, red);"></div></dt>
+        <dd><pre>background: radial-gradient(green, yellow, red)</pre></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="background: radial-gradient(green 5%, yellow 20%, red 60%);"></div></dt>
+        <dd><pre>background: radial-gradient(green 5%, yellow 20%, red 60%)</pre></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="background: radial-gradient(50% 50%, green, yellow, red);"></div></dt>
+        <dd><pre></pre></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="background: radial-gradient(80% 50%, green, yellow, red);"></div></dt>
+        <dd><pre></pre></dd>
+    </dl>
+
+    <h4>设置形状</h4>
+    <p>shape 参数定义了形状。它可以是值 circle 或 ellipse。其中，circle 表示圆形，ellipse 表示椭圆形。默认值是 ellipse。</p>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="background: radial-gradient(circle, green, yellow, red);"></div></dt>
+        <dd><pre>background: radial-gradient(circle, green, yellow, red);</pre></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="background: radial-gradient(ellipse, green, yellow, red);"></div></dt>
+        <dd><pre>background: radial-gradient(ellipse, green, yellow, red);</pre></dd>
+    </dl>
+
+    <h4>不同尺寸大小关键字的使用</h4>
+    <p>size 参数定义了渐变的大小。它可以是四个值：closest-side(近边)、farthest-side(远边)、closest-corner(近角)、farthest-corner(远角)，下面是四个不同的值的效果：</p>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="background: -webkit-radial-gradient(50% 50%, closest-side, green, yellow, red);"></div></dt>
+        <dt><div class="box" style="background: -webkit-radial-gradient(50% 50%, farthest-side, green, yellow, red);"></div></dt>
+        <dt><div class="box" style="background: -webkit-radial-gradient(50% 50%, closest-corner, green, yellow, red);"></div></dt>
+        <dt><div class="box" style="background: -webkit-radial-gradient(50% 50%, farthest-corner, green, yellow, red);"></div></dt>
+        <dd><pre>background: -webkit-radial-gradient(50% 50%, closest-side, green, yellow, red);</pre><p></p></dd>
+    </dl>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="background: -webkit-radial-gradient(70% 60%, closest-side, green, yellow, red);"></div></dt>
+        <dt><div class="box" style="background: -webkit-radial-gradient(70% 60%, farthest-side, green, yellow, red);"></div></dt>
+        <dt><div class="box" style="background: -webkit-radial-gradient(70% 60%, closest-corner, green, yellow, red);"></div></dt>
+        <dt><div class="box" style="background: -webkit-radial-gradient(70% 60%, farthest-corner, green, yellow, red);"></div></dt>
+        <dd><pre>background: -webkit-radial-gradient(70% 60%, closest-side, green, yellow, red);</pre></dd>
+    </dl>
+
+    <h4>重复的径向渐变</h4>
+    <dl class="effect-box clearfix">
+        <dt><div class="box" style="background: repeating-radial-gradient(green, yellow 10%, red 15%);"></div></dt>
+        <dd><pre>background: repeating-radial-gradient(green, yellow 10%, red 15%);</pre></dd>
     </dl>
 </section>
+
+<aside>
+    <p class="from">参考：
+        <a href="http://www.runoob.com/css3/css3-gradients.html" target="_blank">CSS3 渐变（Gradients）</a>
+        <a class="ml4" href="http://www.w3cplus.com/css3/why-do-we-have-repeating-linear-gradient-anyway.html" target="_blank">为什么要使用repeating-linear-gradient</a>
+    </p>
+</aside>
