@@ -24,7 +24,7 @@
             }, {
                 "group": "CSS3",
                 "list": [
-                    {"pageId": "11", "title": "CSS3学习笔记 - 选择器", "status": "进行中"},
+                    {"pageId": "11", "title": "CSS3学习笔记 - 选择器"},
                     {"pageId": "8", "title": "CSS3学习笔记 - 边框"},
                     {"pageId": "9", "title": "CSS3学习笔记 - 背景"},
                     {"pageId": "16", "title": "CSS3学习笔记 - 渐变"},
@@ -34,7 +34,7 @@
                     {"pageId": "14", "title": "CSS3学习笔记 - 动画"},
                     {"pageId": "15", "title": "CSS3学习笔记 - 界面"},
                     {"pageId": "17", "title": "CSS3学习笔记 - 字体"},
-                    {"pageId": "18", "title": "CSS3学习笔记 - 颜色", "status": "木有"}
+                    {"pageId": "20", "title": "CSS3学习笔记 - 颜色", "status": "木有"}
                 ],
                 "relevant": [
                     {"pageId": "17_1", "title": "Font Squirrel"}

@@ -2603,6 +2603,7 @@ h1 {
 .table1 {
   margin-bottom: 15px;
 }
+.table1 th,
 .table1 td {
   border: solid 1px #ccc;
   line-height: 18px;
@@ -2610,6 +2611,7 @@ h1 {
   font-size: 12px;
   vertical-align: top;
 }
+.table1 thead th,
 .table1 thead td {
   background: #eee;
   font-weight: bold;
