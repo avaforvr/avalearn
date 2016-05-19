@@ -34,7 +34,7 @@
                     {"pageId": "14", "title": "CSS3学习笔记 - 动画"},
                     {"pageId": "15", "title": "CSS3学习笔记 - 界面"},
                     {"pageId": "17", "title": "CSS3学习笔记 - 字体"},
-                    {"pageId": "20", "title": "CSS3学习笔记 - 颜色", "status": "木有"}
+                    {"pageId": "20", "title": "CSS3学习笔记 - 颜色"}
                 ],
                 "relevant": [
                     {"pageId": "17_1", "title": "Font Squirrel"}
