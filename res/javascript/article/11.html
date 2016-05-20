@@ -1,3 +1,67 @@
-<h1>指定js文件加载完成后执行回调函数</h1>
-<h3>一、动态加载脚本并在下载完成后执行回调</h3>
-<pre></pre>
+<h1>JS加载完成后执行回调函数</h1>
+<h2>动态加载JS并在加载完成后执行回调</h2>
+<p>判断文件加载完成的依据是文件状态。</p>
+<pre>function loadJS(src, id, loadCallback, errorCallback) {
+    if(document.getElementById(id)) {
+        return;
+    }
+
+    var script = document.createElement(&#39;script&#39;),
+        head = document.getElementsByTagName(&#39;head&#39;).item(0);
+
+    script.onload = script.onreadystatechange = function () {
+        if (!this.readyState || &#39;loaded&#39; === this.readyState || &#39;complete&#39; === this.readyState) {
+            loadCallback();
+        }
+    };
+    if(errorCallback) {
+        script.onerror = function () {
+            errorCallback();
+        };
+    }
+    script.id = id;
+    script.src = src;
+    head.appendChild(script);
+}
+
+//example
+loadJS(&#39;http://code.jquery.com/jquery-latest.js&#39;, &#39;jquery&#39;, function () {
+    console.log(&#39;&quot;http://code.jquery.com/jquery-latest.js&quot; is loaded&#39;);
+});
+
+loadJS(&#39;http://connect.facebook.net/en_US/sdk.js&#39;, &#39;facebook-sdk&#39;, function () {
+    console.log(&#39;&quot;http://connect.facebook.net/en_US/sdk.js&quot; is loaded&#39;);
+}, function () {
+    console.log(&#39;Fail to load: http://connect.facebook.net/en_US/sdk.js.&#39;);
+});</pre>
+
+<h2>等待已经引入的JS文件加载完成后执行回调</h2>
+<p>判断文件加载完成的依据是文件中标志性的变量，如jquery文件中的 <span class="highlight">window.jQuery</span>。</p>
+<pre>//等待时间为：limit*50 毫秒
+function jsDefer(limit, judgeFunc, loadCallback, errorCallback) {
+    function defer() {
+        if(judgeFunc()) {
+            loadCallback();
+            return;
+        } else if(limit == 0) {
+            errorCallback();
+            return;
+        }
+        limit --;
+        setTimeout(defer, 50);
+    }
+    defer();
+}
+
+jsDefer(
+    20,
+    function() { return window.jQuery ? true : false },
+    function() { console.log(&#39;加载完成&#39;); },
+    function() { console.log(&#39;加载失败&#39;); }
+);
+jsDefer(
+    20,
+    function() { return window.whatever ? true : false },
+    function() { console.log(&#39;加载完成&#39;); },
+    function() { console.log(&#39;加载失败&#39;); }
+);</pre>

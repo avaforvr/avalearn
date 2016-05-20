@@ -17,7 +17,7 @@
                     {"pageId": "3", "title": "莫名奇妙的bug"},
                     {"pageId": "4", "title": "CSS框架学习"},
                     {"pageId": "5", "title": "CSS实现的各种形状"},
-                    {"pageId": "7", "title": "LESSCSS 学习笔记", "status": "进行中"},
+                    {"pageId": "7", "title": "LESSCSS 学习笔记", "status": "暂停"},
                     {"pageId": "18", "title": "自适应两栏和三栏布局"},
                     {"pageId": "19", "title": "CSS负边距"}
                 ]
@@ -29,7 +29,7 @@
                     {"pageId": "9", "title": "CSS3学习笔记 - 背景"},
                     {"pageId": "16", "title": "CSS3学习笔记 - 渐变"},
                     {"pageId": "10", "title": "CSS3学习笔记 - 文本"},
-                    {"pageId": "12", "title": "CSS3学习笔记 - 转换", "status": "进行中"},
+                    {"pageId": "12", "title": "CSS3学习笔记 - 转换", "status": "暂停"},
                     {"pageId": "13", "title": "CSS3学习笔记 - 过渡"},
                     {"pageId": "14", "title": "CSS3学习笔记 - 动画"},
                     {"pageId": "15", "title": "CSS3学习笔记 - 界面"},
@@ -71,7 +71,7 @@
                     {"pageId": "8", "title": "jQuery对象与DOM对象的转换"},
                     {"pageId": "9", "title": "JS页面跳转"},
                     {"pageId": "10", "title": "JavaScript模块编程之写法"},
-                    {"pageId": "11", "title": "指定js文件加载完成后执行回调函数", "status": "进行中"},
+                    {"pageId": "11", "title": "JS加载完成后执行回调函数"},
                     {"pageId": "12", "title": "原生js添加移除class"}
                 ]
             }
