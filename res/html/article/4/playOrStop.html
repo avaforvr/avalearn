@@ -1,0 +1,17 @@
+<script>
+    function playOrStop(obj) {
+        if (obj.paused) {
+            obj.width = 320;
+            obj.controls = 'controls';
+            obj.play();
+        } else {
+            obj.currentTime = 0;
+            obj.width = 200;
+            obj.removeAttribute('controls');
+            obj.pause();
+        }
+    }
+</script>
+<p class="mb1">
+    <video src="{{res_path}}images/4_1.mp4" width="200" loop="loop" onclick="playOrStop(this)"></video>
+</p>

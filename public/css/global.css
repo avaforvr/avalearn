@@ -2161,16 +2161,16 @@ hr {
   vertical-align: top;
 }
 .nbg {
-  background: none;
+  background: none !important;
 }
 .nbor {
-  border: none;
+  border: none !important;
 }
 .npd {
-  padding: 0;
+  padding: 0 !important;
 }
 .nmg {
-  margin: 0;
+  margin: 0 !important;
 }
 .mt1 {
   margin-top: 5px;
@@ -2197,16 +2197,16 @@ hr {
   margin-right: 20px;
 }
 .mb1 {
-  margin-bottom: 5px;
+  margin-bottom: 5px !important;
 }
 .mb2 {
-  margin-bottom: 10px;
+  margin-bottom: 10px !important;
 }
 .mb3 {
-  margin-bottom: 15px;
+  margin-bottom: 15px !important;
 }
 .mb4 {
-  margin-bottom: 20px;
+  margin-bottom: 20px !important;
 }
 .ml1 {
   margin-left: 5px;

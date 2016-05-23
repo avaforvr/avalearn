@@ -1,0 +1,114 @@
+<h1> HTML5学习笔记 - 视频 </h1>
+
+<section>
+    <h2>&lt;video&gt; 标签的属性</h2>
+    <table class="table1" width="100%">
+        <thead>
+        <tr>
+            <th style="width:20%;">属性</th>
+            <th style="width:16%;">值</th>
+            <th>描述</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>autoplay</td>
+            <td>autoplay</td>
+            <td>如果出现该属性，则视频在就绪后马上播放。</td>
+        </tr>
+        <tr>
+            <td>controls</td>
+            <td>controls</td>
+            <td>如果出现该属性，则向用户显示控件，比如播放按钮。</td>
+        </tr>
+        <tr>
+            <td>loop</td>
+            <td>loop</td>
+            <td>如果出现该属性，则当媒介文件完成播放后再次开始播放。</td>
+        </tr>
+        <tr>
+            <td>preload</td>
+            <td>preload</td>
+            <td>如果出现该属性，则视频在页面加载时进行加载，并预备播放。<br>如果使用 "autoplay"，则忽略该属性。</td>
+        </tr>
+        <tr>
+            <td>src</td>
+            <td>url</td>
+            <td>要播放的视频的 URL。</td>
+        </tr>
+        <tr>
+            <td>width</td>
+            <td>pixels</td>
+            <td>设置视频播放器的宽度。</td>
+        </tr>
+        <tr>
+            <td>height</td>
+            <td><i>pixels</i></td>
+            <td>设置视频播放器的高度。</td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="mb1"><video src="{{res_path}}images/4_1.mp4" controls="controls" autoplay="autoplay"></video></p>
+    <pre>&lt;video src=&quot;xx.mp4&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;&gt;&lt;/video&gt;</pre>
+    <p class="mb1"><video src="{{res_path}}images/4_1.mp4" controls="controls" loop="loop" width="320" height="176"></video></p>
+    <pre>&lt;video src=&quot;xx.mp4&quot; controls=&quot;controls&quot; loop=&quot;loop&quot; width=&quot;320&quot; height=&quot;176&quot;&gt;&lt;/video&gt;</pre>
+</section>
+
+<section>
+    <h2>视频格式</h2>
+    <p>当前，video 元素支持三种视频格式：</p>
+    <table class="table1" width="100%">
+        <thead>
+        <tr>
+            <th>格式</th>
+            <th style="width:14%">扩展名</th>
+            <th style="width:14%">IE</th>
+            <th style="width:14%">Firefox</th>
+            <th style="width:14%">Opera</th>
+            <th style="width:14%">Chrome</th>
+            <th style="width:14%">Safari</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Ogg</td>
+            <td>.ogg</td>
+            <td>No</td>
+            <td>3.5+</td>
+            <td>10.5+</td>
+            <td>5.0+</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>MPEG 4</td>
+            <td>.mp4</td>
+            <td>9.0+</td>
+            <td>No</td>
+            <td>No</td>
+            <td>5.0+</td>
+            <td>3.0+</td>
+        </tr>
+        <tr>
+            <td>WebM</td>
+            <td>.webm</td>
+            <td>No</td>
+            <td>4.0+</td>
+            <td>10.6+</td>
+            <td>6.0+</td>
+            <td>No</td>
+        </tr>
+        </tbody>
+    </table>
+    <p>video 元素允许多个 source 元素。source 元素可以链接不同的视频文件。浏览器将使用第一个可识别的格式。</p>
+    <pre>&lt;video controls=&quot;controls&quot; width=&quot;320&quot; height=&quot;240&quot;&gt;
+    &lt;source src=&quot;xx.ogg&quot; type=&quot;video/ogg&quot;&gt;
+    &lt;source src=&quot;xx.mp4&quot; type=&quot;video/mp4&quot;&gt;
+    Your browser does not support the video tag.
+&lt;/video&gt;</pre>
+</section>
+
+<section>
+    <h2>使用 DOM 控制&lt;video&gt;</h2>
+    {% include sub_twig ~ 'playOrStop.html' %}
+    <pre>{{ source(sub_twig ~ 'playOrStop.html')|e }}</pre>
+</section>

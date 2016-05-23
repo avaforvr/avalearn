@@ -52,6 +52,12 @@
                   {"pageId": "2", "title": "html 特殊字符转义"},
                   {"pageId": "3", "title": "分享链接整理"}
               ]
+            },
+            {
+                "group": "HTML5",
+                "list": [
+                    {"pageId": "4", "title": "HTML5学习笔记 - 视频"}
+                ]
             }
         ]
     },
