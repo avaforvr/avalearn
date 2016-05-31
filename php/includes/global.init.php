@@ -33,7 +33,7 @@ $container = new Pimple();
 $container['ROOT_PATH'] = str_replace('\\', '/', dirname(dirname(__DIR__))) . '/';
 $container['PHP_PATH'] = $container['ROOT_PATH'] . 'php/';
 if ($_SERVER['DOCUMENT_ROOT'] != "") {
-	$WEB_ROOT = substr(realpath(dirname(__FILE__) . '/../'), strlen(realpath($_SERVER['DOCUMENT_ROOT'])));
+	$WEB_ROOT = substr(realpath(dirname(__FILE__) . '/../../'), strlen(realpath($_SERVER['DOCUMENT_ROOT'])));
 	if (trim($WEB_ROOT, '/\\')) {
 		$WEB_ROOT = '/' . trim($WEB_ROOT, '/\\') . '/';
 	} else {

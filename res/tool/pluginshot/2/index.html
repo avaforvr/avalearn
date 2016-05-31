@@ -1,10 +1,10 @@
-{% extends "webapp/base.html" %}
+{% extends "webapp/base_empty.html" %}
 
 {% block css %}
     <link href="{{res_path}}style.css" rel="stylesheet">
 {% endblock %}
 
-{% block body %}
+{% block main %}
     <header>
         <h1>
             <a href="贝塞尔曲线设计器 by cubic-bezier.com _ cubic-bezier(.17,.67,.83,.67).html"><code>cubic-bezier(<span id="values"><span id="P1x" class="param">.17</span>,<span id="P1y" class="param">.67</span>,<span id="P2x" class="param">.83</span>,<span id="P2y" class="param">.67</span></span>)</code></a>
@@ -80,7 +80,6 @@
             <button>关闭</button>
         </form>
     </section>
-
 {% endblock %}
 
 {% block script %}

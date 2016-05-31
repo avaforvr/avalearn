@@ -152,7 +152,8 @@
         "title": "工具",
         "pluginshot": [
             {"pageId": "1", "title": "HTML转义"},
-            {"pageId": "2", "title": "贝塞尔曲线设计器", "isThirdParty": 1}
+            {"pageId": "2", "title": "贝塞尔曲线设计器", "isThirdParty": 1},
+            {"pageId": "3", "title": "贝塞尔曲线设计器"}
         ]
     }
 }

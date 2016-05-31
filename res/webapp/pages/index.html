@@ -10,7 +10,7 @@
             <ul class="textlist{{isFirstList ? ' first' : ''}}">
                 {% for page in group['list'] %}
                 <li>
-                    <a href="{{WEB_ROOT}}article.php?pid={{catKey}}_{{page['pageId']}}">
+                    <a href="{{WEB_ROOT}}{{catKey}}/article/{{page['pageId']}}">
                         {% if page['status'] %}
                             <span>[{{page['status']}}]</span>
                         {% endif %}
@@ -43,7 +43,7 @@
         <ul class="textlist{{isFirstList ? ' first' : ''}}">
             {% for page in cat['plugin'] %}
                 <li>
-                    <a href="{{WEB_ROOT}}plugin.php?pid={{catKey}}_{{page['pageId']}}">
+                    <a href="{{WEB_ROOT}}{{catKey}}/plugin/{{page['pageId']}}">
                         {% if page['status'] %}
                             <span>[{{page['status']}}]</span>
                         {% endif %}
@@ -59,7 +59,8 @@
         <ul class="imglist clearfix{{isFirstList ? ' first' : ''}}">
             {% for index, page in cat['pluginshot'] %}
                 <li>
-                    <a href="{{WEB_ROOT}}{{page['isThirdParty'] ? 'tool' : 'pluginshot' }}.php?pid={{catKey}}_{{page['pageId']}}">
+                    <a href="{{WEB_ROOT}}{{catKey}}/pluginshot/{{page['pageId']}}">
+                    {#<a href="{{WEB_ROOT}}{{page['isThirdParty'] ? 'tool' : 'pluginshot' }}.php?pid={{catKey}}_{{page['pageId']}}">#}
                         <img src="{{page['effect']}}?{{version}}" alt="查看详细">
                         <p>
                             {% if page['status'] %}

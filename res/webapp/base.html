@@ -14,15 +14,13 @@
     </head>
 
     <body>
-        {% block body %}
-            {% include 'webapp/common/header.html' %}
+        {% include 'webapp/common/header.html' %}
 
-            <div class="container">
-                {{main | raw}}
-            </div>
+        <div class="container">
+            {% block main %}{{main | raw}}{% endblock %}
+        </div>
 
-            {% include 'webapp/common/footer.html' %}
-        {% endblock %}
+        {% include 'webapp/common/footer.html' %}
 
         {% block scriptFooter %}
             <script>require('main').init();</script>

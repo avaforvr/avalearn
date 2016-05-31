@@ -215,54 +215,55 @@ function getCategories($container) {
 	return $categories;
 }
 
-function getPageTitle($container, $cat_name, $page_id) {
-	if(! empty($container)) {
-		//get Type Name
-		$type_name = '';
-		$url = $_SERVER['REQUEST_URI'];
-		if(strpos($url, 'article.php')) {
-			$type_name = 'article';
-		} elseif(strpos($url, 'plugin.php')) {
-			$type_name = 'plugin';
-		} elseif(strpos($url, 'pluginshot.php')) {
-			$type_name = 'pluginshot';
-		}
+function gePageConfig($container, $cat_name, $page_id) {
+    if(! empty($container)) {
+        //get Type Name
+        $type_name = '';
+        $url = $_SERVER['REQUEST_URI'];
+        if(strpos($url, '/article/')) {
+            $type_name = 'article';
+        } elseif(strpos($url, '/plugin/')) {
+            $type_name = 'plugin';
+        } elseif(strpos($url, '/pluginshot/')) {
+            $type_name = 'pluginshot';
+        }
 
-		if($type_name != '') {
-			$page_title = '';
-			$resources = getResources($container);
-			$typeList = $resources[$cat_name][$type_name];
-			if($type_name == 'article') {
-				foreach($typeList as $group) {
-					foreach($group['list'] as $page) {
-						if($page['pageId'] === $page_id) {
-							$page_title = $page['title'];
-							break;
-						}
-					}
-					if($page_title == '' && array_key_exists('relevant', $group)) {
-						foreach($group['relevant'] as $page) {
-							if($page['pageId'] === $page_id) {
-								$page_title = $page['title'];
-								break;
-							}
-						}
-					}
-				}
-			} else {
-				foreach($typeList as $page) {
-					if($page['pageId'] === $page_id) {
-						$page_title = $page['title'];
-						break;
-					}
-				}
-			}
+        if($type_name != '') {
+            $resources = getResources($container);
+            $typeList = $resources[$cat_name][$type_name];
+            if($type_name == 'article') {
+                foreach($typeList as $group) {
+                    foreach($group['list'] as $page) {
+                        if($page['pageId'] === $page_id) {
+                            return $page;
+                        }
+                    }
+                    if(array_key_exists('relevant', $group)) {
+                        foreach($group['relevant'] as $page) {
+                            if($page['pageId'] === $page_id) {
+                                return $page;
+                            }
+                        }
+                    }
+                }
+            } else {
+                foreach($typeList as $page) {
+                    if($page['pageId'] === $page_id) {
+                        return $page;
+                    }
+                }
+            }
+        }
+    }
+    return array();
+}
 
-			return $page_title . ' - Ava is learning...';
-		}
-	}
-
-	return 'Ava is learning...';
+function getPageTitle($pageConfig) {
+    if(empty($pageConfig)) {
+        return 'Ava is learning...';
+    } else {
+        return $pageConfig['title'] . ' - Ava is learning...';
+    }
 }
 
 function getTplArray($container) {
