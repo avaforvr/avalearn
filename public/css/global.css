@@ -86,11 +86,13 @@ sub {
 }
 input,
 textarea,
-select {
+select,
+button {
   font-family: inherit;
   font-size: 100%;
   margin: 0;
   box-sizing: border-box;
+  outline: none;
 }
 input[type="submit"],
 button,
@@ -2268,6 +2270,13 @@ hr {
   -ms-border-radius: 3px;
   border-radius: 3px;
 }
+.btn[disabled],
+.btn.disabled {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+}
 .btn-white {
   display: inline-block;
   vertical-align: top;
@@ -2286,6 +2295,13 @@ hr {
   border: solid 1px #ccc;
   color: #333333;
   font: normal 14px/18px Verdana, '\5b8b\4f53', Geneva, sans-serif;
+}
+.btn-white[disabled],
+.btn-white.disabled {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
 }
 .input {
   vertical-align: top;

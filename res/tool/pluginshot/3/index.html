@@ -1,0 +1,19 @@
+<h1>百词斩单词默写</h1>
+<section class="plugin-panel">
+    <div class="tab plugin-tab">
+        <ul class="tab-tags">
+            <li class="tab-tag active">默写</li>
+            <li class="tab-tag">更新单词列表</li>
+        </ul>
+        <div class="tab-conts">
+            <div class="tab-cont">{% include sub_twig ~ 'dictation.html' %}</div>
+            <div class="tab-cont hide">{% include sub_twig ~ 'update.html' %}</div>
+        </div>
+    </div>
+</section>
+<link type="text/css" rel="stylesheet" href="{{res_path}}style.css?{{version}}" />
+<script>
+    var pageData = {"res_path": "{{res_path}}"};
+</script>
+<script src="{{res_path}}wordsList.js?{{version}}"></script>
+<script src="{{res_path}}main.js?{{version}}"></script>

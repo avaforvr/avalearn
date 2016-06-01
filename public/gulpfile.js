@@ -25,12 +25,14 @@ gulp.task('js', function(){
     }
 });
 
-gulp.task('default', function () {
-    gulp.run('less');
-    gulp.run('js');
+gulp.task('default', ['less', 'js']);
 
-    //监视less文件的变化
-    //gulp.watch('./less/**/*.less', function () {
-    //    gulp.run('less');
-    //});
-});
+//gulp.task('default', function () {
+//    gulp.run('less');
+//    gulp.run('js');
+//
+//    //监视less文件的变化
+//    //gulp.watch('./less/**/*.less', function () {
+//    //    gulp.run('less');
+//    //});
+//});

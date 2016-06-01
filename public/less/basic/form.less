@@ -9,6 +9,12 @@
     font: bold 14px/18px @font-family-verdana;
     cursor: pointer;
     .border-radius(3px);
+    &[disabled],
+    &.disabled {
+        cursor: default;
+        pointer-events: none;
+        .opacity(.65);
+    }
 }
 .btn-white {
     .btn;
