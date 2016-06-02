@@ -1,10 +1,15 @@
 <h1>百词斩单词默写</h1>
 <section class="plugin-panel">
-    <div class="tab plugin-tab">
+    <div class="tab plugin-tab relative">
         <ul class="tab-tags">
-            <li class="tab-tag active">默写</li>
-            <li class="tab-tag">更新单词列表</li>
+            <li class="tab-tag active" data-cont="1">默写</li>
+            <li class="tab-tag" data-cont="0" id="btnRemoveSuc">移除拼写正确的单词</li>
+            <li class="tab-tag" data-cont="0" id="btnRemoveAll">清空列表</li>
+            <li class="tab-tag" data-cont="0" id="btnRestore">恢复备份</li>
+            <li class="tab-tag" data-cont="0" id="btnBackups">备份列表</li>
+            <li class="tab-tag" data-cont="2">更新列表</li>
         </ul>
+
         <div class="tab-conts">
             <div class="tab-cont">{% include sub_twig ~ 'dictation.html' %}</div>
             <div class="tab-cont hide">{% include sub_twig ~ 'update.html' %}</div>

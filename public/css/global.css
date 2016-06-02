@@ -2110,6 +2110,12 @@ hr {
   visibility: hidden;
   display: block;
 }
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
 .text-left {
   text-align: left;
 }

@@ -1,11 +1,10 @@
 //初始化默写单词列表
 var initDictationList = function (dicList, list) {
     var arr = [];
-    arr.push('<table class="table1" width="100%"><thead><tr><th>中文</th><th>英文</th><th>操作</th></tr></thead><tbody>')
     for(var key in list) {
         arr.push('<tr><td class="td-chs">' + list[key]['chs'] + '</td><td class="td-input"><input id="' + key + '" type="text" data-value="' + list[key]['en'] + '"></td><td></td></tr>');
     }
-    arr.push('</tbody></table>')
+    $('#dic-total').html(arr.length);
     dicList.html(arr.join(''));
 };
 
@@ -13,8 +12,7 @@ var initDictationList = function (dicList, list) {
 var handleDictation = function () {
     var dictation = $('#dictation'),
         dicList = $('#dic-list'),
-        sucKeys = [],
-        btnRemove = $('#btnRemove');;
+        sucKeys = [];
 
     //初始化默写单词列表
     initDictationList(dicList, wordsList);
@@ -34,24 +32,26 @@ var handleDictation = function () {
                 }
             }
         });
-        if(sucKeys.length) {
-            btnRemove.prop('disabled', false);
-        }
+
         return false;
     });
 
     //移除拼写正确的单词
-    btnRemove.on('click', function () {
+    $('#btnRemoveSuc').on('click', function () {
         if(! sucKeys.length) {
             return;
         }
+        var btnRemoveSuc = $(this);
         $.ajax({
             "type": "POST",
             "url": pageData.res_path + "ajax.php",
-            "data": "act=remove&keys=" + sucKeys,
+            "data": "act=removeSuc&keys=" + sucKeys,
             "dataType": "text",
             "beforeSend": function () {
-                btnRemove.prop('disabled', true);
+                btnRemoveSuc.prop('disabled', true);
+            },
+            "complete": function () {
+                btnRemoveSuc.prop('disabled', false);
             },
             "success": function (r) {
                 if (r === '0') {
@@ -59,13 +59,92 @@ var handleDictation = function () {
                     sucKeys = [];
 
                 } else if (r === '1') {
-                    btnRemove.prop('disabled', false);
                     alert('移除失败，再来一次~');
                 }
-            },
-            "error": function (r) {
             }
-        })
+        });
+    });
+
+    //清空列表
+    $('#btnRemoveAll').on('click', function () {
+        if(! dicList.children().length) {
+            return;
+        }
+        var btnRemoveAll = $(this);
+        $.ajax({
+            "type": "POST",
+            "url": pageData.res_path + "ajax.php",
+            "data": "act=removeAll",
+            "dataType": "text",
+            "beforeSend": function () {
+                btnRemoveAll.prop('disabled', true);
+            },
+            "complete": function () {
+                btnRemoveAll.prop('disabled', false);
+            },
+            "success": function (r) {
+                if (r === '0') {
+                    //alert('列表已清空');
+                    sucKeys = [];
+                    dicList.html('');
+
+                } else if (r === '1') {
+                    alert('操作失败，再来一次~');
+                }
+            }
+        });
+    });
+};
+
+//备份列表 + 恢复备份
+var handleBackup = function () {
+    //备份列表
+    $('#btnBackups').on('click', function () {
+        var btn = $(this);
+        $.ajax({
+            "type": "GET",
+            "url": pageData.res_path + "ajax.php",
+            "data": "act=setBackups",
+            "dataType": "text",
+            "beforeSend": function () {
+                btn.prop('disabled', true);
+            },
+            "complete": function () {
+                btn.prop('disabled', false);
+            },
+            "success": function (r) {
+                if (r === '0') {
+                    alert('备份成功');
+                } else if (r === '1') {
+                    alert('备份失败，再来一次~');
+                }
+            }
+        });
+    });
+
+    //恢复备份
+    $('#btnRestore').on('click', function () {
+        var btn = $(this);
+        $.ajax({
+            "type": "GET",
+            "url": pageData.res_path + "ajax.php",
+            "data": "act=restore",
+            "dataType": "text",
+            "beforeSend": function () {
+                btn.prop('disabled', true);
+            },
+            "complete": function () {
+                btn.prop('disabled', false);
+            },
+            "success": function (r) {
+                if (r === '0') {
+                    alert('列表已恢复');
+                    window.location.reload();
+                } else if (r === '1') {
+                    alert('恢复失败，再来一次~');
+                }
+            }
+        });
     });
 };
 
@@ -93,7 +172,7 @@ var handleUpdate = function () {
             var item = items.eq(i);
             var en = $.trim(item.children('div:eq(0)').html());
             var key = en.toLowerCase().replace(' ', '_');
-            if(! wordsList[key]) {
+            if(! wordsList[key] || typeof(wordsList[key]) == 'function') {
                 var chs = $.trim(item.children('div:eq(1)').html()).replace(/\n\s+/g, '<br>');
                 list[key] = {
                     "en": en,
@@ -124,10 +203,8 @@ var handleUpdate = function () {
                 } else if (r === '1') {
                     alert('更新失败，再来一次~');
                 }
-            },
-            "error": function (r) {
             }
-        })
+        });
     });
 
     //清空
@@ -141,5 +218,6 @@ window.onload = function () {
         return;
     }
     handleDictation();
+    handleBackup();
     handleUpdate();
 };

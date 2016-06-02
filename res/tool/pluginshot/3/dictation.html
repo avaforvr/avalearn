@@ -1,7 +1,18 @@
 <form id="dictation" action="">
-    <div id="dic-list"></div>
+    <div class="dic-total-wrap">共 <strong id="dic-total">0</strong> 个单词</div>
+    <div>
+        <table class="table1" width="100%">
+            <thead>
+            <tr>
+                <th>中文</th>
+                <th>英文</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="dic-list"></tbody>
+        </table>
+    </div>
     <div class="dic-options text-right">
-        <button id="btnRemove" type="button" class="btn mr4" disabled>移除拼写正确的单词</button>
         <button id="btnCheck" type="submit" class="btn">检查拼写</button>
     </div>
 </form>
