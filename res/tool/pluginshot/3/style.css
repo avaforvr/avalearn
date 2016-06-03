@@ -7,6 +7,10 @@
     font-size: 12px;
     color: #666;
 }
+.dic-total-wrap .fa {
+    margin-right: 3px;
+    color: #ccc;
+}
 
 .table1 .td-chs {
     width: 50%;
@@ -37,6 +41,14 @@ tr:nth-child(even) input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px #f7f7f7 inset;
 }
 
+/*even lines*/
+tr:nth-child(odd), tr:nth-child(odd) input {
+    background: #fff;
+}
+tr:nth-child(odd) input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+}
+
 /*focus*/
 .table1 input:focus {
     background: #e9f4e8;
@@ -51,4 +63,10 @@ tr:nth-child(even) input:-webkit-autofill {
 }
 .table1 input.error:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px #ffe5e5 inset;
+}
+
+/*btns*/
+.table1 .dic-options {
+    padding: 20px 0 20px;
+    border: none;
 }

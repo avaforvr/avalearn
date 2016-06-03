@@ -1,69 +1,132 @@
+var o = {
+    "dicCheck": $('#dic-check'),
+    "dicSuc": $('#dic-suc'),
+    "dicFail": $('#dic-fail'),
+    "dicTotal": $('#dic-total'),
+    "dataCheck": 0,
+    "dataSuc": 0,
+    "dataTotal": 0,
+    "record": [],//保存待检查单词，用于计算待检查单词数
+    "sucKeys": [],//记录已成功的单词
+    "lastFoucs": false//记录最后一个焦点所在的输入框
+};
+
+//更新进度和单词总数
+var setProgress = function () {
+    o.dicCheck.html(o.dataCheck);
+    o.dicSuc.html(o.dataSuc);
+    o.dicFail.html(o.dataTotal - o.dataSuc);
+    o.dicTotal.html(o.dataTotal);
+};
+
 //初始化默写单词列表
 var initDictationList = function (dicList, list) {
     var arr = [];
     for(var key in list) {
         arr.push('<tr><td class="td-chs">' + list[key]['chs'] + '</td><td class="td-input"><input id="' + key + '" type="text" data-value="' + list[key]['en'] + '"></td><td></td></tr>');
     }
-    $('#dic-total').html(arr.length);
+    o.dataTotal = arr.length;
+    setProgress();
     dicList.html(arr.join(''));
 };
 
 //默写
 var handleDictation = function () {
-    var dictation = $('#dictation'),
+    var form = $('#dictation-form'),
         dicList = $('#dic-list'),
-        sucKeys = [];
+        dicSucList = $('#dic-suc-list');
 
     //初始化默写单词列表
     initDictationList(dicList, wordsList);
 
+    //输入框的值发生改变时计算进度
+    dicList.on('focus', 'input', function () {
+        o.lastFoucs = $(this).attr('id');
+    });
+
+    //输入框的值发生改变时计算进度
+    dicList.on('blur', 'input', function () {
+        var id = $(this).attr('id');
+        var val = $.trim($(this).val());
+        if(o.record[id]) {
+            if(! val.length) {
+                delete o.record[id];
+                o.dataCheck --;
+            }
+        } else if(val.length) {
+            o.record[id] = 1;
+            o.dataCheck ++;
+        }
+        setProgress();
+    });
+
     //检查拼写
-    dictation.on('submit', function () {
+    form.on('submit', function () {
+        var sucCount = 0;
         dicList.find('input').each(function () {
             var input = $(this);
             input.removeClass('error');
             var v = $.trim(input.val());
             if(v.length) {
                 if(v == input.attr('data-value')) {
-                    sucKeys.push(input.attr('id'));
-                    input.parent().parent().remove();
+                    sucCount ++;
+                    var id = input.attr('id');
+                    o.sucKeys.push(id);
+                    var wrap = input.parent().parent();
+                    if(o.lastFoucs == id) {
+                        wrap.next().find('input').focus();
+                    }
+                    input.prop('disabled', true);
+                    wrap.appendTo(dicSucList);
                 } else {
                     input.addClass('error');
                 }
             }
         });
+        if(o.lastFoucs == id) {
+            wrap.next().find('input').focus();
+        }
+        o.dataCheck = o.dataCheck - sucCount;
+        o.dataSuc = o.dataSuc + sucCount;
+        setProgress();
+        var errorLast = dicList.find('.error:last');
 
+        dicList.find('.error:last').parent().parent().next().find('input').focus();
         return false;
     });
 
     //移除拼写正确的单词
-    $('#btnRemoveSuc').on('click', function () {
-        if(! sucKeys.length) {
+    var removeSucCallback = function () {
+        if(! o.sucKeys.length) {
             return;
         }
-        var btnRemoveSuc = $(this);
+        var btn = $(this);
         $.ajax({
             "type": "POST",
             "url": pageData.res_path + "ajax.php",
-            "data": "act=removeSuc&keys=" + sucKeys,
+            "data": "act=removeSuc&keys=" + o.sucKeys,
             "dataType": "text",
             "beforeSend": function () {
-                btnRemoveSuc.prop('disabled', true);
+                btn.prop('disabled', true);
             },
             "complete": function () {
-                btnRemoveSuc.prop('disabled', false);
+                btn.prop('disabled', false);
             },
             "success": function (r) {
                 if (r === '0') {
-                    alert('移除成功');
-                    sucKeys = [];
+                    o.dataSuc = 0;
+                    o.dataTotal = o.dataTotal - o.sucKeys.length;
+                    setProgress();
+                    o.sucKeys = [];
+                    dicSucList.html('');
 
                 } else if (r === '1') {
                     alert('移除失败，再来一次~');
                 }
             }
         });
-    });
+    };
+    $('#btnRemoveSuc').on('click', removeSucCallback);
 
     //清空列表
     $('#btnRemoveAll').on('click', function () {
@@ -85,8 +148,13 @@ var handleDictation = function () {
             "success": function (r) {
                 if (r === '0') {
                     //alert('列表已清空');
-                    sucKeys = [];
+                    o.sucKeys = [];
+                    o.dataCheck = 0;
+                    o.dataSuc = 0;
+                    o.dataTotal = 0;
+                    setProgress();
                     dicList.html('');
+                    dicSucList.html('');
 
                 } else if (r === '1') {
                     alert('操作失败，再来一次~');
@@ -173,7 +241,7 @@ var handleUpdate = function () {
             var en = $.trim(item.children('div:eq(0)').html());
             var key = en.toLowerCase().replace(' ', '_');
             if(! wordsList[key] || typeof(wordsList[key]) == 'function') {
-                var chs = $.trim(item.children('div:eq(1)').html()).replace(/\n\s+/g, '<br>');
+                var chs = $.trim(item.children('div:eq(1)').html()).replace(/\s*\n\s*/g, '<br>');
                 list[key] = {
                     "en": en,
                     "chs": chs
