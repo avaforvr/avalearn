@@ -10,27 +10,27 @@ $backupsPath = str_replace('\\', '/', __DIR__) . '/backups.js'; //当前列表�
 switch ($act) {
     case 'updateList':
         $newList = json_decode($_POST['list'], true);
-        $wordsList = getWordsList($wordsListPath);
-        $wordsListAll = getWordsList($wordsListAllPath);
-        $suc = setWordsList($wordsListPath, array_merge($wordsList, $newList));
-        $sucAll = setWordsList($wordsListAllPath, array_merge($wordsListAll, $newList));
+        $wordsList = getWordsList('wordsList', $wordsListPath);
+        $wordsListAll = getWordsList('wordsListAll', $wordsListAllPath);
+        $suc = setWordsList('wordsList', $wordsListPath, array_merge($wordsList, $newList));
+        $sucAll = setWordsList('wordsListAll', $wordsListAllPath, array_merge($wordsListAll, $newList));
         echo ($suc && $sucAll) ? 1 : 0;
         die;
 
     case 'removeSuc':
         $keys = $_POST['keys'];
         $keys = explode(',', $keys);
-        $wordsList = getWordsList($wordsListPath);
+        $wordsList = getWordsList('wordsList', $wordsListPath);
         foreach ($wordsList as $key => $value) {
             if(in_array($key, $keys)) {
                 unset($wordsList[$key]);
             }
         }
-        echo setWordsList($wordsListPath, $wordsList);
+        echo setWordsList('wordsList', $wordsListPath, $wordsList);
         die;
 
     case 'removeAll':
-        echo setWordsList($wordsListPath, array());
+        echo setWordsList('wordsList', $wordsListPath, array());
         die;
 
     case 'setBackups':
@@ -46,16 +46,16 @@ switch ($act) {
 }
 
 //获取 wordsList 数组
-function getWordsList($wordsListPath) {
+function getWordsList($variableName, $wordsListPath) {
     $wordsList = file_get_contents($wordsListPath);
-    $wordsList = ltrim($wordsList, 'var wordsList = ');
+    $wordsList = ltrim($wordsList, 'var ' . $variableName . ' = ');
     $wordsList = rtrim($wordsList, ';');
     return json_decode($wordsList, true);
 }
 //生成 wordsList.js 文件
-function setWordsList($wordsListPath, $wordsList) {
+function setWordsList($variableName, $wordsListPath, $wordsList) {
     $content = empty($wordsList) ? '{}' : json_encode($wordsList);
-    $wordsList = 'var wordsList = ' . $content . ';';
+    $wordsList = 'var ' . $variableName . ' = ' . $content . ';';
     return file_put_contents($wordsListPath, $wordsList) ? 0 : 1;
 }
 

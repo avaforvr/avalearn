@@ -83,9 +83,6 @@ var handleDictation = function () {
                 }
             }
         });
-        if(o.lastFoucs == id) {
-            wrap.next().find('input').focus();
-        }
         o.dataCheck = o.dataCheck - sucCount;
         o.dataSuc = o.dataSuc + sucCount;
         setProgress();
@@ -240,7 +237,7 @@ var handleUpdate = function () {
             var item = items.eq(i);
             var en = $.trim(item.children('div:eq(0)').html());
             var key = en.toLowerCase().replace(' ', '_');
-            if(! wordsList[key] || typeof(wordsList[key]) == 'function') {
+            if(! wordsListAll[key] || typeof(wordsListAll[key]) == 'function') {
                 var chs = $.trim(item.children('div:eq(1)').html()).replace(/\s*\n\s*/g, '<br>');
                 list[key] = {
                     "en": en,
@@ -282,7 +279,7 @@ var handleUpdate = function () {
 };
 
 window.onload = function () {
-    if(typeof wordsList == 'undefined') {
+    if(typeof wordsList == 'undefined' || typeof wordsListAll == 'undefined') {
         return;
     }
     handleDictation();
