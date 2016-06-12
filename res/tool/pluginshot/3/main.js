@@ -196,7 +196,7 @@ var handleDictation = function () {
     dicList.find('input:eq(0)').focus();
 };
 
-//备份列表 + 恢复备份
+//备份列表 + 恢复备份 + 导入 + 导出
 var handleBackup = function () {
     //备份列表
     $('#btnBackups').on('click', function () {
@@ -242,6 +242,56 @@ var handleBackup = function () {
                     window.location.reload();
                 } else if (r === '1') {
                     alert('恢复失败，再来一次~');
+                }
+            }
+        });
+    });
+
+    //导入
+    //$('#btnImportZip').on('click', function () {
+    //    var btn = $(this);
+    //    $.ajax({
+    //        "type": "GET",
+    //        "url": pageData.res_path + "ajax.php",
+    //        "data": "act=ImportZip",
+    //        "dataType": "text",
+    //        "beforeSend": function () {
+    //            btn.prop('disabled', true);
+    //        },
+    //        "complete": function () {
+    //            btn.prop('disabled', false);
+    //        },
+    //        "success": function (r) {
+    //            if (r === '0') {
+    //                alert('列表已恢复');
+    //                window.location.reload();
+    //            } else if (r === '1') {
+    //                alert('恢复失败，再来一次~');
+    //            }
+    //        }
+    //    });
+    //});
+
+    //导出
+    $('#btnExportZip').on('click', function () {
+        var btn = $(this);
+        $.ajax({
+            "type": "GET",
+            "url": pageData.res_path + "ajax.php",
+            "data": "act=exportZip",
+            "dataType": "text",
+            "beforeSend": function () {
+                btn.prop('disabled', true);
+            },
+            "complete": function () {
+                btn.prop('disabled', false);
+            },
+            "success": function (r) {
+                if (r != null) {
+                    alert("url="+r);
+                    window.location.href = r;
+                } else {
+                    alert("资源获取失败！");
                 }
             }
         });

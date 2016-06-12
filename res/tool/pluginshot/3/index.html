@@ -6,13 +6,15 @@
             <li class="tab-tag" data-cont="2">更新列表</li>
             <li class="tab-tag" data-cont="0" id="btnRestore">恢复备份</li>
             <li class="tab-tag" data-cont="0" id="btnBackups">备份列表</li>
+            <li class="tab-tag" data-cont="3">导入导出</li>
             <li class="tab-tag" data-cont="0" id="btnRemoveAll">清空列表</li>
-            <li class="tab-tag" data-cont="3">使用说明</li>
+            <li class="tab-tag" data-cont="4">使用说明</li>
         </ul>
 
         <div class="tab-conts">
             <div class="tab-cont">{% include sub_twig ~ 'dictation.html' %}</div>
             <div class="tab-cont hide">{% include sub_twig ~ 'update.html' %}</div>
+            <div class="tab-cont hide">{% include sub_twig ~ 'export.html' %}</div>
             <div class="tab-cont hide">{% include sub_twig ~ 'help.html' %}</div>
         </div>
     </div>

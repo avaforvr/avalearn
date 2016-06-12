@@ -1,10 +1,12 @@
 <?
 include_once $_SERVER['DOCUMENT_ROOT'] . '/php/includes/global.init.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/php/includes/download.class.php';
 
 $act = isset($_REQUEST['act']) && $_REQUEST['act'] ? $_REQUEST['act'] : '';
-$wordsListPath = str_replace('\\', '/', __DIR__) . '/wordsList.js'; //当前展示的列表
-$wordsListAllPath = str_replace('\\', '/', __DIR__) . '/wordsListAll.js'; //保存所有单词，只增不减
-$backupsPath = str_replace('\\', '/', __DIR__) . '/backups.js'; //当前列表的备份
+$dirPath = str_replace('\\', '/', __DIR__); //当前文件所在目录
+$wordsListPath = $dirPath . '/wordsList.js'; //当前展示的列表
+$wordsListAllPath = $dirPath . '/wordsListAll.js'; //保存所有单词，只增不减
+$backupsPath = $dirPath . '/backups.js'; //当前列表的备份
 
 //返回code，0代表成功，其它数字代表不成功
 switch ($act) {
@@ -49,6 +51,25 @@ switch ($act) {
 
     case 'restore':
         echo copyContent($backupsPath, $wordsListPath);
+        die;
+
+    case 'exportZip':
+        $zip = new ZipArchive();
+        $zipname = date('YmdHis', time());
+        if (!file_exists($zipname)) {
+            $zip->open($zipname . '.zip', ZipArchive::OVERWRITE);//创建一个空的zip文件
+            $zip->addFile($wordsListPath);
+            $zip->addFile($wordsListAllPath);
+            $zip->addFile($backupsPath);
+            $zip->close();
+            $dw = new Download($dirPath, $zipname . '.zip'); //下载文件
+            $dw->getfiles();
+            unlink($zipname . '.zip'); //下载完成后要进行删除
+        }
+        die;
+
+    case 'ImportZip':
+        //echo copyContent($backupsPath, $wordsListPath);
         die;
 
     default:
