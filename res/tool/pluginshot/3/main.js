@@ -23,11 +23,17 @@ var setProgress = function () {
 var initDictationList = function (dicList, list) {
     var arr = [];
     for(var key in list) {
-        arr.push('<tr><td class="td-chs">' + list[key]['chs'] + '</td><td class="td-input"><input id="' + key + '" type="text" data-value="' + list[key]['en'] + '"></td><td></td></tr>');
+        arr.push('<tr><td class="td-chs">' + list[key]['chs'] + '</td><td class="td-input"><input id="' + key + '" type="text" data-value="' + list[key]['en'] + '"></td><td class="td-tip"></td></tr>');
     }
     o.dataTotal = arr.length;
     setProgress();
     dicList.html(arr.join(''));
+
+    //输入框填满td
+    dicList.find('input').each(function () {
+        var input = $(this);
+        input.height(input.parent().height());
+    });
 };
 
 //默写
@@ -39,7 +45,7 @@ var handleDictation = function () {
     //初始化默写单词列表
     initDictationList(dicList, wordsList);
 
-    //输入框的值发生改变时计算进度
+    //输入框获取焦点时记录id
     dicList.on('focus', 'input', function () {
         o.lastFoucs = $(this).attr('id');
     });
@@ -58,6 +64,23 @@ var handleDictation = function () {
             o.dataCheck ++;
         }
         setProgress();
+    });
+
+    //提示
+    dicList.on('keydown', 'input', function (e) {
+        var e = e ? e : window.event;
+        var keyCode = e.keyCode;
+        var input = $(this),
+            tip = $(this).parent().next('.td-tip');
+        if(event.ctrlKey && keyCode == 37) {
+            tip.html(input.attr('data-value'));
+        } else if(event.ctrlKey && keyCode == 39) {
+            tip.html('');
+        } else if(keyCode == 38) {
+            input.parent().parent().prev().find('input').focus();
+        } else if(keyCode == 40) {
+            input.parent().parent().next().find('input').focus();
+        }
     });
 
     //检查拼写
@@ -83,12 +106,10 @@ var handleDictation = function () {
                 }
             }
         });
+
         o.dataCheck = o.dataCheck - sucCount;
         o.dataSuc = o.dataSuc + sucCount;
         setProgress();
-        var errorLast = dicList.find('.error:last');
-
-        dicList.find('.error:last').parent().parent().next().find('input').focus();
         return false;
     });
 
@@ -130,34 +151,37 @@ var handleDictation = function () {
         if(! dicList.children().length) {
             return;
         }
-        var btnRemoveAll = $(this);
-        $.ajax({
-            "type": "POST",
-            "url": pageData.res_path + "ajax.php",
-            "data": "act=removeAll",
-            "dataType": "text",
-            "beforeSend": function () {
-                btnRemoveAll.prop('disabled', true);
-            },
-            "complete": function () {
-                btnRemoveAll.prop('disabled', false);
-            },
-            "success": function (r) {
-                if (r === '0') {
-                    //alert('列表已清空');
-                    o.sucKeys = [];
-                    o.dataCheck = 0;
-                    o.dataSuc = 0;
-                    o.dataTotal = 0;
-                    setProgress();
-                    dicList.html('');
-                    dicSucList.html('');
+        if (confirm("确定要清空列表吗？")) {
+            var btnRemoveAll = $(this);
+            $.ajax({
+                "type": "POST",
+                "url": pageData.res_path + "ajax.php",
+                "data": "act=removeAll",
+                "dataType": "text",
+                "beforeSend": function () {
+                    btnRemoveAll.prop('disabled', true);
+                },
+                "complete": function () {
+                    btnRemoveAll.prop('disabled', false);
+                },
+                "success": function (r) {
+                    if (r === '0') {
+                        //alert('列表已清空');
+                        o.sucKeys = [];
+                        o.dataCheck = 0;
+                        o.dataSuc = 0;
+                        o.dataTotal = 0;
+                        setProgress();
+                        dicList.html('');
+                        dicSucList.html('');
 
-                } else if (r === '1') {
-                    alert('操作失败，再来一次~');
+                    } else if (r === '1') {
+                        alert('操作失败，再来一次~');
+                    }
                 }
-            }
-        });
+            });
+        }
+
     });
 };
 
@@ -278,6 +302,22 @@ var handleUpdate = function () {
     });
 };
 
+//固定进度模块
+var fixProgress = function () {
+    var dicTotalWrap = $('.dic-total-wrap:eq(0)');
+    var top = dicTotalWrap.offset().top;
+    var left = dicTotalWrap.offset().left;
+    $(window).on('scroll.fixed', function () {
+        if($(window).scrollTop() > top) {
+            dicTotalWrap.addClass('fixed');
+            dicTotalWrap.css({left:left, right:'auto'});
+        } else {
+            dicTotalWrap.removeClass('fixed');
+            dicTotalWrap.css({left:'auto', right:0});
+        }
+    });
+};
+
 window.onload = function () {
     if(typeof wordsList == 'undefined' || typeof wordsListAll == 'undefined') {
         return;
@@ -285,4 +325,5 @@ window.onload = function () {
     handleDictation();
     handleBackup();
     handleUpdate();
+    fixProgress();
 };

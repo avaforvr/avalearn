@@ -12,7 +12,7 @@ switch ($act) {
         $newList = json_decode($_POST['list'], true);
         $wordsList = getWordsList('wordsList', $wordsListPath);
         $wordsListAll = getWordsList('wordsListAll', $wordsListAllPath);
-        $suc = setWordsList('wordsList', $wordsListPath, array_merge($wordsList, $newList));
+        $suc = setWordsList('wordsList', $wordsListPath, array_merge($newList, $wordsList));
         $sucAll = setWordsList('wordsListAll', $wordsListAllPath, array_merge($wordsListAll, $newList));
         echo ($suc && $sucAll) ? 1 : 0;
         die;
