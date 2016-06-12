@@ -83,6 +83,13 @@ var handleDictation = function () {
         }
     });
 
+    $('#btnBatchHint').on('click', function () {
+        dicList.children('tr').each(function () {
+            var wrap = $(this);
+            wrap.children('.td-tip').html(wrap.find('input:eq(0)').attr('data-value'));
+        });
+    });
+
     //检查拼写
     form.on('submit', function () {
         var sucCount = 0;
@@ -100,6 +107,7 @@ var handleDictation = function () {
                         wrap.next().find('input').focus();
                     }
                     input.prop('disabled', true);
+                    wrap.children('td-tip').remove();
                     wrap.appendTo(dicSucList);
                 } else {
                     input.addClass('error');
@@ -183,6 +191,9 @@ var handleDictation = function () {
         }
 
     });
+
+    //第一个单词自动获取焦点
+    dicList.find('input:eq(0)').focus();
 };
 
 //备份列表 + 恢复备份
@@ -256,27 +267,28 @@ var handleUpdate = function () {
             return;
         }
 
-        var list = {};
+        var list = [];
         for (var i = 0; i < items.length; i++) {
             var item = items.eq(i);
             var en = $.trim(item.children('div:eq(0)').html());
-            var key = en.toLowerCase().replace(' ', '_');
+            var key = en.toLowerCase().replace(' ', '_').replace('-', '_');
             if(! wordsListAll[key] || typeof(wordsListAll[key]) == 'function') {
                 var chs = $.trim(item.children('div:eq(1)').html()).replace(/\s*\n\s*/g, '<br>');
-                list[key] = {
-                    "en": en,
-                    "chs": chs
-                };
+                list.push(en + '#' + chs);
+            } else {
+                console.log(wordsListAll[key]['en'] + ' - ' + en);
             }
         }
-        if($.isEmptyObject(list)) {
+
+        if(list.length == 0) {
             alert('这些单词已经包含在列表中，不需要更新。');
             return;
         }
+
         $.ajax({
             "type": "POST",
             "url": pageData.res_path + "ajax.php",
-            "data": "act=updateList&list=" + JSON.stringify(list),
+            "data": "act=updateList&list=" + encodeURIComponent(list.join('|')),
             "dataType": "text",
             "beforeSend": function () {
                 btnUpdate.prop('disabled', true);

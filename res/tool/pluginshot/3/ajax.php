@@ -9,7 +9,17 @@ $backupsPath = str_replace('\\', '/', __DIR__) . '/backups.js'; //当前列表�
 //返回code，0代表成功，其它数字代表不成功
 switch ($act) {
     case 'updateList':
-        $newList = json_decode($_POST['list'], true);
+        $words = explode("|", $_POST['list']);
+        $newList = array();
+        foreach($words as $word) {
+            $wordArr = explode("#", $word);
+            $en = $wordArr[0];
+            $chs = $wordArr[1];
+            $key = strtolower($en);
+            $key = str_replace(' ', '_', $key);
+            $key = str_replace('-', '_', $key);
+            $newList[$key] = array('en'=>$en, 'chs'=>$chs);
+        }
         $wordsList = getWordsList('wordsList', $wordsListPath);
         $wordsListAll = getWordsList('wordsListAll', $wordsListAllPath);
         $suc = setWordsList('wordsList', $wordsListPath, array_merge($newList, $wordsList));
