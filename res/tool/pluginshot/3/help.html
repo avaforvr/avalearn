@@ -10,6 +10,30 @@
 
     <h3 class="mt4">更新列表</h3>
     <p>打开百词斩单词列表页面，找到想要添加的单词列表对应的 <strong>ul.word-list</strong> 标签（或父级标签）的完整源码，复制粘贴到更新列表下方的文本框内，单击“更新列表”按钮即可。</p>
+    <p class="mt3">获取 <strong>已斩单词</strong> 所有翻页列表：</p>
+    <pre>var listWrap =$(&#39;#all-passed-word-list&#39;);
+listWrap.children(&#39;.word-list-paginate&#39;).children(&#39;a&#39;).click();
+listWrap.children(&#39;.word-list&#39;).length;
+var waitLoad = function() {
+    if(listWrap.children(&#39;.word-list&#39;).length == listWrap.children(&#39;.word-list-paginate&#39;).children(&#39;a&#39;).length) {
+        alert(&#39;全部加载成功&#39;);
+    } else {
+        setTimeout(waitLoad, 500);
+    }
+};
+waitLoad();</pre>
+    <p class="mt3">获取 <strong>已学单词</strong> 所有翻页列表：</p>
+    <pre>var listWrap =$(&#39;#all-word-list-tab&#39;);
+listWrap.children(&#39;.word-list-paginate&#39;).children(&#39;a&#39;).click();
+listWrap.children(&#39;.word-list&#39;).length;
+var waitLoad = function() {
+    if(listWrap.children(&#39;.word-list&#39;).length == listWrap.children(&#39;.word-list-paginate&#39;).children(&#39;a&#39;).length) {
+        alert(&#39;全部加载成功&#39;);
+    } else {
+        setTimeout(waitLoad, 500);
+    }
+};
+waitLoad();</pre>
 
     <h3 class="mt4">恢复备份</h3>
     <p>恢复到上一次备份。</p>

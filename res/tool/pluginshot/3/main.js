@@ -30,10 +30,10 @@ var initDictationList = function (dicList, list) {
     dicList.html(arr.join(''));
 
     //输入框填满td
-    dicList.find('input').each(function () {
-        var input = $(this);
-        input.height(input.parent().height());
-    });
+    //dicList.find('input').each(function () {
+    //    var input = $(this);
+    //    input.height(input.parent().height());
+    //});
 };
 
 //默写
