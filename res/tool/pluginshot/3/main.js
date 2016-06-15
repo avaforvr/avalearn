@@ -393,7 +393,7 @@ var fixProgress = function () {
     });
 };
 
-window.onload = function () {
+var init = function () {
     if(typeof wordsList == 'undefined') {
         return;
     }
@@ -401,4 +401,19 @@ window.onload = function () {
     handleBackup();
     handleUpdate();
     fixProgress();
+};
+
+window.onload = function () {
+    var cookie = mainJS.cookie;
+    if (cookie.getCookie('dictation')) {
+        init();
+    } else {
+        var pwd = prompt('请输入密码');
+        if (pwd === 'passw0rd') {
+            cookie.setCookie('dictation', '1', 7);
+            init();
+        } else {
+            window.location.href = '/';
+        }
+    }
 };

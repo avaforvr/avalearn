@@ -4,5 +4,6 @@ var init = function () {
 };
 
 module.exports = {
-    "init": init
+    "init": init,
+    "cookie": require('./mod/cookie')
 };
