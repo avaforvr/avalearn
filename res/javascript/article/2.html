@@ -5,7 +5,7 @@
 </style>
 
 <h1>获取各种宽高及距离</h1>
-<h3>获取屏幕和文档信息</h3>
+<h2>获取屏幕和文档信息</h2>
 <p>测试环境：1680*1050分辨率，火狐、IE7</p>
 <table class="table1" width="100%">
     <thead>
@@ -133,7 +133,7 @@
 </p>
 <p><strong>学习总结</strong>：为尽量消除浏览器之间的差异，建议body上添加“margin:0; padding:0; border:none;”这三个属性。</p>
 
-<h3>client、offset、scroll的对比</h3>
+<h2>client、offset、scroll的对比</h2>
 <p>测试环境：1680*1050分辨率，火狐、IE7</p>
 <table class="table1" style="width:100%;">
     <thead>
@@ -227,3 +227,23 @@
     </tbody>
 </table>
 <p><strong>学习总结</strong>：测试scroll相关属性时发现，父元素padding与子元素margin在IE和火狐中有不同状况的重叠，建议需要控制间距时，直接在子元素上添加margin，不要在父元素上添加padding。</p>
+
+<h2>获取滚动条宽度</h2>
+<pre>/*!
+ * 获取浏览器竖向滚动条宽度
+ * 首先创建一个用户不可见、无滚动条的DIV，获取DIV宽度后，
+ * 再将DIV的Y轴滚动条设置为永远可见，再获取此时的DIV宽度
+ * 删除DIV后返回前后宽度的差值
+ *
+ * @return    Integer     竖向滚动条宽度
+ */
+function getScrollWidth() {
+    var noScroll, scroll, oDiv = document.createElement(&quot;DIV&quot;);
+    oDiv.style.cssText = &quot;position:absolute; top:-1000px; width:100px; height:100px; overflow:hidden;&quot;;
+    noScroll = document.body.appendChild(oDiv).clientWidth;
+    oDiv.style.overflowY = &quot;scroll&quot;;
+    scroll = oDiv.clientWidth;
+    document.body.removeChild(oDiv);
+    return noScroll - scroll;
+}</pre>
+<p>代码来自：<a href="http://biancheng.dnbcw.info/javascript/340421.html" target="_blank">获取绝对准确的滚动条宽度</a></p>
