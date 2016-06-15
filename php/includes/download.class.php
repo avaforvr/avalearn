@@ -36,6 +36,7 @@ class Download {
 
     //下载文件的功能
     public function getfiles() {
+        ob_end_clean();
         //检查文件是否存在
         if (file_exists($this->_filepath)) {
             //打开文件

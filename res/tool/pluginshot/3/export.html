@@ -1,5 +1,11 @@
-<ul class="form-a">
-    export
-    <li class="tab-tag" data-cont="0" id="btnExportZip"></li>
-    <li class="tab-tag" data-cont="3" id="btnImportZip">导入导出</li>
-</ul>
+<div class="tab-cont-in text-center">
+    <div class="inline-block text-left">
+        <form action="{{res_path}}ajax.php" enctype="multipart/form-data" id="import-form" method="post">
+            <input type="hidden" name="act" value="import">
+            <input type="file" name="file"><br>
+            <button id="btnCheck" type="submit" class="btn mt3">导入zip包</button>
+        </form>
+        <hr class="mt4 mb4">
+        <a href="{{res_path}}export.php" class="btn">导出zip包</a>
+    </div>
+</div>

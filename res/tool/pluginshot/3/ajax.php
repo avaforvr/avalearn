@@ -1,6 +1,5 @@
 <?
 include_once $_SERVER['DOCUMENT_ROOT'] . '/php/includes/global.init.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/php/includes/download.class.php';
 
 $act = isset($_REQUEST['act']) && $_REQUEST['act'] ? $_REQUEST['act'] : '';
 $dirPath = str_replace('\\', '/', __DIR__); //当前文件所在目录
@@ -53,23 +52,42 @@ switch ($act) {
         echo copyContent($backupsPath, $wordsListPath);
         die;
 
-    case 'exportZip':
-        $zip = new ZipArchive();
-        $zipname = date('YmdHis', time());
-        if (!file_exists($zipname)) {
-            $zip->open($zipname . '.zip', ZipArchive::OVERWRITE);//创建一个空的zip文件
-            $zip->addFile($wordsListPath);
-            $zip->addFile($wordsListAllPath);
-            $zip->addFile($backupsPath);
-            $zip->close();
-            $dw = new Download($dirPath, $zipname . '.zip'); //下载文件
-            $dw->getfiles();
-            unlink($zipname . '.zip'); //下载完成后要进行删除
-        }
-        die;
+    case 'import':
+        if(isset($_FILES['file'])) {
+            if ($_FILES['file']['error'] > 0) {
+                echo '上传失败!';
+            } else {
+                $zip = new ZipArchive;
+                if ($zip->open($_FILES['file']["tmp_name"]) !== true) {
+                    echo "unpack failed"; die;
+                }
 
-    case 'ImportZip':
-        //echo copyContent($backupsPath, $wordsListPath);
+                $zip->extractTo($dirPath);
+                echo 0;
+                $zip->close();
+
+
+//                if($_FILES['file']['type'] == 'application/octet-stream') {
+//                    $zipName = $_FILES['file']['name'];
+//                    $zipPath = $dirPath . '/' . $_FILES['file']['name'];
+//                    move_uploaded_file($zipName, $zipPath);
+//                    $zip = new ZipArchive;
+//                    var_dump(file_exists($zipName));
+//                    var_dump($zipName);
+//                    $res = $zip->open($zipName);
+//                    var_dump($res);
+//                    if ($res === TRUE) {
+//                        $zip->extractTo($dirPath . '/');
+//                        $zip->close();
+//                        echo '0';
+//                    } else {
+//                        echo '解压失败';
+//                    }
+//                } else {
+//                    echo '只能使用Excel文件';
+//                }
+            }
+        }
         die;
 
     default:

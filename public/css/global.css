@@ -2116,6 +2116,9 @@ hr {
 .absolute {
   position: absolute;
 }
+.overflow {
+  overflow: hidden;
+}
 .text-left {
   text-align: left;
 }
@@ -2268,7 +2271,8 @@ hr {
   background: #27931b;
   border: solid 1px #238a18;
   border-color: #238a18 #1e7f13 #1e7f13 #238a18;
-  color: #fff;
+  color: #fff !important;
+  text-decoration: none !important;
   font: bold 14px/18px Verdana, '\5b8b\4f53', Geneva, sans-serif;
   cursor: pointer;
   -webkit-border-radius: 3px;
@@ -2290,7 +2294,8 @@ hr {
   background: #27931b;
   border: solid 1px #238a18;
   border-color: #238a18 #1e7f13 #1e7f13 #238a18;
-  color: #fff;
+  color: #fff !important;
+  text-decoration: none !important;
   font: bold 14px/18px Verdana, '\5b8b\4f53', Geneva, sans-serif;
   cursor: pointer;
   -webkit-border-radius: 3px;

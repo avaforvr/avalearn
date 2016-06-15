@@ -196,105 +196,93 @@ var handleDictation = function () {
     dicList.find('input:eq(0)').focus();
 };
 
-//备份列表 + 恢复备份 + 导入 + 导出
+//备份列表 + 恢复备份 + 导入
 var handleBackup = function () {
     //备份列表
     $('#btnBackups').on('click', function () {
-        var btn = $(this);
-        $.ajax({
-            "type": "GET",
-            "url": pageData.res_path + "ajax.php",
-            "data": "act=setBackups",
-            "dataType": "text",
-            "beforeSend": function () {
-                btn.prop('disabled', true);
-            },
-            "complete": function () {
-                btn.prop('disabled', false);
-            },
-            "success": function (r) {
-                if (r === '0') {
-                    alert('备份成功');
-                } else if (r === '1') {
-                    alert('备份失败，再来一次~');
+        if (confirm("确定要备份列表吗？")) {
+            var btn = $(this);
+            $.ajax({
+                "type": "GET",
+                "url": pageData.res_path + "ajax.php",
+                "data": "act=setBackups",
+                "dataType": "text",
+                "beforeSend": function () {
+                    btn.prop('disabled', true);
+                },
+                "complete": function () {
+                    btn.prop('disabled', false);
+                },
+                "success": function (r) {
+                    if (r === '0') {
+                        alert('备份成功');
+                    } else if (r === '1') {
+                        alert('备份失败，再来一次~');
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 
     //恢复备份
     $('#btnRestore').on('click', function () {
-        var btn = $(this);
-        $.ajax({
-            "type": "GET",
-            "url": pageData.res_path + "ajax.php",
-            "data": "act=restore",
-            "dataType": "text",
-            "beforeSend": function () {
-                btn.prop('disabled', true);
-            },
-            "complete": function () {
-                btn.prop('disabled', false);
-            },
-            "success": function (r) {
-                if (r === '0') {
-                    alert('列表已恢复');
-                    window.location.reload();
-                } else if (r === '1') {
-                    alert('恢复失败，再来一次~');
+        if (confirm("确定要恢复备份吗？")) {
+            var btn = $(this);
+            $.ajax({
+                "type": "GET",
+                "url": pageData.res_path + "ajax.php",
+                "data": "act=restore",
+                "dataType": "text",
+                "beforeSend": function () {
+                    btn.prop('disabled', true);
+                },
+                "complete": function () {
+                    btn.prop('disabled', false);
+                },
+                "success": function (r) {
+                    if (r === '0') {
+                        alert('列表已恢复');
+                        window.location.reload();
+                    } else if (r === '1') {
+                        alert('恢复失败，再来一次~');
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 
     //导入
-    //$('#btnImportZip').on('click', function () {
-    //    var btn = $(this);
-    //    $.ajax({
-    //        "type": "GET",
-    //        "url": pageData.res_path + "ajax.php",
-    //        "data": "act=ImportZip",
-    //        "dataType": "text",
-    //        "beforeSend": function () {
-    //            btn.prop('disabled', true);
-    //        },
-    //        "complete": function () {
-    //            btn.prop('disabled', false);
-    //        },
-    //        "success": function (r) {
-    //            if (r === '0') {
-    //                alert('列表已恢复');
-    //                window.location.reload();
-    //            } else if (r === '1') {
-    //                alert('恢复失败，再来一次~');
-    //            }
-    //        }
-    //    });
-    //});
-
-    //导出
-    $('#btnExportZip').on('click', function () {
-        var btn = $(this);
-        $.ajax({
-            "type": "GET",
-            "url": pageData.res_path + "ajax.php",
-            "data": "act=exportZip",
-            "dataType": "text",
-            "beforeSend": function () {
-                btn.prop('disabled', true);
-            },
-            "complete": function () {
-                btn.prop('disabled', false);
-            },
-            "success": function (r) {
-                if (r != null) {
-                    alert("url="+r);
-                    window.location.href = r;
-                } else {
-                    alert("资源获取失败！");
+    $('#import-form').on('submit', function () {
+        var form = $(this),
+            btn = form.children('.btn');
+        var filePath = form.children('input[name="file"]').val();
+        if(filePath.length > 0) {
+            if(filePath.substring(filePath.length - 4) == '.zip') {
+                var opt = {
+                    "dataType": "text",
+                    "beforeSend": function () {
+                        btn.prop('disabled', true);
+                    },
+                    "success": function (r) {
+                        if (r === '0') {
+                            alert('导入成功')
+                            window.location.reload();
+                        } else {
+                            alert(r);
+                            btn.prop('disabled', false);
+                        }
+                    },
+                    "error": function () {
+                        alert('上传失败')
+                        btn.prop('disabled', false);
+                    }
                 }
+                form.ajaxSubmit(opt);
+            } else {
+                alert('只支持zip文件');
             }
-        });
+        }
+        return false;
     });
 };
 
@@ -317,44 +305,69 @@ var handleUpdate = function () {
             return;
         }
 
-        var list = [];
-        for (var i = 0; i < items.length; i++) {
-            var item = items.eq(i);
-            var en = $.trim(item.children('div:eq(0)').html());
-            var key = en.toLowerCase().replace(' ', '_').replace('-', '_');
-            if(! wordsListAll[key] || typeof(wordsListAll[key]) == 'function') {
-                var chs = $.trim(item.children('div:eq(1)').html()).replace(/\s*\n\s*/g, '<br>');
-                list.push(en + '#' + chs);
+        function loadJS(src, id, loadCallback, errorCallback) {
+            if(document.getElementById(id)) {
+                loadCallback();
+
             } else {
-                console.log(wordsListAll[key]['en'] + ' - ' + en);
+                var script = document.createElement('script'),
+                    head = document.getElementsByTagName('head').item(0);
+                script.onload = script.onreadystatechange = function () {
+                    if (!this.readyState || 'loaded' === this.readyState || 'complete' === this.readyState) {
+                        loadCallback();
+                    }
+                };
+                if(errorCallback) {
+                    script.onerror = function () {
+                        errorCallback();
+                    };
+                }
+                script.id = id;
+                script.src = src;
+                head.appendChild(script);
             }
         }
 
-        if(list.length == 0) {
-            alert('这些单词已经包含在列表中，不需要更新。');
-            return;
-        }
+        btnUpdate.prop('disabled', true);
 
-        $.ajax({
-            "type": "POST",
-            "url": pageData.res_path + "ajax.php",
-            "data": "act=updateList&list=" + encodeURIComponent(list.join('|')),
-            "dataType": "text",
-            "beforeSend": function () {
-                btnUpdate.prop('disabled', true);
-            },
-            "complete": function () {
-                btnUpdate.prop('disabled', false);
-            },
-            "success": function (r) {
-                if (r === '0') {
-                    alert('更新成功');
-                    window.location.reload();
-
-                } else if (r === '1') {
-                    alert('更新失败，再来一次~');
+        loadJS(pageData.res_path + 'wordsListAll.js', 'wordsListAll', function () {
+            var list = [];
+            for (var i = 0; i < items.length; i++) {
+                var item = items.eq(i);
+                var en = $.trim(item.children('div:eq(0)').html());
+                var key = en.toLowerCase().replace(' ', '_').replace('-', '_');
+                if(! wordsListAll[key] || typeof(wordsListAll[key]) == 'function') {
+                    var chs = $.trim(item.children('div:eq(1)').html()).replace(/\s*\n\s*/g, '<br>');
+                    list.push(en + '#' + chs);
+                } else {
+                    //console.log(wordsListAll[key]['en'] + ' - ' + en);
                 }
             }
+
+            if(list.length == 0) {
+                alert('这些单词已经包含在列表中，不需要更新。');
+                btnUpdate.prop('disabled', true);
+                return;
+            }
+
+            $.ajax({
+                "type": "POST",
+                "url": pageData.res_path + "ajax.php",
+                "data": "act=updateList&list=" + encodeURIComponent(list.join('|')),
+                "dataType": "text",
+                "complete": function () {
+                    btnUpdate.prop('disabled', false);
+                },
+                "success": function (r) {
+                    if (r === '0') {
+                        alert('更新成功');
+                        window.location.reload();
+
+                    } else if (r === '1') {
+                        alert('更新失败，再来一次~');
+                    }
+                }
+            });
         });
     });
 
@@ -381,7 +394,7 @@ var fixProgress = function () {
 };
 
 window.onload = function () {
-    if(typeof wordsList == 'undefined' || typeof wordsListAll == 'undefined') {
+    if(typeof wordsList == 'undefined') {
         return;
     }
     handleDictation();
