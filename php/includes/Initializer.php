@@ -4,8 +4,9 @@ class Initializer{
 		$container['siteConf'] = function($c){
 			include $c['PHP_PATH'].'includes/config.env.php';
 			
-			$difftime = strtotime(date('Y-m-d H:i:s')) - strtotime('2014-04-01 00:00:00');
-			
+			//$difftime = strtotime(date('Y-m-d H:i:s')) - strtotime('2014-04-01 00:00:00');
+			$difftime = date('Ymd');
+
 			$siteConf = array(
 				'db_host' => $db_host,
 				'db_name' => $db_name,
