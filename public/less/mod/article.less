@@ -109,3 +109,28 @@ h1 {
         text-align: center;
     }
 }
+
+.cite {
+    position: relative;
+    padding: 10px 40px;
+    .fa {
+        position: absolute;
+        z-index: 0;
+        color: #e5e5e5;
+        font-style: italic;
+        font-size: 2em;
+    }
+    .fa-quote-left {
+        top: 0;
+        left: 0;
+    }
+    .fa-quote-right {
+        bottom: 0;
+        right: 0;
+    }
+    blockquote {
+        position: relative;
+        z-index: 1;
+        font-size: 12px;
+    }
+}

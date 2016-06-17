@@ -20,7 +20,7 @@
         <tr>
             <td>ondragstart</td>
             <td>被拖曳元素</td>
-            <td>拖拽元素开始被拖拽的时候触发的事件</td>
+            <td>拖拽元素开始被拖拽的时候触发的事件。</td>
         </tr>
         <tr>
             <td>ondragend</td>
@@ -45,7 +45,7 @@
         <tr>
             <td>Event.dataTransfer</td>
             <td>/</td>
-            <td>拖拽对象用来传递的媒介</td>
+            <td>拖拽对象用来传递的媒介。<br>常用方法：setData() 和 getData()；<br>常用属性：effectAllowed 和 dropEffeet。</td>
         </tr>
         <tr>
             <td>Event.preventDefault()</td>
@@ -53,11 +53,6 @@
             <td>
                 阻止默认事件的执行。在ondragover中一定要执行preventDefault()，否则ondrop事件不会被触发。另外，如果是从其他应用软件或是文件中拖东西进来，尤其是图片的时候，默认的动作是显示这个图片或是相关信息，并不是真的执行drop。此时需要用用document的ondragover事件把它直接干掉。
             </td>
-        </tr>
-        <tr>
-            <td>Event.effectAllowed</td>
-            <td>/</td>
-            <td>拖拽的效果</td>
         </tr>
         </tbody>
     </table>
@@ -93,4 +88,102 @@
     </style>
     {% include sub_twig ~ 'drag.html' %}
     <pre class="mt4">{{ source(sub_twig ~ 'drag.html')|e }}</pre>
+</section>
+
+<section>
+    <h2>遇到的问题</h2>
+    <h3>e.dataTransfer.setData()的参数</h3>
+    <p>第一个参数随意设置为“ballId”，Chrome和Firefox正常，IE报错“意外地调用了方法或属性访问”；<br>
+        第一个参数设置为“text”，三个浏览器都能正常执行。</p>
+    <p>参考解释(<a href="http://www.php100.com/html/program/html/2014/0328/6724.html" target="_blank">HTML5实战与剖析之原生拖拽(三dataTransfer对象)</a>)：</p>
+    <div class="cite">
+        <i class="fa fa-quote-left" aria-hidden="true"></i>
+        <i class="fa fa-quote-right" aria-hidden="true"></i>
+        <blockquote cite="http://www.php100.com/html/program/html/2014/0328/6724.html">
+            <p>dataTransfer对象有两个主要的方法：getData()方法和setData()方法。从这两个方法的英文字面意思上就能大概猜出来其用途。getData()方法可以取得由setData()方法保存的值。setData()方法的第一个参数，也是getData()方法唯一的一个参数，是用来保存数据类型的字符串，取值是”text”或”URL”。</p>
+            <p><strong>IE只定义了”text”或”URL”两种有效的数据类型</strong>，而HTML5则对此加以扩展，允许指定各种MIME类型。考虑到向后兼容，HTML5也支持”text”或”URL”，但这两种类型会被映射为”text/plain”或”text/url-list”。</p>
+            <p>实际上，dataTransfer对象可以为每种MIME类型都保存一个值。也就是说同事在这个对象中保存一段文本和一个URL不会有其他问题。不过，保存在dataTransfer对象中的数据只能在drop事件处理程序中读取。如果在ondrop处理程序中没有读取数据，那就是dataTransfer对象已经被销毁，数据也就随之丢失了。</p>
+            <p>在拖动文本框中的文本时，浏览器会调用setData()方法，将拖动的文本以”text”格式保存在dataTransfer对象中。类似地，在拖放链接或图像时，会调用setData()方法并保存URL。然后，在这些元素被拖放到放置目标时，就可以通过getData()方法读到这些数据。当然，作为开发人员，你也可以通过dragstart事件处理程序中调用setData()，手工保存自己要传输的数据，以便将来使用。</p>
+            <p>将数据保存在文本和保存为URL是有区别的。如果将数据保存为文本格式，那么数据不会得到任何特殊处理。如果保存为URL格式，浏览器会将其当成网页中的链接。如果你将这个URL放置到另一个浏览器窗口中，就可以打开该URL。</p>
+            <p>Firefox 5及之前版本是不能将”url”和”text”映射为””和”text/plain”。但是却能把”Text”(T大写)映射为”text/plain”。为了更好地在跨浏览器的情况下从dataTransfer对象取得数据，最好在取得URL数据时检测两个值，而在取得文本数据时使用”Text”。</p>
+            <p>注意，一定要把短数据类型放在前面，因为IE10及之前的版本仍然不支持扩展的MIME类型名，而它们在遇到无法识别的数据类型时，会报错。不过”text”或”URL”取值只有IE是强制的，在火狐3.6+、Chrome和Opera中设置其他任意值的字符串也能正常执行。</p>
+        </blockquote>
+    </div>
+
+    <h3>effectAllowed 与 dropEffeet</h3>
+    <p class="mb2"><strong>effectAllowed</strong> 属性表示允许拖动元素的哪种行为(dropEffect)。在在ondragstart事件中设置。允许的值有:</p>
+    <table class="table1">
+        <thead>
+        <tr>
+            <th>effectAllowed</th>
+            <th>允许的dropEffect的值</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><strong>uninitialized</strong></td>
+            <td>没有给被拖动元素设置任何放置行为。</td>
+        </tr>
+        <tr>
+            <td><strong>none</strong></td>
+            <td>被拖动的元素不能有任何行为。</td>
+        </tr>
+        <tr>
+            <td><strong>copy</strong></td>
+            <td>copy</td>
+        </tr>
+        <tr>
+            <td><strong>link</strong></td>
+            <td>link</td>
+        </tr>
+        <tr>
+            <td><strong>move</strong></td>
+            <td>move</td>
+        </tr>
+        <tr>
+            <td><strong>copyLink</strong></td>
+            <td>copy | link</td>
+        </tr>
+        <tr>
+            <td><strong>copyMove</strong></td>
+            <td>copy | move</td>
+        </tr>
+        <tr>
+            <td><strong>linkMove</strong></td>
+            <td>link | move</td>
+        </tr>
+        <tr>
+            <td><strong>all</strong></td>
+            <td>任意值</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p class="mt4 mb2"><strong>dropEffect</strong> 属性表示被拖动的元素能够执行哪种行为，<strong>必须与 effectAllowed 配合使用</strong>，否则不生效。允许的值有:</p>
+    <table class="table1">
+        <thead>
+        <tr>
+            <th>dropEffect</th>
+            <th>描述</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><strong>none</strong></td>
+            <td>不能把拖动的元素放在这里。这是除了文本框之外所有元素默认的值。</td>
+        </tr>
+        <tr>
+            <td><strong>move</strong></td>
+            <td>应该把拖动的元素移动到放置目标。</td>
+        </tr>
+        <tr>
+            <td><strong>copy</strong></td>
+            <td>应该把拖动的元素复制到放置目标。</td>
+        </tr>
+        <tr>
+            <td><strong>link</strong></td>
+            <td>放置目标会打开拖动的元素(但拖动的元素必须是个链接，有URL地址)。</td>
+        </tr>
+        </tbody>
+    </table>
 </section>

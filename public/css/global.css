@@ -2673,6 +2673,30 @@ h1 {
   margin-bottom: 10px;
   text-align: center;
 }
+.cite {
+  position: relative;
+  padding: 10px 40px;
+}
+.cite .fa {
+  position: absolute;
+  z-index: 0;
+  color: #e5e5e5;
+  font-style: italic;
+  font-size: 2em;
+}
+.cite .fa-quote-left {
+  top: 0;
+  left: 0;
+}
+.cite .fa-quote-right {
+  bottom: 0;
+  right: 0;
+}
+.cite blockquote {
+  position: relative;
+  z-index: 1;
+  font-size: 12px;
+}
 .plugin-panel {
   margin-bottom: 30px;
   font-size: 14px;

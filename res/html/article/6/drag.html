@@ -30,7 +30,8 @@
 
     //被拖拽元素 —— 拖拽开始
     ball.ondragstart = function (e) {
-        e.dataTransfer.setData('ballId', getTarget(e).id); //记录被拖拽元素的id
+        e.dataTransfer.setData('text', getTarget(e).id); //记录被拖拽元素的id
+        e.dataTransfer.effectAllowed = 'copy';
         ball.innerHTML = 'Start';
     };
 
@@ -48,6 +49,7 @@
 
     //目标元素 —— 在目标元素上移动
     boxGroup.ondragover = function (e) {
+        e.dataTransfer.dropEffeet='copy';
         e.preventDefault();
     };
 
@@ -55,9 +57,11 @@
     boxGroup.ondrop = function (e) {
         e.preventDefault();
         deactiveBoxes();
-        var data = e.dataTransfer.getData('ballId');
+        var data = e.dataTransfer.getData('text');
         var box = getTarget(e);
         box.className = '';
-        box.appendChild(document.getElementById(data));
+        if(! box.hasChildNodes()) {
+            box.appendChild(document.getElementById(data));
+        }
     };
 </script>
