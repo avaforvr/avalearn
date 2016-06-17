@@ -1,0 +1,63 @@
+<div id="box-group" class="clearfix">
+    <div style="width: 15%">
+        <div id="ball" draggable="true">Drag it!</div>
+    </div>
+    <div style="width: 35%"></div>
+    <div style="width: 50%"></div>
+</div>
+
+<script>
+    //被拖拽元素ball, 目标元素boxGroup
+    var ball = document.getElementById('ball'),
+        boxGroup = document.getElementById('box-group');
+
+    //获取当前元素
+    var getTarget = function (e) {
+        var target = e.target || e.scrElement;
+        return target;
+    };
+
+    //清除active状态
+    var deactiveBall = function () {
+        ball.innerHTML = 'End';
+    };
+    var deactiveBoxes = function () {
+        var boxes = boxGroup.childNodes;
+        for (var i = 0; i < boxes.length; i++) {
+            boxes[i].className = '';
+        }
+    };
+
+    //被拖拽元素 —— 拖拽开始
+    ball.ondragstart = function (e) {
+        e.dataTransfer.setData('ballId', getTarget(e).id); //记录被拖拽元素的id
+        ball.innerHTML = 'Start';
+    };
+
+    //被拖拽元素 —— 拖拽结束
+    ball.ondragend = function (e) {
+        deactiveBall();
+        deactiveBoxes();
+    };
+
+    //目标元素 —— 进入目标元素
+    boxGroup.ondragenter = function (e) {
+        deactiveBoxes();
+        getTarget(e).className = 'active';
+    };
+
+    //目标元素 —— 在目标元素上移动
+    boxGroup.ondragover = function (e) {
+        e.preventDefault();
+    };
+
+    //目标元素 —— 在目标元素上释放被拖拽元素
+    boxGroup.ondrop = function (e) {
+        e.preventDefault();
+        deactiveBoxes();
+        var data = e.dataTransfer.getData('ballId');
+        var box = getTarget(e);
+        box.className = '';
+        box.appendChild(document.getElementById(data));
+    };
+</script>

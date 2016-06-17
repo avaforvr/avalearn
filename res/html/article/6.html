@@ -1,0 +1,96 @@
+<h1> HTML5学习笔记 - 拖放 </h1>
+
+<section>
+    <h2>相关属性</h2>
+    <p>拖拽涉及两个元素，被拖拽元素和目标元素。</p>
+    <table class="table1" width="100%">
+        <thead>
+        <tr>
+            <th style="width:20%;">属性</th>
+            <th style="width:16%;">作用元素</th>
+            <th>描述</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>draggable</td>
+            <td>被拖拽元素</td>
+            <td>规定元素是否可拖动。属性值有true | false | auto，值为 <strong>auto</strong> 时，使用浏览器的默认特性。链接和图像默认是可拖动的。</td>
+        </tr>
+        <tr>
+            <td>ondragstart</td>
+            <td>被拖曳元素</td>
+            <td>拖拽元素开始被拖拽的时候触发的事件</td>
+        </tr>
+        <tr>
+            <td>ondragend</td>
+            <td>被拖曳元素</td>
+            <td>拖拽完成后触发的事件</td>
+        </tr>
+        <tr>
+            <td>ondragenter</td>
+            <td>目标元素</td>
+            <td>拖曳元素进入目标元素的时候触发的事件</td>
+        </tr>
+        <tr>
+            <td>ondragover</td>
+            <td>目标元素</td>
+            <td>拖拽元素在目标元素上移动的时候触发的事件</td>
+        </tr>
+        <tr>
+            <td>ondrop</td>
+            <td>目标元素</td>
+            <td>被拖拽的元素在目标元素上同时鼠标放开触发的事件</td>
+        </tr>
+        <tr>
+            <td>Event.dataTransfer</td>
+            <td>/</td>
+            <td>拖拽对象用来传递的媒介</td>
+        </tr>
+        <tr>
+            <td>Event.preventDefault()</td>
+            <td>/</td>
+            <td>
+                阻止默认事件的执行。在ondragover中一定要执行preventDefault()，否则ondrop事件不会被触发。另外，如果是从其他应用软件或是文件中拖东西进来，尤其是图片的时候，默认的动作是显示这个图片或是相关信息，并不是真的执行drop。此时需要用用document的ondragover事件把它直接干掉。
+            </td>
+        </tr>
+        <tr>
+            <td>Event.effectAllowed</td>
+            <td>/</td>
+            <td>拖拽的效果</td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+
+<section>
+    <h2>练习</h2>
+    <style>
+        #box-group > div {
+            float: left;
+            width: 33.33%;
+            height: 100px;
+            border: dotted 1px #ccc;
+            box-sizing: border-box;
+        }
+        #box-group > .active {
+            background: #ccc;
+        }
+        #ball {
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            border-radius: 50%;
+            background: #00f;
+            color: #fff;
+            font: normal 24px/100px Arial, Sans-serif;
+            cursor: pointer;
+        }
+        #box-group #ball {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    {% include sub_twig ~ 'drag.html' %}
+    <pre class="mt4">{{ source(sub_twig ~ 'drag.html')|e }}</pre>
+</section>
