@@ -56,9 +56,10 @@
             {
                 "group": "HTML5",
                 "list": [
-                    {"pageId": "4", "title": "HTML5学习笔记 - 视频"},
-                    {"pageId": "5", "title": "HTML5学习笔记 - 音频"},
-                    {"pageId": "6", "title": "HTML5学习笔记 - 拖放"}
+                    {"pageId": "4", "title": "HTML5学习笔记 - 视频 <video>"},
+                    {"pageId": "5", "title": "HTML5学习笔记 - 音频 <audio>"},
+                    {"pageId": "6", "title": "HTML5学习笔记 - 拖放 drag&drop"},
+                    {"pageId": "7", "title": "HTML5学习笔记 - 画布 <canvas>"}
                 ]
             }
         ]
