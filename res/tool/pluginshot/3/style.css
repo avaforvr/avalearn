@@ -33,9 +33,11 @@
     text-align: right;
 }
 .table1 .td-input {
-    width: 30%;
     vertical-align: middle;
     padding: 0;
+}
+.table1 .td-tip {
+    width: 20%;
 }
 
 /*normal*/

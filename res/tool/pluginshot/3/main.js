@@ -107,7 +107,7 @@ var handleDictation = function () {
                         wrap.next().find('input').focus();
                     }
                     input.prop('disabled', true);
-                    wrap.children('td-tip').remove();
+                    wrap.children('.td-tip').remove();
                     wrap.appendTo(dicSucList);
                 } else {
                     input.addClass('error');
