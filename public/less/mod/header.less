@@ -1,20 +1,22 @@
 .header {
     margin-bottom: @space;
     background: #272727;
-    .gradient(top, #323232, #202020);
+    .gradient(#323232, #202020);
+    .common-shadow();
 }
 .logo {
     float: left;
     padding: 0 15px;
     display: block;
-    background: #3a3a3a;
     color: #fff;
     font-size: @font-size-large;
     text-decoration: none;
     line-height: 40px;
+    .gradient(#464646, #2e2e2e);
     &:hover {
-        background: #454545;
         text-decoration: none;
+        background: #464646;
+        color: #fff;
     }
     @media screen and (max-width: 680px) {
         float: none;

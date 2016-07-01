@@ -119,14 +119,11 @@
       -moz-background-clip: @reg;
            background-clip: @reg;
 }
-.gradient(@origin: top, @startColor, @endColor){
-    background-color:@startColor/2 + @endColor/2;
-    //filter:~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{startColor}', endColorstr='@{endColor}')";
-    background-image: -webkit-linear-gradient(@origin, @startColor, @endColor);
-    background-image:-moz-linear-gradient(@origin, @startColor, @endColor);
-    background-image: -o-linear-gradient(@origin, @startColor, @endColor);
-    background-image: -ms-linear-gradient(@origin, @startColor, @endColor);
-    background-image: linear-gradient(@origin, @startColor, @endColor);
+.gradient(@from, @to) {
+    background: @to;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(@from), to(@to));
+    background: -moz-linear-gradient(top, @from, @to);
+    background: -o-linear-gradient(top,@from, @to);
 }
 .genVer() {
     @version : `'?'+Math.round(new Date().getTime()/1000).toString().substr(1)`;
@@ -146,4 +143,7 @@
     background: #fff;
     .box-shadow(0 1px 4px #ccc);
     .clearfix();
+}
+.common-shadow() {
+    .box-shadow(0 1px 3px @gray-light);
 }
