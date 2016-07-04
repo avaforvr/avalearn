@@ -23,7 +23,7 @@ var setProgress = function () {
 var initDictationList = function (dicList, list) {
     var arr = [];
     for(var key in list) {
-        arr.push('<tr><td class="td-chs">' + list[key]['chs'] + '</td><td class="td-input"><input id="' + key + '" type="text" data-value="' + list[key]['en'] + '"></td><td class="td-tip"></td></tr>');
+        arr.push('<tr><td class="td-chs">' + list[key]['chs'] + '</td><td class="td-input"><input id="' + key + '" type="text" data-value="' + list[key]['en'] + '" autocomplete="off"></td><td class="td-tip"></td></tr>');
     }
     o.dataTotal = arr.length;
     setProgress();
