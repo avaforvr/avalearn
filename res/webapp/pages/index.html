@@ -59,8 +59,7 @@
         <ul class="imglist clearfix{{isFirstList ? ' first' : ''}}">
             {% for index, page in cat['pluginshot'] %}
                 <li>
-                    <a href="{{WEB_ROOT}}{{catKey}}/pluginshot/{{page['pageId']}}">
-                    {#<a href="{{WEB_ROOT}}{{page['isThirdParty'] ? 'tool' : 'pluginshot' }}.php?pid={{catKey}}_{{page['pageId']}}">#}
+                    <a href="{% if page['isPhp'] %}{{WEB_ROOT}}res/{{catKey}}/pluginshot/{{page['pageId']}}/index.php{% else %}{{WEB_ROOT}}{{catKey}}/pluginshot/{{page['pageId']}}{% endif %}">
                         <img src="{{page['effect']}}?{{version}}" alt="查看详细">
                         <p>
                             {% if page['status'] %}

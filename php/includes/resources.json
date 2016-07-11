@@ -157,7 +157,7 @@
             {"pageId": "1", "title": "HTML转义"},
             {"pageId": "2", "title": "贝塞尔曲线设计器", "isThirdParty": 1},
             {"pageId": "3", "title": "百词斩单词默写"},
-            {"pageId": "4", "title": "单词默写"}
+            {"pageId": "4", "title": "单词默写", "isPhp": 1}
         ]
     }
 }
