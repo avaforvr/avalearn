@@ -2304,7 +2304,7 @@ hr {
   border-radius: 3px;
   background: #fff;
   border: solid 1px #ccc;
-  color: #333333;
+  color: #333333 !important;
   font: normal 14px/18px Verdana, '\5b8b\4f53', Geneva, sans-serif;
 }
 .btn-white[disabled],
@@ -2313,6 +2313,9 @@ hr {
   pointer-events: none;
   opacity: 0.65;
   filter: alpha(opacity=65);
+}
+.btn-mini {
+  padding: 5px 10px;
 }
 .input {
   vertical-align: top;
@@ -2648,6 +2651,10 @@ h1 {
   font-weight: bold;
   white-space: nowrap;
 }
+.table-middle th,
+.table-middle td {
+  vertical-align: middle;
+}
 .anchor-nav {
   margin-bottom: 15px;
 }
@@ -2769,4 +2776,26 @@ h1 {
 }
 .download a {
   margin-left: 10px;
+}
+.progress {
+  background: #ddd;
+  width: 120px;
+}
+.progress,
+.progress > em {
+  display: inline-block;
+  height: 15px;
+  overflow: hidden;
+}
+.progress > em {
+  background: #489200;
+}
+.progress-group .progress,
+.progress-group .num {
+  vertical-align: text-top;
+}
+.progress-group .num {
+  margin-left: 8px;
+  display: inline-block;
+  line-height: 15px;
 }
