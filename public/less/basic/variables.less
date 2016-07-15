@@ -70,11 +70,10 @@
         -ms-box-shadow: @reg;
             box-shadow: @reg;    
 }
-.box-sizing(@reg){
-    -webkit-box-sizing: @reg;
-    -moz-box-sizing: @reg;
-    -ms-box-sizing: @reg;
-    box-sizing: @reg;
+.box-sizing(@boxmodel: border-box) {
+    -webkit-box-sizing: @boxmodel;
+    -moz-box-sizing: @boxmodel;
+    box-sizing: @boxmodel;
 }
 .transition(@transition) {
   -webkit-transition: @transition;

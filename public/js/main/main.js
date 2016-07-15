@@ -5,5 +5,6 @@ var init = function () {
 
 module.exports = {
     "init": init,
-    "cookie": require('./mod/cookie')
+    "cookie": require('./mod/cookie'),
+    "dialog": require('./mod/dialog')
 };
