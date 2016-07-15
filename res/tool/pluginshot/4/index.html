@@ -1,57 +1,76 @@
 {% extends 'webapp/base.html' %}
 
 {% block main %}
-<style>
-    .progress {
-        display: inline-block;
-
-    }
-</style>
 <div class="panel plugin">
-    <h1>单词默写</h1>
+    <h1>选择词典</h1>
     <section class="plugin-panel">
         {% if dictionaries is not empty %}
-        <div>
-            <table class="table1 middle" width="100%">
-                <thead>
-                <tr>
-                    <th width="30%">标题</th>
-                    <th>总词汇量</th>
-                    <th>已完成</th>
-                    <th>完成度</th>
-                    <th width="25%">操作</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for id,dic in dictionaries %}
-                <tr>
-                    <td>{{dic.title}}</td>
-                    <td>{{dic.total}}</td>
-                    <td>{{dic.finish}}</td>
-                    <td>
-                        <div class="progress-group">
-                            <span class="progress"><em style="width: {{dic.progress}}%"></em></span>
-                            <span class="num">{{dic.progress}}%</span>
-                        </div>
-                    </td>
-                    <td>
-                        <button class="btn btn-mini">背单词</button>
-                        <button class="btn-white btn-mini ml2">编辑</button>
-                        <button class="btn-white btn-mini ml2">删除</button>
-                    </td>
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        {% else %}
-        没有列表
+        <table class="table1 middle" width="100%" id="dic-list">
+            <thead>
+            <tr>
+                <th width="30%">标题</th>
+                <th>总词汇量</th>
+                <th>已完成</th>
+                <th>完成度</th>
+                <th width="25%">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for dic in dictionaries %}
+            <tr data-id="{{dic.id}}">
+                <td>{{dic.title}}</td>
+                <td>{{dic.total}}</td>
+                <td>{{dic.finish}}</td>
+                <td>
+                    <div class="progress-group">
+                        <span class="progress"><em style="width: {{dic.progress}}%"></em></span>
+                        <span class="num">{{dic.progress}}%</span>
+                    </div>
+                </td>
+                <td>
+                    {% if dic.total > 0 %}
+                        <button class="btn btn-mini mr2">背单词</button>
+                    {% endif %}
+                    <button class="btn-white btn-mini mr2 btn-edit-dic">编辑</button>
+                    <button class="btn-white btn-mini btn-del-pic">删除</button>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
         {% endif %}
+
+        <div class="mt4"><button type="button" class="btn" id="btn-add-dic">添加新词典</button></div>
+        <div class="hide">
+            <form action="{{res_path}}index.php" enctype="multipart/form-data" class="form-a" id="dic-form" method="post">
+                <input type="hidden" name="act" value="saveDic">
+                <input type="hidden" name="id" value="0">
+                <table class="table-b full">
+                    <tr>
+                        <th width="50">标题</th>
+                        <td><input type="text" name="title" autocomplete="off"></td>
+                    </tr>
+                    <tr>
+                        <th>附件</th>
+                        <td><input type="file" name="file"></td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td class="td-btn">
+                            <button class="btn" type="submit">提 交</button>
+                            <button class="btn-white ml4 close" type="button">取 消</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
     </section>
+
+    <link type="text/css" rel="stylesheet" href="{{res_path}}style.css?{{version}}" />
     <script>
         var pageData = {"res_path": "{{res_path}}"};
     </script>
+    <script src="{{JS_PATH}}jquery.form.js?{{version}}"></script>
     <script src="{{res_path}}dictionaries.js?{{version}}"></script>
-    <script src="{{res_path}}main.js?{{version}}"></script>
 </div>
 {% endblock %}

@@ -1,0 +1,8 @@
+/*词典列表*/
+.table1 th, .table1 td {
+    padding: 10px;
+}
+/*添加、编辑词典表单 */
+#dic-form {
+    padding: 30px;
+}
