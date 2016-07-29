@@ -2,6 +2,7 @@ var dialog = mainJS.dialog;
 
 var o = {
     "dicList": $('#dic-list'),
+    "dicListBody": $('#dic-list-body'),
     "dicForm": $('#dic-form'),
     "addDicBtn": $('#btn-add-dic'),
     "dialogId": 'dicFromDialog',
@@ -13,12 +14,12 @@ var setForm = function (setting) {
         "title": ''
     }, setting);
 
-    for(var key in data) {
+    for (var key in data) {
         o.dicForm.find('input[name="' + key + '"]').val(data[key]);
     }
     o.dicForm.find('input[name="file"]').val(''); //附件清空
 
-    dialog.open({modId: o.dialogId, width:400, html: o.dicForm});
+    dialog.open({modId: o.dialogId, width: 400, html: o.dicForm});
 };
 
 //添加字典
@@ -41,13 +42,31 @@ o.dicList.on('click', '.btn-del-pic', function () {
     if (pwd && pwd == 'passw0rd') {
         var wrap = $(this).closest('tr');
         var id = wrap.attr('data-id');
-        alert(id);
+        $.ajax({
+            "type": "GET",
+            "url": pageData.res_path + "index.php?act=delDic&id=" + id,
+            "dataType": "json",
+            "beforeSend": function (r) {
+            },
+            "success": function (r) {
+                if (r.code == 0) {
+                    wrap.hide('normal', function () {
+                        wrap.remove();
+                    });
+                } else {
+                    alert(r.msg);
+                }
+            },
+            "error": function (r) {
+                alert('操作失败');
+            }
+        });
     }
 });
 
 //提交表单
 o.dicForm.submit(function () {
-    if($.trim($(this).find('input[name="title"]').val()).length == 0) {
+    if ($.trim($(this).find('input[name="title"]').val()).length == 0) {
         alert('请填写标题');
         return false;
     }
@@ -60,14 +79,20 @@ o.dicForm.submit(function () {
         "success": function (r) {
             btn.prop('disabled', false);
             if (r.code == 0) {
-                alert('提交成功')
+                dialog.close('#' + o.dialogId, true);
+                if (r.isNew) {
+                    o.dicListBody.append(r.dicHtml);
+                } else {
+                    var oldTr = o.dicListBody.children('#dic-' + r.dicId);
+                    oldTr.after(r.dicHtml);
+                    oldTr.remove();
+                }
             } else {
                 alert(r.msg);
             }
         },
         "error": function (r) {
-            //alert('表单提交失败')
-            console.log(r);
+            alert('表单提交失败')
             btn.prop('disabled', false);
         }
     }
