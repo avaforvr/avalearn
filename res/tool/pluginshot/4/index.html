@@ -15,26 +15,9 @@
                 <th width="25%">操作</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="dic-list-body">
             {% for dic in dictionaries %}
-            <tr data-id="{{dic.id}}">
-                <td>{{dic.title}}</td>
-                <td>{{dic.total}}</td>
-                <td>{{dic.finish}}</td>
-                <td>
-                    <div class="progress-group">
-                        <span class="progress"><em style="width: {{dic.progress}}%"></em></span>
-                        <span class="num">{{dic.progress}}%</span>
-                    </div>
-                </td>
-                <td>
-                    {% if dic.total > 0 %}
-                        <button class="btn btn-mini mr2">背单词</button>
-                    {% endif %}
-                    <button class="btn-white btn-mini mr2 btn-edit-dic">编辑</button>
-                    <button class="btn-white btn-mini btn-del-pic">删除</button>
-                </td>
-            </tr>
+                {% include sub_twig ~ 'snippets/dic.html' %}
             {% endfor %}
             </tbody>
         </table>

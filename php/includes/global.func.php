@@ -338,4 +338,11 @@ function getFileType($filePath) {
     return $fileType;
 }
 
+//获取twig路径
+function getSubTwigPath($dirPath, $container) {
+    $dirPath = str_replace('\\', '/', $dirPath) . '/';
+    $subTwigPath = str_replace($container['path']['twig'], '', $dirPath);
+    return $subTwigPath;
+}
+
 ?>
