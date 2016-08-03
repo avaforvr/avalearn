@@ -4,7 +4,6 @@
 <div class="panel plugin">
     <h1>选择词典</h1>
     <section class="plugin-panel">
-        {% if dictionaries is not empty %}
         <table class="table1 middle" width="100%" id="dic-list">
             <thead>
             <tr>
@@ -21,7 +20,6 @@
             {% endfor %}
             </tbody>
         </table>
-        {% endif %}
 
         <div class="mt4"><button type="button" class="btn" id="btn-add-dic">添加新词典</button></div>
         <div class="hide">

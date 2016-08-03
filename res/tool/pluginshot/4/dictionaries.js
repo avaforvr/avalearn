@@ -50,7 +50,7 @@ o.dicList.on('click', '.btn-del-pic', function () {
             },
             "success": function (r) {
                 if (r.code == 0) {
-                    wrap.hide('normal', function () {
+                    wrap.hide('fast', function () {
                         wrap.remove();
                     });
                 } else {
