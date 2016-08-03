@@ -20,6 +20,7 @@ var setForm = function (setting) {
     o.dicForm.find('input[name="file"]').val(''); //附件清空
 
     dialog.open({modId: o.dialogId, width: 400, html: o.dicForm});
+    o.dicForm.find('input[name="title"]').focus();
 };
 
 //添加字典
