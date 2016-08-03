@@ -44,7 +44,7 @@ switch ($act) {
                         foreach ($zipArr as $v) {
                             if (empty($v['en']) || empty($v['ch'])) {
                                 $r['code'] = 4;
-                                $r['msg'] = 'json数据不完整，必须有en|ch属性，请检查压缩文件内容';
+                                $r['msg'] = 'json数据不完整，必须有en|ch属性，请检查压缩文件内容: ' . json_encode($v, JSON_UNESCAPED_UNICODE);
                                 break;
                             } else {
                                 //TODO: 获取词汇量等信息
@@ -69,7 +69,7 @@ switch ($act) {
         if ($r['code'] === 0) {
             //写入json文件
             if (!empty($attachArr)) {
-                file_put_contents($listPath . $dic['id'] . '.json', json_encode($attachArr));
+                file_put_contents($listPath . $dic['id'] . '.json', json_encode($attachArr, JSON_UNESCAPED_UNICODE));
             }
 
             //有附件时更新数量和进度
@@ -95,7 +95,7 @@ switch ($act) {
                     }
                 }
             }
-            file_put_contents($dirPath . 'dictionaries.json', json_encode($dictionaries));
+            file_put_contents($dirPath . 'dictionaries.json', json_encode($dictionaries, JSON_UNESCAPED_UNICODE));
 
             //返回词典信息
             $r['isNew'] = $isNew;
@@ -123,7 +123,7 @@ switch ($act) {
             }
         }
         if($r['code'] === 0) {
-            file_put_contents($dirPath . 'dictionaries.json', json_encode($dictionaries));
+            file_put_contents($dirPath . 'dictionaries.json', json_encode($dictionaries, JSON_UNESCAPED_UNICODE));
         }
         echo json_encode($r);
         die;
