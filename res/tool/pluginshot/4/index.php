@@ -108,18 +108,24 @@ switch ($act) {
 
     case 'delDic':
         //删除词典
+        $r = array('code' => 1, 'msg' => '操作失败');
         $id = $_GET['id'];
         foreach ($dictionaries as $key => $oldDic) {
-            if ($oldDic['id'] == $dic['id']) {
-                if (empty($attachArr)) {
-                    $dic['total'] = $oldDic['total'];
-                    $dic['finish'] = $oldDic['finish'];
-                    $dic['progress'] = $oldDic['progress'];
+            if ($oldDic['id'] == $id) {
+                unset($dictionaries[$key]);
+                $jsonFilePath = $listPath . $id .'.json';
+                if(file_exists($jsonFilePath)) {
+                    unlink($jsonFilePath);
                 }
-                $dictionaries[$key] = $dic;
+                $r['code'] = 0;
+                $r['msg'] = '删除成功';
                 break;
             }
         }
+        if($r['code'] === 0) {
+            file_put_contents($dirPath . 'dictionaries.json', json_encode($dictionaries));
+        }
+        echo json_encode($r);
         die;
 
     default:
