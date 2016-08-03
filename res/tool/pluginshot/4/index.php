@@ -135,7 +135,7 @@ switch ($act) {
         $tplArray['sub_twig'] = "{$cat_name}/pluginshot/{$page_id}/";
         $tplArray['res_path'] = $container['WEB_ROOT'] . "res/{$cat_name}/pluginshot/{$page_id}/";
         $tplArray['dictionaries'] = $dictionaries;
-        echo $container['twig']->render("{$cat_name}/pluginshot/{$page_id}/index.html", $tplArray);
+        echo $container['twig']->render("{$cat_name}/pluginshot/{$page_id}/dictionaries.html", $tplArray);
         break;
 }
 
