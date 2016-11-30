@@ -2,7 +2,15 @@
 <h3>最简单语句</h3>
 <pre>window.open ('page.html');</pre>
 <h3>完整代码</h3>
-<pre>window.open('test.html', 'newWindow', 'height=100,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no, location=no,status=no');</pre>
+<pre>window.open('test.html', 'newWindow', 'height=200,width=400,top=0,left=0,toolbar=no,menubar=no,scrollbars=no,resizable=no, location=no,status=no');</pre>
+<h3>新窗口居中</h3>
+<pre>window.open('test.html', 'newWindow', 'height=200,width=400,top=' + (window.screen.availHeight - 300)/2 + ',left=' + (window.screen.availWidth - 500)/2 + ',toolbar=no,menubar=no,scrollbars=no,resizable=no, location=no,status=no');</pre>
+<p class="note">新窗口的宽高均比参数中的值要大，因此计算 top 和 left 值的时候多减100。</p>
+<h3>老窗口操作新窗口</h3>
+<pre>var newWindow = window.open('test.php', 'newWindow', 'height=200,width=400,top=' + (window.screen.availHeight - 300)/2 + ',left=' + (window.screen.availWidth - 500)/2 + ',toolbar=no,menubar=no,scrollbars=no,resizable=no, location=no,status=no');
+newWindow.alert('From Daddy: Hi, baby!');</pre>
+<h3>新窗口操作老窗口</h3>
+<pre>window.opener.alert('From baby: Hi, Daddy!');</pre>
 <h3>属性解读：</h3>
 <ul>
 	<li>window.open 弹出新窗口的命令；</li>
