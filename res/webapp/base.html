@@ -7,6 +7,7 @@
         <title>{{title}}</title>
         <link rel="shortcut icon" href="{{WEB_ROOT}}favicon.ico">
         {% block css %}<link type="text/css" rel="stylesheet" href="{{CSS_PATH}}global.css"/>{% endblock %}
+        {% block cssExtend %}{% endblock %}
         {% block script %}
             <script src="{{JS_PATH}}jquery/jquery-2.1.3.min.js"></script>
             <script src="{{JS_PATH}}main.js?{{version}}"></script>
@@ -26,6 +27,7 @@
         {% block scriptFooter %}
             <script>mainJS.init();</script>
         {% endblock %}
+        {% block scriptExtend %}{% endblock %}
     </body>
 </html>
 {% endspaceless %}

@@ -2355,11 +2355,18 @@ hr {
 .form-a li {
   margin-bottom: 15px;
 }
-.table1 {
+.form-a .tip {
+  margin-top: 10px;
+  color: #999999;
+}
+.table1,
+.table-a {
   margin-bottom: 15px;
 }
 .table1 th,
-.table1 td {
+.table-a th,
+.table1 td,
+.table-a td {
   border: solid 1px #ccc;
   line-height: 18px;
   padding: 5px 10px;
@@ -2367,13 +2374,17 @@ hr {
   vertical-align: top;
 }
 .table1 thead th,
-.table1 thead td {
+.table-a thead th,
+.table1 thead td,
+.table-a thead td {
   background: #eee;
   font-weight: bold;
   white-space: nowrap;
 }
 .table1.middle th,
-.table1.middle td {
+.table-a.middle th,
+.table1.middle td,
+.table-a.middle td {
   vertical-align: middle;
 }
 .table-b th,
@@ -2761,7 +2772,7 @@ h1 {
   visibility: hidden;
   display: block;
 }
-.plugin-tab .tab-tags li {
+.plugin-tab .tab-tags a {
   margin: 0 10px 10px 0;
   display: inline-block;
   padding: 0 10px;
@@ -2773,11 +2784,12 @@ h1 {
   -ms-border-radius: 3px;
   border-radius: 3px;
 }
-.plugin-tab .tab-tags li:hover,
+.plugin-tab .tab-tags a:hover,
 .plugin-tab .tab-tags .active {
   background: #b25501;
   color: #fff;
   font-weight: normal;
+  text-decoration: none;
 }
 .summary,
 .download {
@@ -2840,7 +2852,7 @@ h1 {
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  background: url('../images/transparent.gif?468574891');
+  background: url('../images/transparent.gif?482312480');
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;

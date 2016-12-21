@@ -1,5 +1,7 @@
 {% extends 'webapp/base.html' %}
 
+{% block cssExtend %}<link type="text/css" rel="stylesheet" href="{{res_path}}style.css?{{version}}" />{% endblock %}
+
 {% block main %}
 <div class="panel plugin">
     <h1>选择词典</h1>
@@ -7,11 +9,11 @@
         <table class="table-a middle" width="100%" id="dic-list">
             <thead>
             <tr>
-                <th width="30%">标题</th>
+                <th width="25%">标题</th>
                 <th>总词汇量</th>
                 <th>已完成</th>
                 <th>完成度</th>
-                <th width="25%">操作</th>
+                <th width="30%">操作</th>
             </tr>
             </thead>
             <tbody id="dic-list-body">
@@ -50,11 +52,14 @@
         </div>
     </section>
 
-    <link type="text/css" rel="stylesheet" href="{{res_path}}style.css?{{version}}" />
+
+</div>
+{% endblock %}
+
+{% block scriptExtend %}
     <script>
         var pageData = {"res_path": "{{res_path}}"};
     </script>
     <script src="{{JS_PATH}}jquery.form.js?{{version}}"></script>
-    <script src="{{res_path}}dictionaries.js?{{version}}"></script>
-</div>
+    <script src="{{res_path}}index.js?{{version}}"></script>
 {% endblock %}

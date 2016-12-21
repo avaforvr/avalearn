@@ -1,8 +1,26 @@
 /*词典列表*/
-.table1 th, .table1 td {
+.table-a th, .table-a td {
     padding: 10px;
+}
+.table-a td {
+    font-size: 14px;
 }
 /*添加、编辑词典表单 */
 #dic-form {
     padding: 30px;
+}
+
+/*背诵*/
+#recite-pannel {
+    background: #f7f7f7;
+    border: solid 1px #ccc;
+    text-align: center;
+    padding: 80px 20px;
+    font: normal 36px/1.5 'Microsoft YaHei', sans-serif;
+}
+#recite-pannel .en {
+    font-size: 2em;
+}
+#recite-pannel .ph {
+    margin: 30px 0;
 }

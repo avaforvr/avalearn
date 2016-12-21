@@ -1,0 +1,27 @@
+{% extends 'webapp/base.html' %}
+
+{% block cssExtend %}<link type="text/css" rel="stylesheet" href="{{res_path}}style.css?{{version}}" />{% endblock %}
+
+{% block main %}
+<div class="panel plugin">
+    <h1>{{ dic.title }}</h1>
+    <section class="plugin-panel">
+        <div class="tab plugin-tab relative">
+            <ul class="tab-tags">
+                <a href="{{ res_path }}recite.php?id=1&status=0" class="tab-tag{{ status==0 ? ' active' : '' }}">未背诵单词</a>
+                <a href="{{ res_path }}recite.php?id=1&status=2" class="tab-tag{{ status==2 ? ' active' : '' }}">已背诵，未默写</a>
+                <a href="{{ res_path }}recite.php?id=1&status=3" class="tab-tag{{ status==3 ? ' active' : '' }}">难记单词</a>
+            </ul>
+        </div>
+        <div id="recite-pannel">
+            {% for word in words %}
+            <div class="item{{ loop.first ? ' show' : ' hide' }}">
+                <p class="en">{{ word.en }}</p>
+                <p class="ph">[{{ word.ph }}]</p>
+                <p class="ch">{{ word.ch }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}

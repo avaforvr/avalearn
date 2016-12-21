@@ -11,7 +11,8 @@
     </td>
     <td>
         {% if dic.total > 0 %}
-        <a class="btn btn-mini mr2" href="{{res_path}}dictation.php?id={{dic.id}}">背单词</a>
+            <a class="btn btn-mini mr2" href="{{res_path}}recite.php?id={{dic.id}}">背诵</a>
+            <a class="btn btn-mini mr2" href="{{res_path}}dictation.php?id={{dic.id}}">默写</a>
         {% endif %}
         <button class="btn-white btn-mini mr2 btn-edit-dic">编辑</button>
         <button class="btn-white btn-mini btn-del-pic">删除</button>
