@@ -16,13 +16,13 @@
     </head>
 
     <body>
-        {% include 'webapp/common/header.html' %}
+        {% block header %}{% include 'webapp/common/header.html' %}{% endblock %}
 
         <div class="container">
             {% block main %}{{main | raw}}{% endblock %}
         </div>
 
-        {% include 'webapp/common/footer.html' %}
+        {% block footer %}{% include 'webapp/common/footer.html' %}{% endblock %}
 
         {% block scriptFooter %}
             <script>mainJS.init();</script>

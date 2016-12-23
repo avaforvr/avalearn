@@ -37,9 +37,10 @@ switch ($act) {
         $tplArray['dic'] = $dic;
 
         //100个未默写单词数组
-        $tplArray['words'] = getWords($list, $status, 100);
+        $tplArray['words'] = getWords($list, $status, 5);
 
         //其它变量
+        $tplArray['title'] = '背诵' . $dic['title'];
         $tplArray['status'] = $status;
 
         echo $container['twig']->render("{$cat_name}/pluginshot/{$page_id}/recite.html", $tplArray);

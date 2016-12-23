@@ -6,7 +6,7 @@ function getWords($list, $status, $limit) {
         if($word['ok'] == $status) {
             $words[] = $word;
             $idx ++;
-            if($idx == 100) {
+            if($idx == $limit) {
                 break;
             }
         }
