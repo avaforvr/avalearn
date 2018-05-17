@@ -1,0 +1,24 @@
+.progress {
+    &, &>em {
+        display: inline-block;
+        height: 15px;
+        overflow: hidden;
+    }
+    & {
+        background: #ddd;
+        width: 120px;
+    }
+    &>em {
+        background: lighten(@green, 10%);
+    }
+}
+.progress-group {
+    .progress, .num {
+        vertical-align: text-top;
+    }
+    .num {
+        margin-left: 8px;
+        display: inline-block;
+        line-height: 15px;
+    }
+}

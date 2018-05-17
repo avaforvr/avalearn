@@ -1,0 +1,57 @@
+{% extends 'webapp/base.html' %}
+
+{% block main %}
+<div class="panel plugin">
+    <h1>{{ dic.title }}</h1>
+    <form id="dictation-form" action="">
+        <div class="dic-total-wrap" title="待检查/已成功/未成功/总单词数">
+            <i class="fa fa-pencil" aria-hidden="true"></i><strong id="dic-check">0</strong>
+            <i class="ml1 fa fa-check" aria-hidden="true"></i><strong id="dic-suc">0</strong>
+            <i class="ml1 fa fa-times" aria-hidden="true"></i><strong id="dic-fail">0</strong>
+            <i class="ml1 fa fa-book" aria-hidden="true"></i><strong id="dic-total">0</strong>
+        </div>
+
+        <table class="table-a" width="100%">
+            <thead>
+            <tr>
+                <th width="50%" class="text-vright">中文</th>
+                <th>英文</th>
+                <th>提示</th>
+            </tr>
+            </thead>
+            <tbody id="dic-list">
+                <tr>
+                    <td class="td-chs">adj.方便的；便利的</td>
+                    <td class="td-input"><input id="convenient" type="text" data-value="convenient" autocomplete="off"></td>
+                    <td class="td-tip"></td>
+                </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3" class="dic-options text-right">
+                    <button id="btnBatchHint" type="button" class="btn mr4">批量提示</button>
+                    <button id="btnCheck" type="submit" class="btn">检查拼写</button>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </form>
+
+    <table class="table-a" width="100%">
+        <thead>
+        <tr>
+            <th width="50%" class="text-right">中文</th>
+            <th>英文</th>
+        </tr>
+        </thead>
+        <tbody id="dic-suc-list"></tbody>
+        <tfoot>
+        <tr>
+            <td colspan="3" class="dic-options text-right">
+                <button id="btnRemoveSuc" type="submit" class="btn">从列表中移除听写正确的单词</button>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+{% endblock %}

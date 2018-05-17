@@ -10,6 +10,9 @@
     font: bold 14px/18px @font-family-verdana;
     cursor: pointer;
     .border-radius(3px);
+    .user-select(none);
+    -webkit-appearance: none;
+    -moz-appearance: none;
     &[disabled],
     &.disabled {
         cursor: default;
@@ -21,18 +24,21 @@
     .btn;
     background: #fff;
     border: solid 1px #ccc;
-    color: @gray-dark;
+    color: @gray-dark !important;
     font: normal 14px/18px @font-family-verdana;
 
 }
+.btn-mini {
+    padding: 5px 10px;
+}
 .input {
     vertical-align: top;
-    padding: 10px;
+    padding: 6px 10px;
     border: solid 1px #CCC;
     background: #F7F7F7;
     border-color: #ddd #aaa #aaa #ddd;
     line-height: 20px;
-    .border-radius(3px);
+.border-radius(3px);
 }
 .form-a {
     input[type="text"], input[type="password"], textarea, select {
@@ -40,9 +46,14 @@
         width: 100%;
     }
     textarea {
+        padding: 10px;
         height: 100px;
     }
     li {
         margin-bottom: 15px;
+    }
+    .tip {
+        margin-top: 10px;
+        color: @gray-light;
     }
 }

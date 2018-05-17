@@ -1,0 +1,21 @@
+{% spaceless %}
+<tr id="dic-{{dic.id}}" data-id="{{dic.id}}">
+    <td>{{dic.title}}</td>
+    <td>{{dic.total}}</td>
+    <td>{{dic.finish}}</td>
+    <td>
+        <div class="progress-group">
+            <span class="progress"><em style="width: {{dic.progress}}%"></em></span>
+            <span class="num">{{dic.progress}}%</span>
+        </div>
+    </td>
+    <td>
+        {% if dic.total > 0 %}
+            <a class="btn btn-mini mr2" href="{{res_path}}recite.php?id={{dic.id}}">背诵</a>
+            <a class="btn btn-mini mr2" href="{{res_path}}dictation.php?id={{dic.id}}">默写</a>
+        {% endif %}
+        <button class="btn-white btn-mini mr2 btn-edit-dic">编辑</button>
+        <button class="btn-white btn-mini btn-del-pic">删除</button>
+    </td>
+</tr>
+{% endspaceless %}

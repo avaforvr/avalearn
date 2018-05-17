@@ -1,0 +1,67 @@
+#dialogOverlay {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 9000;
+    div {
+        width: 100%;
+        height: 100%;
+        background: #000;
+        .opacity(0.1);
+    }
+}
+
+.dialog {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9001;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background:url('../images/transparent.gif@{version}');
+    .box-sizing();
+    padding: 10px;
+}
+.dialog-wrapper {
+    position: relative;
+    z-index: 1;
+    zoom: 1;
+    max-width: 300px;
+    margin: 0 auto;
+}
+.dialog-content {
+    position: relative;
+    width: 100%;
+    overflow: auto;;
+    background-color: #fff;
+    border: solid 5px #e5e5e5;
+    .border-radius(5px);
+    .box-sizing();
+    min-height: 38px;
+}
+
+.dialog-close {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 20px;
+    padding: 8px 11px;
+    color: @border-color;
+    line-height: 1;
+    text-align: right;
+}
+
+//通用alert提示
+.dialog-alert-tip {
+    padding: 30px;
+    .tip {
+        margin-bottom: 15px;
+        color: @gray;
+    }
+}

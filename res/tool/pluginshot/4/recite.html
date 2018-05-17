@@ -1,0 +1,58 @@
+{% extends 'webapp/base.html' %}
+
+{% block cssExtend %}<link type="text/css" rel="stylesheet" href="{{res_path}}style.css?{{version}}" />{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block main %}
+<div class="panel plugin mt4">
+    <section class="recite-top-bar clearfix"onselectstart="return false">
+        <ul class="tab-tags-a fl">
+            <a href="{{ res_path }}recite.php?id=1&status=0" class="{{ status==0 ? 'active' : '' }}">未背诵单词</a>
+            <a href="{{ res_path }}recite.php?id=1&status=2" class="{{ status==2 ? 'active' : '' }}">已背诵，未默写</a>
+            <a href="{{ res_path }}recite.php?id=1&status=3" class="{{ status==3 ? 'active' : '' }}">难记单词</a>
+            <a href="{{ res_path }}index.php" class="">返回列表</a>
+        </ul>
+
+        {% if words|length %}
+            <div class="fr mb4">
+                <button id="btn-pre" class="btn-white"><i class="fa fa-angle-left" aria-hidden="true"></i>&nbsp;上一个</button>
+                <button id="btn-next" class="btn-white ml2">下一个&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i></button>
+            </div>
+            <div id="recite-progress" class="text-center note overflow">1/{{ words|length }}</div>
+        {% endif %}
+    </section>
+
+    <section class="plugin-panel">
+        <div id="recite-pannel" class="clear">
+            {% for word in words %}
+                <div class="{{ loop.first ? '' : ' hide' }}">
+                    <p class="en">{{ word.en }}</p>
+                    <p class="ph">[{{ word.ph }}]</p>
+                    <p class="ch">{{ word.ch|nl2br }}</p>
+                </div>
+            {% endfor %}
+
+            <div class="{{ words|length == 0 ? '' : ' hide' }}">
+                <i class="fa fa-thumbs-o-up mr2" aria-hidden="true"></i>木有啦~
+            </div>
+        </div>
+        {% if words|length %}
+            <div class="recite-options text-right mt4">
+                <button id="btn-reset" class="btn ml2" type="button"><i class="fa fa-undo" aria-hidden="true"></i>&nbsp;重置</button>
+                <button id="btn-save" class="btn ml2" type="button"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;保存进度</button>
+            </div>
+        {% endif %}
+    </section>
+</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block scriptExtend %}
+    <script>
+        var pageData = {"res_path": "{{res_path}}"};
+    </script>
+    <script src="{{JS_PATH}}jquery.form.js?{{version}}"></script>
+    <script src="{{res_path}}recite.js?{{version}}"></script>
+{% endblock %}
