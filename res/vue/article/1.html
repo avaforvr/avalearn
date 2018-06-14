@@ -1,0 +1,45 @@
+<h1>搭建项目</h1>
+
+<h2>安装工具</h2>
+<p>第一步：安装 node 和 npm。</p>
+<p>第二步：执行下面的命令安装 vue-cli（VUE的脚手架工具）</p>
+<pre>npm install -g vue-cli</pre>
+
+<h2>用 vue-cli 构建一个项目</h2>
+<p>进入项目所在文件夹，执行下面的命令：</p>
+<pre>vue init webpack demo-project</pre>
+执行过程中会出现以下问题：
+<pre>? Project name (demo-project)
+? Project description (A Vue.js project)
+? Author (xx &lt;xx@xx.com&gt;)</pre>
+<p>项目名、项目描述、作者，直接三个回车。</p>
+<pre>? Vue build (Use arrow keys)
+❯ Runtime + Compiler: recommended for most users
+  Runtime-only: about 6KB lighter min+gzip, but templates (or any Vue-specific HTML) are ONLY allowed in .vue files -
+render functions are required elsewhere</pre>
+<p>是否需要安装编译器，回车</p>
+<pre>? Use ESLint to lint your code? (Y/n)</pre>
+<p>是否需要使用 ESLint 来检查你的代码，需要，回车。</p>
+<pre>? Pick an ESLint preset (Use arrow keys)
+❯ Standard (https://github.com/feross/standard)
+  Airbnb (https://github.com/airbnb/javascript)
+  none (configure it yourself)</pre>
+<p>需要使用哪种风格来检查代码，回车选择Standard</p>
+<pre>? Setup unit tests with Karma + Mocha? (Y/n)
+? Setup e2e tests with Nightwatch? (Y/n)</pre>
+<p>这两个问题是关于测试功能的，不需要，输入n，回车。</p>
+<p>等待构建完成。</p>
+
+<p class="note">PS：一开始使用 PowerCmd 执行，出现? Project name (demo-project) 问题后卡住了，换成 git-bash.exe，顺利执行。</p>
+
+<h2>项目初始化</h2>
+<pre>cd demo-project
+npm install
+npm run dev</pre>
+<p>其中 <span class="highlight">npm run dev</span> 是测试运行项目，执行后可以通过 <span class="highlight">http://localhost:8080/</span> 访问示例页面，项目初始化完成。</p>
+
+<h2>修改ESLint规则，使用4个空格缩进</h2>
+<p>修改项目根目录下的 <span class="highlight">.eslintrc.js</span> 文件，在 <span class="highlight">rules</span> 中添加：</p>
+<pre>'indent': ['error', 4],
+'vue/html-indent': ['error', 4],
+'vue/script-indent': ['error', 4]</pre>

@@ -1,4 +1,15 @@
 {
+    "vue": {
+        "title": "VUE",
+        "article": [
+            {
+                "group": "other",
+                "list": [
+                    {"pageId": "1", "title": "搭建项目"}
+                ]
+            }
+        ]
+    },
     "css": {
         "title": "CSS",
         "pluginshot": [
