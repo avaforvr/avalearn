@@ -1,0 +1,6 @@
+<h1>遇到的问题</h1>
+
+<h3>控制台出现 <code>property 'c' of undefined</code> 错误，但是页面渲染正确。</h3>
+<p>模板中绑定数据 <code>&#123;&#123; a.b.c &#125;&#125;</code>，对象 a 初始定义为 <code>&#123;&#125;</code>，created 钩子中通过ajax异步获取并赋值。</p>
+<p>绑定数据时 <code>a.b</code> 为 undefined，解析<code>a.b.c</code> 就会出现报错 <code>TypeError: Cannot read property 'c' of undefined</code>。</p>
+<p>在外层的标签上添加一个 <code>v-if="a.b"</code> 即可解决。</p>

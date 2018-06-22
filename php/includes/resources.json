@@ -5,7 +5,8 @@
             {
                 "group": "other",
                 "list": [
-                    {"pageId": "1", "title": "搭建项目"}
+                    {"pageId": "1", "title": "搭建项目"},
+                    {"pageId": "2", "title": "遇到的问题"}
                 ]
             }
         ]
