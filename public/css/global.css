@@ -2152,6 +2152,9 @@ hr {
   -ms-border-radius: 3px;
   border-radius: 3px;
 }
+.input.error {
+  border-color: #dd0000;
+}
 .form-a input[type="text"],
 .form-a input[type="password"],
 .form-a textarea,
@@ -2167,6 +2170,12 @@ hr {
   -ms-border-radius: 3px;
   border-radius: 3px;
   width: 100%;
+}
+.form-a input[type="text"].error,
+.form-a input[type="password"].error,
+.form-a textarea.error,
+.form-a select.error {
+  border-color: #dd0000;
 }
 .form-a textarea {
   padding: 10px;
@@ -2873,7 +2882,7 @@ h1 {
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  background: url('../images/transparent.gif?529662431');
+  background: url('../images/transparent.gif?532003627');
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;

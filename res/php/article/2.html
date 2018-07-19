@@ -1,0 +1,7 @@
+<h1>常用SQL语句</h1>
+<p>删除用户</p>
+<pre>DELETE FROM users WHERE email='dfdfdf2@tetx.com';</pre>
+<p>根据虚拟goodsId查真实goodsId</p>
+<pre>SELECT goods_id FROM virtual_goods WHERE virtual_goods_id IN ('1000466') AND project_name='vova'</pre>
+<p>将指定商品下架(goods_id必须是上一条sql查出来的真实goodsId)</p>
+<pre>UPDATE `goods` SET is_on_sale=0 WHERE goods_id='467';</pre>

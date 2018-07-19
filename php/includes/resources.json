@@ -131,7 +131,8 @@
             {
               "group": "other",
               "list": [
-                  {"pageId": "1", "title": "PHP 代码备份"}
+                  {"pageId": "1", "title": "PHP 代码备份"},
+                  {"pageId": "2", "title": "常用SQL语句"}
               ]
             }
         ]
@@ -158,6 +159,7 @@
                     {"pageId": "7", "title": "seajs + lesscss"},
                     {"pageId": "8", "title": "Sublime 使用笔记"},
                     {"pageId": "9", "title": "常用正则表达式"},
+                    {"pageId": "13", "title": "常用CMD命令"},
                     {"pageId": "12", "title": "Fiddler在线调试JS&CSS"}
                 ]
             }
@@ -169,7 +171,8 @@
             {"pageId": "1", "title": "HTML转义"},
             {"pageId": "2", "title": "贝塞尔曲线设计器", "isThirdParty": 1},
             {"pageId": "3", "title": "百词斩单词默写"},
-            {"pageId": "4", "title": "单词默写", "isPhp": 1}
+            {"pageId": "4", "title": "单词默写", "isPhp": 1},
+            {"pageId": "5", "title": "生成批量修改文件名的命令"}
         ]
     }
 }

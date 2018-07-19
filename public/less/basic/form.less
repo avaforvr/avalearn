@@ -26,7 +26,6 @@
     border: solid 1px #ccc;
     color: @gray-dark !important;
     font: normal 14px/18px @font-family-verdana;
-
 }
 .btn-mini {
     padding: 5px 10px;
@@ -38,7 +37,10 @@
     background: #F7F7F7;
     border-color: #ddd #aaa #aaa #ddd;
     line-height: 20px;
-.border-radius(3px);
+    .border-radius(3px);
+    &.error {
+        border-color: @red;
+    }
 }
 .form-a {
     input[type="text"], input[type="password"], textarea, select {
