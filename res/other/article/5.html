@@ -7,14 +7,14 @@
 git config --global user.name "yywang1"</pre>
 
 <h3>提交修改文件</h3>
-<pre>git status                                       # 查看修改了哪些文件
-git diff / git diff file                          # 查看修改代码
-q                                                     # 退出diff
-git commit -m 'files changed' -a       #提交修改</pre>
+<pre>git status                          # 查看修改了哪些文件
+git diff / git diff file            # 查看修改代码
+q                                   # 退出diff
+git commit -m 'files changed' -a    #提交修改</pre>
 
 <h3>删除文件</h3>
-<pre>git rm [path]/* -r                                    #批量删除path目录下的文件
-git commit -a -m 'remove files in **'       #提交修改</pre>
+<pre>git rm [path]/* -r                  #批量删除path目录下的文件
+git commit -a -m 'remove files in **'    #提交修改</pre>
 
 <h3>分支操作</h3>
 <table class="table1" width="100%">
@@ -186,19 +186,19 @@ git commit -a -m 'remove files in **'       #提交修改</pre>
             <td>删除远程仓库</td>
         </tr>
         <tr>
-            <td>git push [remoteName] [localBranchName]</td>
+            <td>git push origin [localBranchName]</td>
             <td>将分支推送到远程仓库，如将master分支推送到origin远程仓库：<br>git push origin master</td>
         </tr>
         <tr>
-            <td>git push [remoteName] [localBranchName]:[remoteBranchName]</td>
+            <td>git push origin [localBranchName]:[remoteBranchName]</td>
             <td>将本地某分支推送到远程仓库某分支，如提交本地test分支作为远程的test分支：<br>git push origin test:test</td>
         </tr>
         <tr>
-            <td>git pull [remoteName] [localBranchName]</td>
+            <td>git pull origin [localBranchName]</td>
             <td>从远程获取最新版本并merge到本地</td>
         </tr>
         <tr>
-            <td>git fetch [remoteName] [localBranchName]</td>
+            <td>git fetch origin [localBranchName]</td>
             <td>从远程获取最新版本到本地，不会自动merge</td>
         </tr>
         <tr>
@@ -206,8 +206,12 @@ git commit -a -m 'remove files in **'       #提交修改</pre>
             <td>查看远程分支</td>
         </tr>
         <tr>
-            <td>git push -f [remoteName] [localBranchName]</td>
+            <td>git push -f origin [localBranchName]</td>
             <td>将分支强制推送到远程仓库，利用强覆盖方式用你本地的代码替代git仓库内的内容</td>
+        </tr>
+        <tr>
+            <td>git push origin --delete [remoteBranchName]</td>
+            <td>删除远程分支如：<br>git push origin --delete feature/1157-import</td>
         </tr>
     </tbody>
 </table>
@@ -290,11 +294,11 @@ templates/*
 <p>示例：books项目中的.gitignore文件</p>
 <pre># 以'#' 开始的行，被视为注释.
 
-#过滤数据库文件、sln解决方案文件、配置文件  
-*.mdb  
-*.ldb  
-*.sln  
-*.config 
+#过滤数据库文件、sln解决方案文件、配置文件
+*.mdb
+*.ldb
+*.sln
+*.config
 
 # 忽略所有缓存文件
 templates/caches/*
