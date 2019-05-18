@@ -1,4 +1,4 @@
-<?
+<?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/php/includes/global.init.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . '/php/includes/download.class.php';
 

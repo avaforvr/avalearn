@@ -1,4 +1,4 @@
-<?
+<?php
 if(isset($_REQUEST['cat_name'])) {
     $cat_name = isset($_REQUEST['cat_name']) && $_REQUEST['cat_name'] ? $_REQUEST['cat_name'] : '';
     $page_id = isset($_REQUEST['page_id']) && $_REQUEST['page_id'] ? $_REQUEST['page_id'] : 0;

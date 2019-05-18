@@ -1,4 +1,4 @@
-<?
+<?php
 include_once $_SERVER['DOCUMENT_ROOT'] . '/php/includes/global.init.php';
 
 $act = isset($_REQUEST['act']) && $_REQUEST['act'] ? $_REQUEST['act'] : '';

@@ -4,8 +4,8 @@
 
     {# 第一个textlist不加边框 #}
     {% set isFirstList = true %}
-	
-	{% if cat['article']|length > 0 %}
+
+	{% if cat['article'] %}
         {% for group in cat['article'] %}
             <ul class="textlist{{isFirstList ? ' first' : ''}}">
                 {% for page in group['list'] %}
@@ -39,7 +39,7 @@
         {% endfor %}
     {% endif %}
 
-    {% if cat['plugin']|length > 0 %}
+    {% if cat['plugin'] %}
         <ul class="textlist{{isFirstList ? ' first' : ''}}">
             {% for page in cat['plugin'] %}
                 <li>
@@ -55,7 +55,7 @@
         {% set isFirstList = false %}
     {% endif %}
 
-    {% if cat['pluginshot']|length > 0 %}
+    {% if cat['pluginshot'] %}
         <ul class="imglist clearfix{{isFirstList ? ' first' : ''}}">
             {% for index, page in cat['pluginshot'] %}
                 <li>
@@ -78,7 +78,7 @@
         </ul>
         {% set isFirstList = false %}
     {% endif %}
-	
+
 </section>
 {% endfor %}
 

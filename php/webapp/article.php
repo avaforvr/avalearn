@@ -1,4 +1,4 @@
-<?
+<?php
 include_once dirname(__DIR__) . '/includes/global.init.php';
 include_once dirname(__DIR__) . '/webapp/snippets/pageInfo.php';
 

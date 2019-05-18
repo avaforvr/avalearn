@@ -1,4 +1,4 @@
-<?
+<?php
 function getWords($list, $status, $limit) {
     $words = array();
     $idx = 0;
