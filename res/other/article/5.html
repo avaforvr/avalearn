@@ -90,6 +90,10 @@ git commit -a -m 'remove files in **'    #提交修改</pre>
             <td>删除本地所有tag</td>
         </tr>
         <tr>
+            <td>git ls-remote | grep -v "\^"</td>
+            <td>查看远程所有tag</td>
+        </tr>
+        <tr>
             <td>git tag -l | xargs -n 1 git push --delete origin</td>
             <td>删除远程所有tag</td>
         </tr>

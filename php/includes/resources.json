@@ -93,7 +93,8 @@
                     {"pageId": "9", "title": "JS页面跳转"},
                     {"pageId": "10", "title": "JavaScript模块编程之写法"},
                     {"pageId": "11", "title": "JS加载完成后执行回调函数"},
-                    {"pageId": "12", "title": "原生js添加移除class"}
+                    {"pageId": "12", "title": "原生js添加移除class"},
+                    {"pageId": "13", "title": "TypeScript 复习提纲"}
                 ]
             }
         ],

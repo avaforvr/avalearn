@@ -1,0 +1,50 @@
+<h1>TypeScript 复习提纲</h1>
+
+<section class="mb4">
+    <h4>获取文档中的标题</h4>
+    <textarea class="input" style="width: 100%; height: 80px;">Array.prototype.map.call(document.querySelectorAll('.post-content h1'), function(elem) {
+    return '<li>' + elem.innerHTML + '</li>'
+}).join('\n')</textarea>
+</section>
+
+<section class="mb4">
+    <h2>基础类型</h2>
+    <ul>
+        <li>布尔值</li>
+        <li>数字</li>
+        <li>字符串</li>
+        <li>数组</li>
+        <li>元组 Tuple</li>
+        <li>枚举</li>
+        <li>Any</li>
+        <li>Void</li>
+        <li>Null 和 Undefined</li>
+        <li>Never</li>
+        <li>Object</li>
+        <li>类型断言</li>
+    </ul>
+</section>
+
+<section>
+    <h2>变量声明</h2>
+    <ul>
+        <li>var/let/const</li>
+        <li>解构</li>
+    </ul>
+</section>
+
+<section>
+    <h2>接口</h2>
+    <ul>
+        <li>接口的作用</li>
+        <li>可选属性</li>
+        <li>只读属性</li>
+        <li>额外的属性检查</li>
+        <li>函数类型</li>
+        <li>可索引的类型</li>
+        <li class="wrong">类类型（TODO）</li>
+        <li>继承接口</li>
+        <li>混合类型</li>
+        <li>接口继承类</li>
+    </ul>
+</section>
