@@ -252,6 +252,48 @@ git commit -a -m 'remove files in **'    #提交修改</pre>
     </tbody>
 </table>
 
+<h3>git subtree</h3>
+<table class="table1" width="100%">
+    <thead>
+        <tr>
+            <td width="30%">命令</td>
+            <td>说明</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>git subtree add --prefix=[localPath] [repository] [branch] --squash</td>
+            <td>拉取 vv-util 仓库代码并存放到本地 项目/vendor/vv-util 目录
+                <pre class="mt1">git subtree add --prefix=vendor/vv-util https://g.gitvv.com/frontend/vv-util.git master --squash</pre>
+                --squash 表示不保留提交记录，如果不加 -- squash，vv-util仓库的所有提交记录都会一起拉取到新项目中
+            </td>
+        </tr>
+        <tr>
+            <td>git subtree pull --prefix=[localPath] [repository] [branch] --squash</td>
+            <td>更新 vv-util 仓库代码</td>
+        </tr>
+        <tr>
+            <td>git subtree push --prefix=[localPath] [repository] [branch]</td>
+            <td>推送 vv-util 仓库代码</td>
+        </tr>
+        <tr>
+            <td>/</td>
+            <td>
+                简化写法
+                <pre class="mt1">git remote add [name] [repository]
+git subtree add --prefix=[localPath] [name] [branch] --squash
+git subtree pull --prefix=[localPath] [name] [branch] --squash
+git subtree push --prefix=[localPath] [name] [branch]</pre>
+                vv-util 示例
+                <pre class="mt1">git remote add -f vv-util https://g.gitvv.com/frontend/vv-util.git
+git subtree add --prefix=vendor/vv-util vv-util master --squash
+git subtree pull --prefix=vendor/vv-util vv-util master --squash
+git subtree push --prefix=vendor/vv-util vv-util master</pre>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
 <h3>其它命令</h3>
 <table class="table1" width="100%">
     <thead>
@@ -262,8 +304,8 @@ git commit -a -m 'remove files in **'    #提交修改</pre>
     </thead>
     <tbody>
         <tr>
-            <td>clear</td>
-            <td>清屏 <span class="note">(注：cmd.exe中清屏指令是 cls)</span></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr>
             <td></td>
