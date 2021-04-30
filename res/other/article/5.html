@@ -171,11 +171,11 @@ git commit -a -m 'remove files in **'    #提交修改</pre>
         </tr>
         <tr>
             <td>git remote</td>
-            <td>列出已经存在的远程分支</td>
+            <td>列出已经存在的远程仓库名</td>
         </tr>
         <tr>
             <td>git remote -v</td>
-            <td>列出远程分支的详细信息，在每一个名字后面列出其远程url</td>
+            <td>列出已经存在的远程仓库名和仓库url</td>
         </tr>
         <tr>
             <td>git remote rename origin orig</td>
@@ -420,6 +420,10 @@ sslVerify = false</pre></td>
                 <td>.git/config文件中添加了两行代码：
             <pre>[http]
 postBuffer = 524288000</pre></td>
+            </tr>
+            <tr>
+                <td>执行git push时报错：error: failed to push some refs to 'https://xxx.git'</td>
+                <td>远程库与本地库不一致造成的，执行 <pre>git pull --rebase origin master</pre></td>
             </tr>
             <tr>
                 <td></td>
