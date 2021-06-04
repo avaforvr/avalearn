@@ -221,6 +221,10 @@ git commit -a -m 'remove files in **'    #提交修改</pre>
             <td>git branch -r | grep 'feature/yywang' | sed 's/origin\///g' | xargs -I {} git push origin :{}</td>
             <td>批量删除远程分支</td>
         </tr>
+        <tr>
+            <td>git branch -r --merged | grep -v '\*\|master\|develop\|release\|/hotfix' | sed 's/origin\///' | xargs -n 1 git push --delete origin</td>
+            <td>批量删除远程已合并分支</td>
+        </tr>
     </tbody>
 </table>
 
