@@ -217,6 +217,10 @@ git commit -a -m 'remove files in **'    #提交修改</pre>
             <td>git push origin --delete [remoteBranchName]</td>
             <td>删除远程分支如：<br>git push origin --delete feature/1157-import</td>
         </tr>
+        <tr>
+            <td>git branch -r | grep 'feature/yywang' | sed 's/origin\///g' | xargs -I {} git push origin :{}</td>
+            <td>批量删除远程分支</td>
+        </tr>
     </tbody>
 </table>
 
@@ -424,6 +428,10 @@ postBuffer = 524288000</pre></td>
             <tr>
                 <td>执行git push时报错：error: failed to push some refs to 'https://xxx.git'</td>
                 <td>远程库与本地库不一致造成的，执行 <pre>git pull --rebase origin master</pre></td>
+            </tr>
+            <tr>
+                <td>git 删除远端分支 报错：remote refs do not exist</td>
+                <td>执行：<pre>git fetch -p origin</pre></td>
             </tr>
             <tr>
                 <td></td>
