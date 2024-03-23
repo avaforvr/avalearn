@@ -27,8 +27,8 @@ session_start();
 error_reporting($DEBUG_MODE ? E_ALL : E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED);
 
 //Initializer
-require_once dirname(__DIR__) . '/vender/Pimple.php';
-$container = new Pimple();
+require_once dirname(__DIR__) . '/vender/Pimple/Container.php';
+$container = new Container();
 
 $container['ROOT_PATH'] = str_replace('\\', '/', dirname(dirname(__DIR__))) . '/';
 $container['PHP_PATH'] = $container['ROOT_PATH'] . 'php/';
